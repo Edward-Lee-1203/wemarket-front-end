@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/destination_buyer_home">
+
+    <fragment
+        android:id="@+id/destination_buyer_choose_food"
+        android:name="com.example.wemarketandroid.views.buyer.ChooseFoodFragment"
+        android:label="ChooseFoodFragment" >
+        <action
+            android:id="@+id/action_chooseFoodFragment_to_checkoutFragment"
+            app:destination="@id/destination_buyer_checkout" />
+        <action
+            android:id="@+id/action_chooseFoodFragment_to_marketDetailsFragment"
+            app:destination="@id/destination_buyer_market_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_buyer_checkout"
+        android:name="com.example.wemarketandroid.views.buyer.CheckoutFragment"
+        android:label="CheckoutFragment" >
+        <action
+            android:id="@+id/action_checkoutFragment_to_successFragment"
+            app:destination="@id/destination_buyer_success" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_buyer_success"
+        android:name="com.example.wemarketandroid.views.buyer.SuccessFragment"
+        android:label="SuccessFragment" />
+    <fragment
+        android:id="@+id/destination_buyer_home"
+        android:name="com.example.wemarketandroid.views.buyer.HomeFragment"
+        android:label="fragment_buyer_home"
+        tools:layout="@layout/fragment_buyer_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_chooseFoodFragment"
+            app:destination="@id/destination_buyer_choose_food" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_buyer_market_details"
+        android:name="com.example.wemarketandroid.views.buyer.MarketDetailsFragment"
+        android:label="fragment_buyer_market_details"
+        tools:layout="@layout/fragment_buyer_market_details" >
+        <action
+            android:id="@+id/action_marketDetailsFragment_to_checkoutFragment"
+            app:destination="@id/destination_buyer_checkout" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_buyer_orders"
+        android:name="com.example.wemarketandroid.views.buyer.OrdersFragment"
+        android:label="OrdersFragment" />
+    <fragment
+        android:id="@+id/destination_buyer_profile"
+        android:name="com.example.wemarketandroid.views.buyer.ProfileFragment"
+        android:label="ProfileFragment" />
+</navigation>
