@@ -6,5 +6,5 @@
         android:icon="@drawable/icon_find"
         android:title="@android:string/search_go"
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 </menu>

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -28,19 +29,25 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavBar;
     private BottomNavigationView.OnNavigationItemSelectedListener mBottomNavBarItemListener;
     private NavController mNavController;
+    private MenuItem mToolbarSearchMenuItem;
+
 
     private void initComponents(){
         mToolbar = (Toolbar)findViewById(R.id.toolbar_buyer);
         mBottomNavBar = (BottomNavigationView) findViewById(R.id.bottom_navigation_buyer);
         mNavController = Navigation.findNavController(this,R.id.fragment_container_buyer);
+        // Bottom Navbar Item click listener
         mBottomNavBarItemListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if(id!=R.id.bottomnavbar_search) {
-                    mNavController.navigate(id);
+                if(id==R.id.bottomnavbar_search) {
+//                    onSearchRequested();
+//                    mToolbarSearchMenuItem.expandActionView();
+                    ((SearchView)mToolbarSearchMenuItem.getActionView()).setIconified(false);
+//                    ((SearchView)mToolbarSearchMenuItem.getActionView()).requestFocus();
                 } else{
-                    onSearchRequested();
+                    mNavController.navigate(id);
                 }
                 return true;
             }
@@ -76,10 +83,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the SearchView and set the searchable configuration
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.toolbar_buyer_search).getActionView();
+        mToolbarSearchMenuItem = menu.findItem(R.id.toolbar_buyer_search);
+        SearchView searchView = (SearchView) mToolbarSearchMenuItem.getActionView();
         // Assumes current activity is the searchable activity
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+        searchView.setIconifiedByDefault(true); // Do not iconify the widget; expand it by default
         searchView.setQueryHint(getString(R.string.search_hint_buyer));
         searchView.setSubmitButtonEnabled(true);
         return true;
