@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.WeMarketAndroid" parent="Theme.AppCompat.DayNight.NoActionBar"
+    <style name="WeMarketStyles.AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar"
         >
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primaryLight</item>
@@ -7,7 +7,40 @@
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorSecondaryVariant">@color/secondaryLight</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-
         <item name="android:windowBackground">@color/gray</item>
     </style>
+    <style name="WeMarketStyles.Text.h1" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/WeMarket.size.large</item>
+
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/font_primary</item>
+    </style>
+    <style name="WeMarketStyles.Text.h2" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/WeMarket.size.medium</item>
+        <item name="android:textColor">@color/font_primary</item>
+    </style>
+    <style name="WeMarketStyles.Text.h3" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/WeMarket.size.small</item>
+        <item name="android:textColor">@color/font_secondary</item>
+    </style>
+    <style name="WeMarketStyles.Text.h3.strikeThrough" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/WeMarket.size.small</item>
+        <item name="android:textColor">@color/lightGray</item>
+        <item name="android:foreground">@drawable/foreground_strike_through_horizontal</item>
+    </style>
+    <style name="WeMarketStyles.TextInputLayout" parent="">
+        <item name="android:textSize">@dimen/WeMarket.size.small</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:layout_marginRight">@dimen/WeMarket.size.editText</item>
+        <item name="boxBackgroundColor">@color/gray</item>
+    </style>
+    <style name="WeMarketStyles.TextInputEditText" parent="">
+        <item name="android:textSize">@dimen/WeMarket.size.small</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+    <style name="WeMarketStyles.FloatingActionButton" parent="Widget.Design.FloatingActionButton">
+        <item name="backgroundTint">@color/white</item>
+        <item name="fabCustomSize">@dimen/WeMarket.space.large</item>
+    </style>
+
 </resources>

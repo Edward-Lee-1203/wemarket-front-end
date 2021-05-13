@@ -18,7 +18,7 @@
 <!--            </intent-filter>-->
         </activity>
 <!--        android:launchMode="singleTop" prevents activity recreation on searching-->
-        <activity android:name=".views.buyer.MainActivity" android:launchMode="singleTop" android:theme="@style/Theme.WeMarketAndroid">
+        <activity android:name=".views.buyer.MainActivity" android:launchMode="singleTop" android:theme="@style/WeMarketStyles.AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.SEARCH" />

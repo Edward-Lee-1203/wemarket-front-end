@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.widget.SearchView;
 
 import com.example.wemarketandroid.R;
+import com.example.wemarketandroid.databinding.ActivityBuyerMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mBottomNavBarItemListener;
     private NavController mNavController;
     private MenuItem mToolbarSearchMenuItem;
-
 
     private void initComponents(){
         mToolbar = (Toolbar)findViewById(R.id.toolbar_buyer);
@@ -105,5 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    public BottomNavigationView getmBottomNavBar() {
+        return mBottomNavBar;
     }
 }

@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">We Market</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_label_buyer">Search food name</string>
     <string name="search_hint_buyer">Cá ba sa</string>
+    <string name="buyer_home_greeting_title">Hello, %s</string>
+    <string name="buyer_home_greeting_subtitle">What do you want to eat?</string>
+    <string name="buyer_market_cover_photo">Market cover photo here</string>
+    <string name="buyer_dialog_food_name">%s</string>
+    <string name="buyer_dialog_food_unit">/%s</string>
+    <string name="buyer_dialog_message">Lời nhắn cho cửa hàng</string>
+    <string name="buyer_dialog_add_to_cart_message">Thêm vào giỏ hàng</string>
 </resources>

@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.buyer.HomeFragment">
+    tools:context=".views.buyer.HomeFragment"
+    android:layout_marginStart="@dimen/WeMarket.space.small"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/text_buyer_title"
+        style="@style/WeMarketStyles.Text.h1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Buyer's home fragment" />
+        android:layout_height="wrap_content"
+        android:text="@string/buyer_home_greeting_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/WeMarket.space.medium"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/text_buyer_subtitle"
+        style="@style/WeMarketStyles.Text.h3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/buyer_home_greeting_subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_buyer_title"
+        android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_buyer_food_filters_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_buyer_subtitle"
+        android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
+    <TextView
+        android:id="@+id/text_buyer_promo"
+        style="@style/WeMarketStyles.Text.h2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today's promo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_buyer_food_filters_home"
+        android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
+    <TextView
+        android:id="@+id/text_buyer_see_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/WeMarket.space.small"
+        android:layout_marginEnd="10sp"
+        android:text="See all"
+        android:textColor="@color/primaryLight"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_buyer_home_promo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_buyer_food_filters_home" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_buyer_home_promo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_buyer_promo"
+        android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
