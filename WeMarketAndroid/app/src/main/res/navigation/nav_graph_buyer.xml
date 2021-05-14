@@ -8,7 +8,8 @@
     <fragment
         android:id="@+id/destination_buyer_choose_food"
         android:name="com.example.wemarketandroid.views.buyer.ChooseFoodFragment"
-        android:label="ChooseFoodFragment" >
+        android:label="@string/buyer_title_choose_food"
+        tools:layout="@layout/fragment_buyer_choose_food">
         <action
             android:id="@+id/action_chooseFoodFragment_to_checkoutFragment"
             app:destination="@id/destination_buyer_checkout" />
@@ -19,7 +20,8 @@
     <fragment
         android:id="@+id/destination_buyer_checkout"
         android:name="com.example.wemarketandroid.views.buyer.CheckoutFragment"
-        android:label="CheckoutFragment" >
+        android:label="@string/buyer_title_checkout"
+        tools:layout="@layout/fragment_buyer_checkout">
         <action
             android:id="@+id/action_checkoutFragment_to_successFragment"
             app:destination="@id/destination_buyer_success" />
@@ -27,11 +29,12 @@
     <fragment
         android:id="@+id/destination_buyer_success"
         android:name="com.example.wemarketandroid.views.buyer.SuccessFragment"
-        android:label="SuccessFragment" />
+        android:label="@string/buyer_title_success"
+        tools:layout="@layout/fragment_buyer_success" />
     <fragment
         android:id="@+id/destination_buyer_home"
         android:name="com.example.wemarketandroid.views.buyer.HomeFragment"
-        android:label="fragment_buyer_home"
+        android:label="@string/buyer_title_home"
         tools:layout="@layout/fragment_buyer_home" >
         <action
             android:id="@+id/action_homeFragment_to_chooseFoodFragment"
@@ -40,7 +43,7 @@
     <fragment
         android:id="@+id/destination_buyer_market_details"
         android:name="com.example.wemarketandroid.views.buyer.MarketDetailsFragment"
-        android:label="fragment_buyer_market_details"
+        android:label="@string/buyer_title_market_details"
         tools:layout="@layout/fragment_buyer_market_details" >
         <action
             android:id="@+id/action_marketDetailsFragment_to_checkoutFragment"
@@ -49,9 +52,9 @@
     <fragment
         android:id="@+id/destination_buyer_orders"
         android:name="com.example.wemarketandroid.views.buyer.OrdersFragment"
-        android:label="OrdersFragment" />
+        android:label="@string/buyer_title_orders" />
     <fragment
         android:id="@+id/destination_buyer_profile"
         android:name="com.example.wemarketandroid.views.buyer.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="@string/buyer_title_profile" />
 </navigation>

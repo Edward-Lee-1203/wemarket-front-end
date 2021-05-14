@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">We Market</string>
+    <string name="buyer_title_home">@string/app_name</string>
+    <string name="buyer_title_orders">@string/app_name</string>
+    <string name="buyer_title_profile">@string/app_name</string>
+    <string name="buyer_title_choose_food">Today\'s Food</string>
+    <string name="buyer_title_market_details">@string/app_name</string>
+    <string name="buyer_title_checkout">Checkout</string>
+    <string name="buyer_title_success">Success</string>
     <string name="search_label_buyer">Search food name</string>
     <string name="search_hint_buyer">Cá ba sa</string>
     <string name="buyer_home_greeting_title">Hello, %s</string>
@@ -9,4 +16,17 @@
     <string name="buyer_dialog_food_unit">/%s</string>
     <string name="buyer_dialog_message">Lời nhắn cho cửa hàng</string>
     <string name="buyer_dialog_add_to_cart_message">Thêm vào giỏ hàng</string>
+    <string name="buyer_success_h1_text">Your order is confirmed!</string>
+    <string name="buyer_success_h3_text">we\'ll deliver your order immediately, make sure your order put on the doorstep</string>
+    <string name="buyer_success_check_order_button_text">Check order status</string>
+    <string name="buyer_open_text">Open</string>
+    <string name="buyer_checkout_keep_social_distancing_text">Keep social distancing</string>
+    <string name="buyer_checkout_keep_social_distancing_description">Leave your order on the doorstep</string>
+    <string name="buyer_checkout_deliver_to_title">Deliver to</string>
+    <string name="buyer_checkout_deliver_note_text">Add a note of delivery address</string>
+    <string name="text_buyer_checkout_bucket_title">My Cart</string>
+    <string name="buyer_checkout_bucket_add_items">Add items</string>
+    <string name="buyer_checkout_payment_title">Payment</string>
+    <string name="buyer_checkout_payment_items_cost">Food total</string>
+    <string name="buyer_checkout_payment_delivery_fee">Delivery total</string>
 </resources>

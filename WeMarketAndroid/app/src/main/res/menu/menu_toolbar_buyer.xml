@@ -7,9 +7,10 @@
         android:title="@android:string/search_go"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
+<!--    TODO: fix the bell always get pushed out when seaching :(   -->
     <item
         android:id="@+id/toolbar_buyer_notification_bell"
         android:icon="@drawable/icon_notification_bell"
         android:title="Notification bell"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

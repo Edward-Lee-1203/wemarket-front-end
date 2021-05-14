@@ -3,8 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.buyer.SuccessFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/image_buyer_success"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:maxHeight="@dimen/WeMarket.size.coverPhoto.oneThird"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/delivery_image" />
+    <TextView
+        android:id="@+id/text_buyer_success_h1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/image_buyer_success"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/buyer_success_h1_text"
+        style="@style/WeMarketStyles.Text.h2.center"
+        />
+
+    <TextView
+        android:id="@+id/text_buyer_success_h3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_buyer_success_h1"
+        android:layout_marginLeft="@dimen/WeMarket.space.large"
+        android:layout_marginRight="@dimen/WeMarket.space.large"
+        android:text="@string/buyer_success_h3_text"
+        style="@style/WeMarketStyles.Text.h3.center" />
+
+    <Button
+        android:id="@+id/button_buyer_success_check_order_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_buyer_success_h3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/WeMarket.space.large"
+        android:layout_marginBottom="@dimen/WeMarket.space.large"
+        style="@style/WeMarketStyles.Button"
+        android:text="@string/buyer_success_check_order_button_text"
+        />
+
+<!--    implement swipe up ??-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

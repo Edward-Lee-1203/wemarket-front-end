@@ -38,6 +38,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    // cardview
+    implementation "androidx.cardview:cardview:1.0.0"
+
     // jetpack navigation component
     def nav_version = "2.3.5"
     implementation "androidx.navigation:navigation-fragment:$nav_version"

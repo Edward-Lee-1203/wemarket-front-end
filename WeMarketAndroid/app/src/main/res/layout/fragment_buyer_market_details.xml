@@ -31,7 +31,8 @@
     <ImageView
         android:id="@+id/image_market_cover"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/WeMarket.size.coverPhoto"
+        android:layout_height="0dp"
+        android:maxHeight="@dimen/WeMarket.size.coverPhoto.oneThird"
         android:contentDescription="@string/buyer_market_cover_photo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

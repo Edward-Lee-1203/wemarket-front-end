@@ -8,10 +8,10 @@
         <item name="colorSecondaryVariant">@color/secondaryLight</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowBackground">@color/gray</item>
+
     </style>
     <style name="WeMarketStyles.Text.h1" parent="@android:style/TextAppearance">
         <item name="android:textSize">@dimen/WeMarket.size.large</item>
-
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/font_primary</item>
     </style>
@@ -28,6 +28,15 @@
         <item name="android:textColor">@color/lightGray</item>
         <item name="android:foreground">@drawable/foreground_strike_through_horizontal</item>
     </style>
+    <style name="WeMarketStyles.Text.h1.center" parent="@style/WeMarketStyles.Text.h1">
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="WeMarketStyles.Text.h2.center" parent="@style/WeMarketStyles.Text.h2">
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="WeMarketStyles.Text.h3.center" parent="@style/WeMarketStyles.Text.h3">
+        <item name="android:gravity">center</item>
+    </style>
     <style name="WeMarketStyles.TextInputLayout" parent="">
         <item name="android:textSize">@dimen/WeMarket.size.small</item>
         <item name="android:textColor">@color/primary</item>
@@ -41,6 +50,24 @@
     <style name="WeMarketStyles.FloatingActionButton" parent="Widget.Design.FloatingActionButton">
         <item name="backgroundTint">@color/white</item>
         <item name="fabCustomSize">@dimen/WeMarket.space.large</item>
+    </style>
+    <style name="WeMarketStyles.Button" parent="">
+        <item name="android:paddingTop">@dimen/WeMarket.space.small</item>
+        <item name="android:paddingBottom">@dimen/WeMarket.space.small</item>
+        <item name="android:paddingLeft">@dimen/WeMarket.space.medium</item>
+        <item name="android:paddingRight">@dimen/WeMarket.space.medium</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="textAllCaps">false</item>
+    </style>
+    <style name="WeMarketStyles.CardView" parent="">
+        <item name="cardCornerRadius">@dimen/WeMarket.size.cardBorderRadius</item>
+    </style>
+    <style name="WeMarketStyles.padding.small" parent="">
+        <item name="android:paddingTop">@dimen/WeMarket.space.small</item>
+        <item name="android:paddingBottom">@dimen/WeMarket.space.small</item>
+        <item name="android:paddingLeft">@dimen/WeMarket.space.small</item>
+        <item name="android:paddingRight">@dimen/WeMarket.space.small</item>
     </style>
 
 </resources>

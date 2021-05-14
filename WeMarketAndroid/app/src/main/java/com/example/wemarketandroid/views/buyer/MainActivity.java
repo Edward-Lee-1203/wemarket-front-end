@@ -8,6 +8,7 @@ import androidx.core.view.MenuItemCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.app.SearchManager;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
 
 import com.example.wemarketandroid.R;
@@ -28,30 +30,54 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private BottomNavigationView mBottomNavBar;
-    private BottomNavigationView.OnNavigationItemSelectedListener mBottomNavBarItemListener;
     private NavController mNavController;
-    private MenuItem mToolbarSearchMenuItem;
+    private SearchView mSearchView;
 
     private void initComponents(){
+        /**
+         * mToolbar
+         */
         mToolbar = (Toolbar)findViewById(R.id.toolbar_buyer);
-        mBottomNavBar = (BottomNavigationView) findViewById(R.id.bottom_navigation_buyer);
-        mNavController = Navigation.findNavController(this,R.id.fragment_container_buyer);
-        // Bottom Navbar Item click listener
-        mBottomNavBarItemListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        mToolbar.inflateMenu(R.menu.menu_toolbar_buyer);
+        mToolbar.setOnMenuItemClickListener(item->{
+            switch (item.getItemId()) {
+                case R.id.toolbar_buyer_search:  {
+                    onSearchRequested();
+                    return true;
+                }
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        });
+        Menu menu = mToolbar.getMenu();
+        mSearchView = (SearchView) mToolbar.getMenu().findItem(R.id.toolbar_buyer_search).getActionView();
+        SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
+        mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        mSearchView.setIconifiedByDefault(true);
+//        mSearchView.setQueryHint(getString(R.string.search_hint_buyer));
+        mSearchView.setSubmitButtonEnabled(true);
+        /**
+         * mBottomNavBar
+         */
+        mBottomNavBar = (BottomNavigationView)findViewById(R.id.bottom_navigation_buyer);
+        mBottomNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if(id==R.id.bottomnavbar_search) {
-//                    onSearchRequested();
-//                    mToolbarSearchMenuItem.expandActionView();
-                    ((SearchView)mToolbarSearchMenuItem.getActionView()).setIconified(false);
-//                    ((SearchView)mToolbarSearchMenuItem.getActionView()).requestFocus();
+                    mSearchView.setIconified(false);
                 } else{
                     mNavController.navigate(id);
                 }
                 return true;
             }
-        };
+        });
+        /**
+         * mNavController
+         */
+        mNavController = Navigation.findNavController(this,R.id.fragment_container_buyer);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.destination_buyer_home,R.id.destination_buyer_orders,R.id.destination_buyer_profile).build();
+        NavigationUI.setupWithNavController(mToolbar,mNavController,appBarConfiguration);
     }
     private void handleIntent(Intent intent){
         if(intent.getAction().equals(Intent.ACTION_SEARCH)){
@@ -66,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_main);
         initComponents();
-        mBottomNavBar.setOnNavigationItemSelectedListener(mBottomNavBarItemListener);
-        setSupportActionBar(mToolbar);
     }
 
     @Override
@@ -76,38 +100,11 @@ public class MainActivity extends AppCompatActivity {
         handleIntent(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_toolbar_buyer, menu);
-
-        // Get the SearchView and set the searchable configuration
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        mToolbarSearchMenuItem = menu.findItem(R.id.toolbar_buyer_search);
-        SearchView searchView = (SearchView) mToolbarSearchMenuItem.getActionView();
-        // Assumes current activity is the searchable activity
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(true); // Do not iconify the widget; expand it by default
-        searchView.setQueryHint(getString(R.string.search_hint_buyer));
-        searchView.setSubmitButtonEnabled(true);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // this method checks for appbar item click event
-        switch (item.getItemId()) {
-            case R.id.toolbar_buyer_search:  {
-                onSearchRequested();
-                return true;
-            }
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
-
     public BottomNavigationView getmBottomNavBar() {
         return mBottomNavBar;
+    }
+
+    public Toolbar getmToolbar() {
+        return mToolbar;
     }
 }

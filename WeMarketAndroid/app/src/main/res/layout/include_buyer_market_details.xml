@@ -1,8 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<!--    TODO: implement this blank layout-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/WeMarket.space.large"
+    android:paddingRight="@dimen/WeMarket.space.large"
+    android:orientation="vertical"
+    android:showDividers="middle"
+    android:divider="@drawable/empty_wide_divider">
+
+    <TextView
+        android:id="@+id/text_include_buyer_market_details_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Market name here!"
+        style="@style/WeMarketStyles.Text.h2.center"
+        />
+
+    <TextView
+        android:id="@+id/text_include_buyer_market_details_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Market address here!"
+        style="@style/WeMarketStyles.Text.h3.center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:showDividers="middle"
+        android:divider="@drawable/empty_tall_divider"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WeMarketStyles.Text.h3.center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buyer_open_text" />
+
+        <TextView
+            android:id="@+id/text_include_buyer_market_details_open_time"
+            style="@style/WeMarketStyles.Text.h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%d am - %d pm"
+            android:textSize="@dimen/WeMarket.size.small" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_location" />
+
+        <TextView
+            android:id="@+id/text_include_buyer_market_details_distance"
+            style="@style/WeMarketStyles.Text.h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%dkm"
+            android:textSize="@dimen/WeMarket.size.xsmall"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/WeMarket.space.small"
+            android:src="@drawable/icon_star" />
+
+        <TextView
+            android:id="@+id/text_include_buyer_market_details_rating"
+            style="@style/WeMarketStyles.Text.h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%.1f"
+            android:textSize="@dimen/WeMarket.size.xsmall" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/WeMarket.space.small"
+            android:src="@drawable/icon_verified" />
+
+        <TextView
+            android:id="@+id/text_include_buyer_market_details_verified"
+            style="@style/WeMarketStyles.Text.h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Market name here!"
+            android:textSize="@dimen/WeMarket.size.xsmall" />
+    </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

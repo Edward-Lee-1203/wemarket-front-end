@@ -3,6 +3,7 @@
     <dimen name="WeMarket.space.small">10dp</dimen>
     <dimen name="WeMarket.space.medium">20dp</dimen>
     <dimen name="WeMarket.space.large">30dp</dimen>
+    <dimen name="WeMarket.size.xsmall">8dp</dimen>
     <dimen name="WeMarket.size.small">12dp</dimen>
     <dimen name="WeMarket.size.medium">24dp</dimen>
     <dimen name="WeMarket.size.large">36dp</dimen>
@@ -10,4 +11,5 @@
     <dimen name="WeMarket.size.coverPhoto">230dp</dimen>
     <dimen name="WeMarket.size.coverPhoto.oneThird">73dp</dimen>
     <dimen name="WeMarket.size.editText">84dp</dimen>
+    <dimen name="WeMarket.size.cardBorderRadius">4dp</dimen>
 </resources>
