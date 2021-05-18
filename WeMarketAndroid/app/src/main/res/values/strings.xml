@@ -17,7 +17,7 @@
     <string name="buyer_dialog_message">Lời nhắn cho cửa hàng</string>
     <string name="buyer_dialog_add_to_cart_message">Thêm vào giỏ hàng</string>
     <string name="buyer_success_h1_text">Your order is confirmed!</string>
-    <string name="buyer_success_h3_text">we\'ll deliver your order immediately, make sure your order put on the doorstep</string>
+    <string name="buyer_success_h3_text">we\'ll deliver your order immediately,\nmake sure your order put on the doorstep</string>
     <string name="buyer_success_check_order_button_text">Check order status</string>
     <string name="buyer_open_text">Open</string>
     <string name="buyer_checkout_keep_social_distancing_text">Keep social distancing</string>
@@ -29,4 +29,7 @@
     <string name="buyer_checkout_payment_title">Payment</string>
     <string name="buyer_checkout_payment_items_cost">Food total</string>
     <string name="buyer_checkout_payment_delivery_fee">Delivery total</string>
+    <string name="buyer_free_delivery">Free delivery</string>
+    <string name="default_food_unit">kg</string>
+    <string name="default_food_currency">VNĐ</string>
 </resources>

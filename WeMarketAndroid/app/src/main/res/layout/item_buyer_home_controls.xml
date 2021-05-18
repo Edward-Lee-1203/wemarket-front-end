@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/WeMarketStyles.CardView"
+    app:contentPadding="@dimen/WeMarket.size.homeControl.padding">
+
+    <ImageView
+        android:id="@+id/image_buyer_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/WeMarket.size.homeControl.image"
+        android:minHeight="@dimen/WeMarket.size.homeControl.image"
+        android:src="@drawable/icon_heart" />
+</androidx.cardview.widget.CardView>

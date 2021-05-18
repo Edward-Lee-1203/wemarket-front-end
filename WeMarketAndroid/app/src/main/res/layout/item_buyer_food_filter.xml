@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/WeMarket.size.cardBorderRadius"
+    android:elevation="@dimen/WeMarket.space.small">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/WeMarket.space.large"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/icon_settings"
+        android:paddingLeft="@dimen/WeMarket.size.xsmall"
+        android:text="Filters"
+        android:textAllCaps="false"
+        android:textColor="@color/font_primary" />
+</androidx.cardview.widget.CardView>

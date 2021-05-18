@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
+    android:id="@+id/include_dialog_food_details"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/WeMarket.space.medium">
+    style="@style/WeMarketStyles.CardView">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/WeMarket.space.medium">
 
         <TextView
             android:id="@+id/text_buyer_dialog_food_name"
@@ -15,36 +19,6 @@
             app:layout_constraintStart_toStartOf="parent"
             style="@style/WeMarketStyles.Text.h2"
             android:text="Food name here"
-            />
-        <TextView
-            android:id="@+id/text_buyer_dialog_current_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/text_buyer_dialog_old_price"
-            style="@style/WeMarketStyles.Text.h3"
-            android:layout_marginEnd="@dimen/WeMarket.space.small"
-            android:text="%s"
-            />
-        <TextView
-            android:id="@+id/text_buyer_dialog_old_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/text_buyer_dialog_food_unit"
-            style="@style/WeMarketStyles.Text.h3.strikeThrough"
-            android:layout_marginEnd="@dimen/WeMarket.space.small"
-            android:text="%d"
-            />
-        <TextView
-            android:id="@+id/text_buyer_dialog_food_unit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            style="@style/WeMarketStyles.Text.h3"
-            android:text="@string/buyer_dialog_food_unit"
-            android:textColor="@color/font_primary"
             />
         <TextView
             android:id="@+id/buyer_dialog_message"
@@ -57,63 +31,43 @@
             android:text="@string/buyer_dialog_message"
             android:layout_marginTop="@dimen/WeMarket.space.small"
             />
-<!--    TODO: call setSuffixText(CharSequence) on inflating this layout-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout_buyer_dialog_food_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_buyer_dialog_equals"
-        app:layout_constraintTop_toBottomOf="@+id/buyer_dialog_message"
-        style="@style/WeMarketStyles.TextInputLayout"
-        android:layout_marginTop="@dimen/WeMarket.space.small"
-        >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_buyer_dialog_food_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/WeMarketStyles.TextInputEditText" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <TextView
-        android:id="@+id/text_buyer_dialog_equals"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/buyer_dialog_message"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayout_buyer_dialog_food_amount"
-        app:layout_constraintEnd_toStartOf="@+id/textInputLayout_buyer_dialog_cost_amount"
-        app:layout_constraintBottom_toTopOf="@+id/button_buyer_dialog_add_to_cart_message"
-        style="@style/WeMarketStyles.Text.h3"
-        android:text="="
-        />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout_buyer_dialog_cost_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/buyer_dialog_message"
-        app:layout_constraintEnd_toEndOf="parent"
-        style="@style/WeMarketStyles.TextInputLayout"
-        android:layout_marginTop="@dimen/WeMarket.space.small"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText_buyer_dialog_cost_amount"
+        <include
+            layout="@layout/include_food_pricing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/WeMarketStyles.TextInputEditText" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <include
+            android:id="@+id/include_buyer_quantity_price_exchange"
+            layout="@layout/include_buyer_quantity_price_exchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/buyer_dialog_message"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/WeMarket.space.small"/>
 
-    <Button
-        android:id="@+id/button_buyer_dialog_add_to_cart_message"
-        style="@style/WeMarketStyles.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/WeMarket.space.small"
-        android:text="@string/buyer_dialog_add_to_cart_message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_buyer_dialog_food_amount" />
+        <androidx.cardview.widget.CardView
+            style="@style/WeMarketStyles.CardView"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_buyer_quantity_price_exchange"
+            android:layout_marginTop="@dimen/WeMarket.space.small"
+            app:cardBackgroundColor="@color/primary">
+
+            <Button
+                android:id="@+id/button_buyer_dialog_add_to_cart_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/buyer_dialog_add_to_cart_message"
+                style="@style/WeMarketStyles.Button" />
+        </androidx.cardview.widget.CardView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

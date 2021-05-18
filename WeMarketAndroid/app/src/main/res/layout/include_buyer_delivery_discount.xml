@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/include_buyer_delivery_discount"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    android:divider="@drawable/empty_tall_divider">
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/WeMarket.size.small"
+        android:layout_height="@dimen/WeMarket.size.small"
+        app:cardCornerRadius="@dimen/WeMarket.size.small"
+        app:cardBackgroundColor="@color/yellow">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%"
+            android:textColor="@color/white"
+            android:textSize="@dimen/WeMarket.size.xsmall"
+            android:paddingLeft="3dp"/>
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WeMarketStyles.Text.h4"
+        android:text="@string/buyer_free_delivery"/>
+</LinearLayout>

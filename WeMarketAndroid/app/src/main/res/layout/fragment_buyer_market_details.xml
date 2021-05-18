@@ -19,12 +19,12 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_buyer_favourite"
+        style="@style/WeMarketStyles.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/WeMarket.space.small"
         android:layout_marginTop="@dimen/WeMarket.space.large"
+        android:layout_marginEnd="@dimen/WeMarket.space.small"
         android:src="@drawable/icon_heart"
-        style="@style/WeMarketStyles.FloatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,8 +32,10 @@
         android:id="@+id/image_market_cover"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:maxHeight="@dimen/WeMarket.size.coverPhoto.oneThird"
         android:contentDescription="@string/buyer_market_cover_photo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_market_photos"
+        app:layout_constraintHeight_max="@dimen/WeMarket.size.coverPhoto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,25 +44,25 @@
         layout="@layout/include_buyer_market_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/WeMarket.size.coverPhoto.oneThird"
-        android:layout_marginBottom="@dimen/WeMarket.space.small"
+        android:layout_marginTop="@dimen/WeMarket.size.coverPhoto"
+        android:elevation="@dimen/WeMarket.space.small"
         app:layout_constraintBottom_toTopOf="@+id/image_market_cover"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_market_cover"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.9"
-        android:elevation="@dimen/WeMarket.space.small"
-        android:padding="@dimen/WeMarket.size.medium"
-        />
+        app:layout_constraintWidth_percent="0.9" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_market_foods"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/WeMarket.space.small"
         app:layout_constraintBottom_toTopOf="@+id/linear_market_details_checkout_bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_market_details" />
+        app:layout_constraintTop_toBottomOf="@+id/include_market_details"
+        app:layout_constraintVertical_bias="0.698" />
+
     <LinearLayout
         android:id="@+id/linear_market_details_checkout_bar"
         android:layout_width="match_parent"

@@ -4,13 +4,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<!--        TODO: fix this layout-->
     <ImageView
         android:id="@+id/image_dialog_food_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/WeMarket.size.coverPhoto"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_max="@dimen/WeMarket.size.coverPhoto"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        android:scaleType="centerCrop"/>
     <include
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -18,7 +20,7 @@
         app:layout_constraintBottom_toTopOf="@+id/image_dialog_food_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/WeMarket.size.coverPhoto.oneThird"
+        android:layout_marginTop="@dimen/WeMarket.size.coverPhoto"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.9"
         layout="@layout/include_dialog_food_details"

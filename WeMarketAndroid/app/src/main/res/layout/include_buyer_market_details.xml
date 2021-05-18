@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:divider="@drawable/empty_wide_divider"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/WeMarket.space.large"
     android:paddingRight="@dimen/WeMarket.space.large"
-    android:orientation="vertical"
-    android:showDividers="middle"
-    android:divider="@drawable/empty_wide_divider">
+    android:paddingTop="@dimen/WeMarket.space.small"
+    android:paddingBottom="@dimen/WeMarket.space.small"
+    android:showDividers="middle">
 
     <TextView
         android:id="@+id/text_include_buyer_market_details_name"
+        style="@style/WeMarketStyles.Text.h2.center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Market name here!"
-        style="@style/WeMarketStyles.Text.h2.center"
-        />
+        android:text="Market name here!" />
 
     <TextView
         android:id="@+id/text_include_buyer_market_details_address"
+        style="@style/WeMarketStyles.Text.h3.center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Market address here!"
-        style="@style/WeMarketStyles.Text.h3.center"
-        />
+        android:text="Market address here!" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:showDividers="middle"
         android:divider="@drawable/empty_tall_divider"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:showDividers="middle">
 
         <TextView
             style="@style/WeMarketStyles.Text.h3.center"
@@ -98,7 +99,6 @@
             android:text="Market name here!"
             android:textSize="@dimen/WeMarket.size.xsmall" />
     </LinearLayout>
-
 
 
 </LinearLayout>

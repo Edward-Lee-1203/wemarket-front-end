@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/include_image_badge_bottom"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_include_image_badge_bottom_food_image"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:maxWidth="@dimen/WeMarket.size.foodItem"
+        android:maxHeight="@dimen/WeMarket.size.foodItem"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/WeMarketStyles.CardView">
+        <ImageView
+            android:id="@+id/image_include_image_badge_bottom_food_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_fish"/>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/card_include_image_badge_bottom_food_image"
+        app:layout_constraintBottom_toBottomOf="@+id/card_include_image_badge_bottom_food_image"
+        app:layout_constraintStart_toStartOf="@+id/card_include_image_badge_bottom_food_image"
+        app:layout_constraintEnd_toEndOf="@+id/card_include_image_badge_bottom_food_image"
+        app:contentPadding="2dp"
+        app:cardBackgroundColor="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow"
+            android:padding="@dimen/WeMarket.space.xsmall"
+            android:text="%d Left"
+            android:textSize="@dimen/WeMarket.size.xsmall"
+            android:textColor="@color/white"/>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

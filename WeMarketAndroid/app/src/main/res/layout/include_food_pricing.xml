@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    android:divider="@drawable/empty_tall_divider"
+    >
+    <TextView
+        android:id="@+id/text_buyer_food_price_current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WeMarketStyles.Text.h3"
+        android:textColor="@color/font_primary"
+        android:text="%d"/>
+    <TextView
+        android:id="@+id/text_buyer_food_price_before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WeMarketStyles.Text.h3"
+        android:foreground="@drawable/foreground_strike_through_horizontal"
+        android:text="%d"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WeMarketStyles.Text.h3"
+        android:textColor="@color/font_primary"
+        android:text="/"/>
+    <TextView
+        android:id="@+id/text_buyer_food_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WeMarketStyles.Text.h3"
+        android:textColor="@color/font_primary"
+        android:text="%s"/>
+</LinearLayout>

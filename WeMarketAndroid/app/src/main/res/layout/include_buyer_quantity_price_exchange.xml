@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/include_buyer_quantity_price_exchange"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    android:divider="@drawable/empty_tall_divider">
+
+    <!--    TODO: call setSuffixText(CharSequence) on inflating this layout-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_buyer_dialog_food_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WeMarketStyles.TextInputLayout"
+        app:suffixText="@string/default_food_unit">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText_buyer_dialog_food_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/WeMarketStyles.TextInputEditText"
+            android:text="%.3f"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/text_buyer_dialog_equals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/buyer_dialog_message"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_buyer_dialog_food_amount"
+        app:layout_constraintEnd_toStartOf="@+id/textInputLayout_buyer_dialog_cost_amount"
+        app:layout_constraintBottom_toTopOf="@+id/card_food_details_button"
+        style="@style/WeMarketStyles.Text.h2"
+        android:text="="
+        />
+
+    <!--    TODO: call setSuffixText(CharSequence) on inflating this layout-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_buyer_dialog_cost_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/buyer_dialog_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/WeMarketStyles.TextInputLayout"
+        app:suffixText="@string/default_food_currency">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText_buyer_dialog_cost_amount"
+            style="@style/WeMarketStyles.TextInputEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="%.3f" />
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>

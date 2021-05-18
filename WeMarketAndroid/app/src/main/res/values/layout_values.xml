@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="WeMarket.space.xsmall">5dp</dimen>
     <dimen name="WeMarket.space.small">10dp</dimen>
     <dimen name="WeMarket.space.medium">20dp</dimen>
     <dimen name="WeMarket.space.large">30dp</dimen>
     <dimen name="WeMarket.size.xsmall">8dp</dimen>
     <dimen name="WeMarket.size.small">12dp</dimen>
     <dimen name="WeMarket.size.medium">24dp</dimen>
+    <dimen name="WeMarket.size.xmedium">30dp</dimen>
     <dimen name="WeMarket.size.large">36dp</dimen>
     <dimen name="WeMarket.size.actionBar">56dp</dimen>
     <dimen name="WeMarket.size.coverPhoto">230dp</dimen>
-    <dimen name="WeMarket.size.coverPhoto.oneThird">73dp</dimen>
+    <dimen name="WeMarket.size.foodItem">82dp</dimen>
+    <dimen name="WeMarket.size.homeControl.image">40dp</dimen>
+    <dimen name="WeMarket.size.homeControl.padding">18dp</dimen>
     <dimen name="WeMarket.size.editText">84dp</dimen>
-    <dimen name="WeMarket.size.cardBorderRadius">4dp</dimen>
+    <dimen name="WeMarket.size.cardBorderRadius">@dimen/WeMarket.size.xsmall</dimen>
+    <dimen name="WeMarket.size.hr">2dp</dimen>
+
 </resources>
