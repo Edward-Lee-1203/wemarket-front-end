@@ -2,8 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray">#F8F5F2</color>
-    <color name="lightGray">#CACACA</color>
+    <color name="lightGray">#EFEFF2</color>
+    <color name="gray">#CACACA</color>
     <color name="yellow">#EDA345</color>
     <color name="primary">#E84C4F</color>
     <color name="primaryLight">#ff7f7b</color>

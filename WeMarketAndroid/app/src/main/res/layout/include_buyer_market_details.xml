@@ -85,6 +85,7 @@
             android:text="%.1f"
             android:textSize="@dimen/WeMarket.size.xsmall" />
 
+<!--        TODO: set tint to #000 to get unverify icon -->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

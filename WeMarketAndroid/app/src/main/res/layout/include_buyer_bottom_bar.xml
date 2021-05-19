@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/include_buyer_bottom_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:contentPadding="@dimen/WeMarket.space.small"
+    style="@style/CardView.Light">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/primary">
+
+        <Button
+            android:id="@+id/button_buyer_include_bottom_bar_item_counter"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%d Item(s)"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/button_buyer_include_bottom_bar_checkout"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:visibility="invisible"
+            android:text="@string/buyer_checkout_button_text"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button_buyer_include_bottom_bar_items_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAllCaps="false"
+            android:text="%d VNĐ"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

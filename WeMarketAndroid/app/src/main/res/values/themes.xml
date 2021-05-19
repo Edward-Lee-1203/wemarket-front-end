@@ -96,6 +96,10 @@
     <style name="WeMarketStyles.ImageView" parent="">
         <item name="android:scaleType">centerCrop</item>
     </style>
+    <style name="WeMarketStyles.Switch" parent="">
+        <item name="thumbTint">@color/primary</item>
+        <item name="trackTint">@color/lightGray</item>
+    </style>
     <style name="WeMarketStyles.padding.small" parent="">
         <item name="android:paddingTop">@dimen/WeMarket.space.small</item>
         <item name="android:paddingBottom">@dimen/WeMarket.space.small</item>

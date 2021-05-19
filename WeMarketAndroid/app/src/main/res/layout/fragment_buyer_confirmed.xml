@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views.buyer.SuccessFragment">
+
+    <TextView
+        android:id="@+id/text_buyer_success_h1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/image_buyer_success"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/WeMarket.space.medium"
+        android:text="@string/buyer_success_h1_text"
+        style="@style/WeMarketStyles.Text.h2.large"/>
+
+    <TextView
+        android:id="@+id/text_buyer_success_h3"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".68"
+        app:layout_constraintTop_toBottomOf="@+id/text_buyer_success_h1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/WeMarket.space.small"
+        android:text="@string/buyer_success_h3_text"
+        style="@style/WeMarketStyles.Text.h3.center" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_buyer_success_h3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardBackgroundColor="@color/primary"
+        android:layout_marginTop="@dimen/WeMarket.space.medium"
+        style="@style/WeMarketStyles.CardView">
+        <Button
+            android:id="@+id/button_buyer_success_check_order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/WeMarketStyles.Button.hasPadding"
+            android:text="@string/buyer_success_check_order_button_text"
+            />
+    </androidx.cardview.widget.CardView>
+
+<!--    implement swipe up ??-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
