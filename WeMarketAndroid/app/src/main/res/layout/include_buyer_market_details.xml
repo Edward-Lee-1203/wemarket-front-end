@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/WeMarket.space.small"
-            android:src="@drawable/icon_verified" />
+            android:src="@drawable/icon_verified"/>
 
         <TextView
             android:id="@+id/text_include_buyer_market_details_verified"

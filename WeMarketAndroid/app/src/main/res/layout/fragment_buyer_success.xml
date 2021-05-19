@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.buyer.SuccessFragment">
 
+<!--    TODO: swipe and go to choose food?-->
     <ImageView
         android:id="@+id/image_buyer_success"
         android:layout_width="match_parent"
