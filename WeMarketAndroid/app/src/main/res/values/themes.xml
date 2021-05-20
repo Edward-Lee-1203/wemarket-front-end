@@ -7,7 +7,7 @@
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorSecondaryVariant">@color/secondaryLight</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@color/gray</item>
+        <item name="android:windowBackground">@color/lightGray</item>
 
     </style>
     <style name="WeMarketStyles.Text.h1" parent="@android:style/TextAppearance">
@@ -27,6 +27,10 @@
         <item name="android:textSize">@dimen/WeMarket.size.small</item>
         <item name="android:textColor">@color/font_secondary</item>
     </style>
+    <style name="WeMarketStyles.Text.h3.large" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/WeMarket.size.xsmall</item>
+        <item name="android:textColor">@color/font_secondary</item>
+    </style>
     <style name="WeMarketStyles.Text.h3.primary" parent="@android:style/TextAppearance">
         <item name="android:textSize">@dimen/WeMarket.size.small</item>
         <item name="android:textColor">@color/font_primary</item>
@@ -37,7 +41,7 @@
         <item name="android:foreground">@drawable/foreground_strike_through_horizontal</item>
     </style>
     <style name="WeMarketStyles.Text.h4" parent="@android:style/TextAppearance">
-        <item name="android:textSize">@dimen/WeMarket.size.xsmall</item>
+        <item name="android:textSize">@dimen/WeMarket.size.ssmall</item>
         <item name="android:textColor">@color/font_secondary</item>
     </style>
     <style name="WeMarketStyles.Text.h1.center" parent="@style/WeMarketStyles.Text.h1">

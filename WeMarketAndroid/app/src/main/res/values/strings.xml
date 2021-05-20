@@ -14,6 +14,7 @@
     <string name="buyer_market_cover_photo">Market cover photo here</string>
     <string name="buyer_dialog_food_name">%s</string>
     <string name="buyer_dialog_food_unit">/%s</string>
+    <string name="buyer_item_promo_available_count_default">- Left</string>
     <string name="buyer_dialog_message">Lời nhắn cho cửa hàng</string>
     <string name="buyer_dialog_add_to_cart_message">Thêm vào giỏ hàng</string>
     <string name="buyer_success_h1_text">Your order is created!</string>

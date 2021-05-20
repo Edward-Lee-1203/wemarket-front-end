@@ -4,8 +4,9 @@
     <dimen name="WeMarket.space.small">10dp</dimen>
     <dimen name="WeMarket.space.medium">20dp</dimen>
     <dimen name="WeMarket.space.large">30dp</dimen>
-    <dimen name="WeMarket.size.xsmall">8dp</dimen>
+    <dimen name="WeMarket.size.ssmall">8dp</dimen>
     <dimen name="WeMarket.size.small">12dp</dimen>
+    <dimen name="WeMarket.size.xsmall">18dp</dimen>
     <dimen name="WeMarket.size.medium">24dp</dimen>
     <dimen name="WeMarket.size.xmedium">30dp</dimen>
     <dimen name="WeMarket.size.large">36dp</dimen>
@@ -15,7 +16,7 @@
     <dimen name="WeMarket.size.homeControl.image">40dp</dimen>
     <dimen name="WeMarket.size.homeControl.padding">18dp</dimen>
     <dimen name="WeMarket.size.editText">84dp</dimen>
-    <dimen name="WeMarket.size.cardBorderRadius">@dimen/WeMarket.size.xsmall</dimen>
+    <dimen name="WeMarket.size.cardBorderRadius">@dimen/WeMarket.size.ssmall</dimen>
     <dimen name="WeMarket.size.hr">2dp</dimen>
 
 </resources>

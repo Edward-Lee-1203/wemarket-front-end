@@ -11,7 +11,7 @@
 
         <ImageView
             android:id="@+id/image_buyer_promo_photo"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/WeMarket.size.coverPhoto"
             android:layout_height="@dimen/WeMarket.size.coverPhoto"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_chicken_legs"
@@ -19,6 +19,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
+            android:id="@+id/include_item_buyer_promo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             layout="@layout/include_item_buyer_promo"

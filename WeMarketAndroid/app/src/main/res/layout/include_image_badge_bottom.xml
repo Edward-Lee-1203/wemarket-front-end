@@ -35,7 +35,7 @@
             android:background="@color/yellow"
             android:padding="@dimen/WeMarket.space.xsmall"
             android:text="%d Left"
-            android:textSize="@dimen/WeMarket.size.xsmall"
+            android:textSize="@dimen/WeMarket.size.ssmall"
             android:textColor="@color/white"/>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="%dkm"
-            android:textSize="@dimen/WeMarket.size.xsmall"
+            android:textSize="@dimen/WeMarket.size.ssmall"
 
             />
 
@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="%.1f"
-            android:textSize="@dimen/WeMarket.size.xsmall" />
+            android:textSize="@dimen/WeMarket.size.ssmall" />
 
 <!--        TODO: set tint to #000 to get unverify icon -->
         <ImageView
@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Market name here!"
-            android:textSize="@dimen/WeMarket.size.xsmall" />
+            android:textSize="@dimen/WeMarket.size.ssmall" />
     </LinearLayout>
 
 

@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/text_buyer_promo_food_name"
-            style="@style/WeMarketStyles.Text.h3"
+            style="@style/WeMarketStyles.Text.h3.large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Food name here!"
@@ -23,7 +23,8 @@
 
         <TextView
             android:id="@+id/text_buyer_promo_market_name"
-            style="@style/WeMarketStyles.Text.h4"
+            style="@style/WeMarketStyles.Text.h3"
+            android:textColor="@color/gray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Market name here!"
@@ -41,7 +42,7 @@
 
             <TextView
                 android:id="@+id/text_buyer_promo_food_price_current"
-                style="@style/WeMarketStyles.Text.h4"
+                style="@style/WeMarketStyles.Text.h3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="%d"
@@ -85,10 +86,12 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                android:id="@+id/text_buyer_promo_food_available"
+                android:id="@+id/text_buyer_promo_food_available_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5 Left" />
+                android:text="@string/buyer_item_promo_available_count_default"
+                style="@style/WeMarketStyles.Text.h3"
+                android:textColor="@color/white"/>
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

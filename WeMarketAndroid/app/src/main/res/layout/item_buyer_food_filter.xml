@@ -10,7 +10,7 @@
         android:layout_height="@dimen/WeMarket.space.large"
         android:background="@color/white"
         android:drawableLeft="@drawable/icon_settings"
-        android:paddingLeft="@dimen/WeMarket.size.xsmall"
+        android:paddingLeft="@dimen/WeMarket.size.ssmall"
         android:text="Filters"
         android:textAllCaps="false"
         android:textColor="@color/font_primary" />
