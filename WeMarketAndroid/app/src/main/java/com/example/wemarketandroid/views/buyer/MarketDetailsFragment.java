@@ -75,7 +75,7 @@ public class MarketDetailsFragment extends Fragment implements IUseToolbarOnlyTi
                 // bind data to view
                 mViewBinding.includeMarketDetails.textIncludeBuyerMarketDetailsName.setText(market.getName());
                 mViewBinding.includeMarketDetails.textIncludeBuyerMarketDetailsAddress.setText(market.getAddress());
-                mViewBinding.includeMarketDetails.textIncludeBuyerMarketDetailsOpenTime.setText(String.format("%d %s - %d %s",market.getOpenTime(),market.getOpenTime()<=12?"am":"pm",market.getCloseTime(),market.getOpenTime()<=12?"am":"pm"));
+                mViewBinding.includeMarketDetails.textIncludeBuyerMarketDetailsOpenTime.setText(String.format("%d %s - %d %s",market.getOpenTime(),market.getOpenTime()<=12?"am":"pm",market.getCloseTime(),market.getCloseTime()<=12?"am":"pm"));
                 // submit food list to adapter
                 mViewModel.getFoodItemViewHolderAdapter(foodClickListener).submitList(market.getFoodList());
             }

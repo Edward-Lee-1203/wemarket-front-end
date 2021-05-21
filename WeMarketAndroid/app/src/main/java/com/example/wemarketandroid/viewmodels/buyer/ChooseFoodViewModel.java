@@ -116,8 +116,7 @@ public class ChooseFoodViewModel extends AndroidViewModel {
             binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage.setImageResource(Integer.parseInt(food.getImageUri()));
 
             binding.textBuyerItemMarketFoodName.setText(food.getName());
-            binding.includeMarketFoodFoodPricing.textBuyerFoodPriceBefore.setText(String.format("%,d",food.getPrice()));
-            binding.includeMarketFoodFoodPricing.textBuyerFoodPriceCurrent.setText(String.format("%,d",food.getPrice()-(int)Math.floor(food.getPrice()*food.getDiscount())));
+            ViewModelHelper.bindIncludeFoodPricing(binding.includeMarketFoodFoodPricing, food.getBasePrice(), food.getPrice());
         }
 
 
