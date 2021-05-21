@@ -10,16 +10,17 @@
     <!--    TODO: call setSuffixText(CharSequence) on inflating this layout-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_buyer_dialog_food_amount"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/WeMarket.size.textInputEditText.quantity"
         android:layout_height="wrap_content"
+        app:hintAnimationEnabled="false"
         style="@style/WeMarketStyles.TextInputLayout"
         app:suffixText="@string/default_food_unit">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText_buyer_dialog_food_amount"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/WeMarket.size.textInputEditText.quantity"
             android:layout_height="wrap_content"
             style="@style/WeMarketStyles.TextInputEditText"
-            android:text="%.3f"/>
+            android:text="100"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:id="@+id/text_buyer_dialog_equals"
@@ -36,7 +37,7 @@
     <!--    TODO: call setSuffixText(CharSequence) on inflating this layout-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_buyer_dialog_cost_amount"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/WeMarket.size.textInputEditText.cost"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/buyer_dialog_message"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,9 +47,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText_buyer_dialog_cost_amount"
             style="@style/WeMarketStyles.TextInputEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/WeMarket.size.textInputEditText.cost"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:text="%.3f" />
+            android:text="100.000" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

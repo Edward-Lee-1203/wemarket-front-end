@@ -12,7 +12,10 @@
     <dimen name="WeMarket.size.large">36dp</dimen>
     <dimen name="WeMarket.size.actionBar">56dp</dimen>
     <dimen name="WeMarket.size.coverPhoto">230dp</dimen>
+    <dimen name="WeMarket.size.dialogPhoto">330dp</dimen>
     <dimen name="WeMarket.size.foodItem">82dp</dimen>
+    <dimen name="WeMarket.size.textInputEditText.quantity">52dp</dimen>
+    <dimen name="WeMarket.size.textInputEditText.cost">120dp</dimen>
     <dimen name="WeMarket.size.homeControl.image">40dp</dimen>
     <dimen name="WeMarket.size.homeControl.padding">18dp</dimen>
     <dimen name="WeMarket.size.editText">84dp</dimen>

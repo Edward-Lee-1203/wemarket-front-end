@@ -11,21 +11,17 @@
         android:label="@string/buyer_title_choose_food"
         tools:layout="@layout/fragment_buyer_choose_food">
         <action
-            android:id="@+id/action_chooseFoodFragment_to_checkoutFragment"
-            app:destination="@id/destination_buyer_checkout" />
-        <action
             android:id="@+id/action_chooseFoodFragment_to_marketDetailsFragment"
             app:destination="@id/destination_buyer_market_details" />
+        <action
+            android:id="@+id/action_destination_buyer_choose_food_to_destination_buyer_success"
+            app:destination="@id/destination_buyer_success" />
     </fragment>
     <fragment
         android:id="@+id/destination_buyer_checkout"
         android:name="com.example.wemarketandroid.views.buyer.CheckoutFragment"
         android:label="@string/buyer_title_checkout"
-        tools:layout="@layout/fragment_buyer_checkout">
-        <action
-            android:id="@+id/action_checkoutFragment_to_successFragment"
-            app:destination="@id/destination_buyer_success" />
-    </fragment>
+        tools:layout="@layout/fragment_buyer_checkout"/>
     <fragment
         android:id="@+id/destination_buyer_success"
         android:name="com.example.wemarketandroid.views.buyer.SuccessFragment"
@@ -46,8 +42,8 @@
         android:label="@string/buyer_title_market_details"
         tools:layout="@layout/fragment_buyer_market_details" >
         <action
-            android:id="@+id/action_marketDetailsFragment_to_checkoutFragment"
-            app:destination="@id/destination_buyer_checkout" />
+            android:id="@+id/action_destination_buyer_market_details_to_destination_buyer_success"
+            app:destination="@id/destination_buyer_success" />
     </fragment>
     <fragment
         android:id="@+id/destination_buyer_orders"

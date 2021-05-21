@@ -56,6 +56,7 @@
         <item name="android:textColor">@color/font_primary</item>
         <item name="boxBackgroundColor">@color/gray</item>
         <item name="suffixTextColor">@color/font_primary</item>
+        <item name="hintAnimationEnabled">false</item>
     </style>
     <style name="WeMarketStyles.TextInputEditText" parent="">
         <item name="android:textSize">@dimen/WeMarket.size.small</item>

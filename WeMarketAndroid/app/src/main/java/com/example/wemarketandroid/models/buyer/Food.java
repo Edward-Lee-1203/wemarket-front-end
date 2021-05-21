@@ -6,16 +6,18 @@ public class Food implements IDiffable{
     private int id;
     private String name;
     private String imageUri;
+    private int basePrice;
     private int price;
     private double discount;
 //    private long count;     //TODO: notify server team for this field
     private Market market;
 
-    public Food(int id, String name, String imageUri, int price, double discount) {
+    public Food(int id, String name, String imageUri, int basePrice, double discount) {
         this.id = id;
         this.name = name;
         this.imageUri = imageUri;
-        this.price = price;
+        this.basePrice = basePrice;
+        price = basePrice - (int)(basePrice*discount);
         this.discount = discount;
     }
 
@@ -43,8 +45,12 @@ public class Food implements IDiffable{
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public int getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(int basePrice) {
+        this.basePrice = basePrice;
     }
 
     public double getDiscount() {
@@ -69,7 +75,7 @@ public class Food implements IDiffable{
         if (o == null || getClass() != o.getClass()) return false;
         Food food = (Food) o;
         return id == food.id &&
-                Integer.compare(food.price, price) == 0 &&
+                Integer.compare(food.basePrice, basePrice) == 0 &&
                 Double.compare(food.discount, discount) == 0 &&
                 Objects.equals(name, food.name) &&
                 Objects.equals(imageUri, food.imageUri) &&

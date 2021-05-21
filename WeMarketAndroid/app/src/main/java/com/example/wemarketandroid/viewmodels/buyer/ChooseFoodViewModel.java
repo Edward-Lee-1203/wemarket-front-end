@@ -2,12 +2,9 @@ package com.example.wemarketandroid.viewmodels.buyer;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.arch.core.util.Function;
@@ -16,22 +13,18 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
-import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wemarketandroid.databinding.FragmentBuyerChooseFoodBinding;
 import com.example.wemarketandroid.databinding.ItemBuyerFoodFilterBinding;
-import com.example.wemarketandroid.databinding.ItemBuyerHomeControlsBinding;
 import com.example.wemarketandroid.databinding.ItemBuyerMarketBinding;
 import com.example.wemarketandroid.databinding.ItemBuyerMarketFoodBinding;
 import com.example.wemarketandroid.models.buyer.Filter;
 import com.example.wemarketandroid.models.buyer.Food;
 import com.example.wemarketandroid.models.buyer.Market;
 import com.example.wemarketandroid.repository.Repo;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -106,11 +99,13 @@ public class ChooseFoodViewModel extends AndroidViewModel {
         private ItemBuyerMarketFoodBinding binding;
         private Food mFood;
         private MarketClickListener mMarketClickListener;
+        private FoodClickListener mFoodClickListener;
 
-        public FoodItemViewHolder(@NonNull View itemView, ItemBuyerMarketFoodBinding binding, MarketClickListener marketClickListener) {
+        public FoodItemViewHolder(@NonNull View itemView, ItemBuyerMarketFoodBinding binding, MarketClickListener marketClickListener, FoodClickListener foodClickListener) {
             super(itemView);
             this.binding = binding;
             mMarketClickListener = marketClickListener;
+            mFoodClickListener = foodClickListener;
             itemView.setOnClickListener(this);
             binding.imageButtonMarketFoodAddToCart.setOnClickListener(this);
         }
@@ -120,19 +115,16 @@ public class ChooseFoodViewModel extends AndroidViewModel {
             // debug code
             binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage.setImageResource(Integer.parseInt(food.getImageUri()));
 
-            binding.includeMarketFoodFoodPricing.textBuyerFoodPriceCurrent.setText(String.format("%,d",food.getPrice()));
-            binding.includeMarketFoodFoodPricing.textBuyerFoodPriceBefore.setText(String.format("%,d",food.getPrice()-(int)Math.floor(food.getPrice()*food.getDiscount())));
+            binding.textBuyerItemMarketFoodName.setText(food.getName());
+            binding.includeMarketFoodFoodPricing.textBuyerFoodPriceBefore.setText(String.format("%,d",food.getPrice()));
+            binding.includeMarketFoodFoodPricing.textBuyerFoodPriceCurrent.setText(String.format("%,d",food.getPrice()-(int)Math.floor(food.getPrice()*food.getDiscount())));
         }
 
 
-        @Override
         public void onClick(View view) {
-            // TODO: check if we can ommit this checking, i.e. click anywhere inside this item view is considered add to cart also
             if(view.getId()==binding.imageButtonMarketFoodAddToCart.getId()){
-                // TODO: opens add food to cart dialog
-                Toast.makeText(mContext,mFood.getName()+" clicked",Toast.LENGTH_SHORT).show();
+                mFoodClickListener.onItemClick(mFood);
             } else{
-                // executes the click callback
                 mMarketClickListener.onItemClick(mFood.getMarket());
             }
         }
@@ -141,10 +133,12 @@ public class ChooseFoodViewModel extends AndroidViewModel {
     public class FoodItemViewHolderAdapter extends ListAdapter<Food, FoodItemViewHolder>{
 
         private MarketClickListener mMarketClickListener;
+        private FoodClickListener mFoodClickListener;
 
-        public FoodItemViewHolderAdapter(DiffUtil.ItemCallback<Food> callback, MarketClickListener marketClickListener){
+        public FoodItemViewHolderAdapter(DiffUtil.ItemCallback<Food> callback, MarketClickListener marketClickListener, FoodClickListener foodClickListener){
             super(callback);
             mMarketClickListener = marketClickListener;
+            mFoodClickListener = foodClickListener;
         }
 
         @NonNull
@@ -152,7 +146,7 @@ public class ChooseFoodViewModel extends AndroidViewModel {
         public FoodItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             ItemBuyerMarketFoodBinding binding = ItemBuyerMarketFoodBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
             View view = binding.getRoot();
-            FoodItemViewHolder viewHolder = new FoodItemViewHolder(view,binding,mMarketClickListener);
+            FoodItemViewHolder viewHolder = new FoodItemViewHolder(view,binding,mMarketClickListener, mFoodClickListener);
             return viewHolder;
         }
 
@@ -168,19 +162,21 @@ public class ChooseFoodViewModel extends AndroidViewModel {
         private ItemBuyerMarketBinding binding;
         private LifecycleOwner mLifecycleOwner;
         private MarketClickListener mMarketClickListener;
+        private FoodClickListener mFoodClickListener;
 
-        public MarketItemViewHolder(@NonNull View itemView, ItemBuyerMarketBinding binding, MarketClickListener marketClickListener, LifecycleOwner lifecycleOwner) {
+        public MarketItemViewHolder(@NonNull View itemView, ItemBuyerMarketBinding binding, MarketClickListener marketClickListener, FoodClickListener foodClickListener, LifecycleOwner lifecycleOwner) {
             super(itemView);
             this.binding = binding;
             this.mLifecycleOwner = lifecycleOwner;
             mMarketClickListener = marketClickListener;
+            mFoodClickListener = foodClickListener;
         }
 
         public void bindTo(LiveData<Market> market, int itemCount, RecyclerView.RecycledViewPool viewPool){
             // setups nested recycle view
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false);
             linearLayoutManager.setInitialPrefetchItemCount(itemCount);
-            FoodItemViewHolderAdapter adapter = new FoodItemViewHolderAdapter(RecyclerViewHelper.getModelDiffCallback(Food.class), mMarketClickListener);
+            FoodItemViewHolderAdapter adapter = new FoodItemViewHolderAdapter(ViewModelHelper.getModelDiffCallback(Food.class), mMarketClickListener, mFoodClickListener);
             binding.recyclerBuyerItemMarketFood.setAdapter(adapter);
             binding.recyclerBuyerItemMarketFood.setLayoutManager(linearLayoutManager);
             binding.recyclerBuyerItemMarketFood.setRecycledViewPool(viewPool);
@@ -201,12 +197,14 @@ public class ChooseFoodViewModel extends AndroidViewModel {
         private RecyclerView.RecycledViewPool viewPool;
         private LifecycleOwner mLifecycleOwner;
         private MarketClickListener mMarketClickListener;
+        private FoodClickListener mFoodClickListener;
 
-        public MarketItemViewHolderAdapter(DiffUtil.ItemCallback<Market> callback, LifecycleOwner lifecycleOwner, MarketClickListener marketClickListener){
+        public MarketItemViewHolderAdapter(DiffUtil.ItemCallback<Market> callback, LifecycleOwner lifecycleOwner, MarketClickListener marketClickListener, FoodClickListener foodClickListener){
             super(callback);
             viewPool = new RecyclerView.RecycledViewPool();
             mLifecycleOwner = lifecycleOwner;
             mMarketClickListener = marketClickListener;
+            mFoodClickListener = foodClickListener;
         }
 
         @NonNull
@@ -214,7 +212,7 @@ public class ChooseFoodViewModel extends AndroidViewModel {
         public MarketItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             ItemBuyerMarketBinding binding = ItemBuyerMarketBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
             View view = binding.getRoot();
-            return new MarketItemViewHolder(view,binding, mMarketClickListener,mLifecycleOwner);
+            return new MarketItemViewHolder(view,binding, mMarketClickListener, mFoodClickListener,mLifecycleOwner);
         }
 
         @Override
@@ -238,9 +236,9 @@ public class ChooseFoodViewModel extends AndroidViewModel {
         return CHOOSE_FOOD_FILTER_VIEW_HOLDER_ADAPTER;
     }
     // TODO: observe cart food list and display on bottom bar
-    public MarketItemViewHolderAdapter getMarketItemViewHolderAdapter(LifecycleOwner lifecycleOwner, MarketClickListener marketClickListener){
+    public MarketItemViewHolderAdapter getMarketItemViewHolderAdapter(LifecycleOwner lifecycleOwner, MarketClickListener marketClickListener, FoodClickListener foodClickListener){
         if(MARKET_ITEM_VIEW_HOLDER_ADAPTER==null || MARKET_ITEM_VIEW_HOLDER_ADAPTER.mLifecycleOwner != lifecycleOwner){
-            MARKET_ITEM_VIEW_HOLDER_ADAPTER = new MarketItemViewHolderAdapter(RecyclerViewHelper.getModelDiffCallback(Market.class),lifecycleOwner, marketClickListener);
+            MARKET_ITEM_VIEW_HOLDER_ADAPTER = new MarketItemViewHolderAdapter(ViewModelHelper.getModelDiffCallback(Market.class),lifecycleOwner, marketClickListener, foodClickListener);
         }
         return MARKET_ITEM_VIEW_HOLDER_ADAPTER;
     }

@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:background="@color/yellow"
             android:padding="@dimen/WeMarket.space.xsmall"
-            android:text="%d Left"
+            android:text="@string/default_food_left"
             android:textSize="@dimen/WeMarket.size.ssmall"
             android:textColor="@color/white"/>
     </androidx.cardview.widget.CardView>

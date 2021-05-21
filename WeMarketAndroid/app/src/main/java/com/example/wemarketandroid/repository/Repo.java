@@ -85,6 +85,19 @@ public class Repo {
         return mFoodList;
     }
 
+    public LiveData<Food> getFoodById(int foodId){
+        LiveData<Food> foodLiveData = Transformations.map(mFoodList, new Function<List<Food>, Food>() {
+            @Override
+            public Food apply(List<Food> input) {
+                for(Food food : input)
+                    if(food.getId()==foodId)
+                        return food;
+                return null;
+            }
+        });
+        return foodLiveData;
+    }
+
     public LiveData<User> getUser(){ return mUser; }
 
     public Filter[] getHomeFilters(){

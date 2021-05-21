@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            style="@style/WeMarketStyles.Text.h2"
+            style="@style/WeMarketStyles.Text.h3.large"
             android:text="Food name here"
             />
         <TextView
@@ -32,6 +32,7 @@
             android:layout_marginTop="@dimen/WeMarket.space.small"
             />
         <include
+            android:id="@+id/include_food_pricing"
             layout="@layout/include_food_pricing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

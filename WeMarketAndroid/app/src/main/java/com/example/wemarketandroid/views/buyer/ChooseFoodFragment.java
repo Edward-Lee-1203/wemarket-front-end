@@ -3,37 +3,37 @@ package com.example.wemarketandroid.views.buyer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.databinding.FragmentBuyerChooseFoodBinding;
+import com.example.wemarketandroid.models.buyer.Food;
 import com.example.wemarketandroid.models.buyer.Market;
 import com.example.wemarketandroid.repository.Repo;
 import com.example.wemarketandroid.viewmodels.buyer.CartSharedViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.ChooseFoodViewModel;
-import com.example.wemarketandroid.viewmodels.buyer.RecyclerViewHelper;
+import com.example.wemarketandroid.viewmodels.buyer.OnDialogResult;
+import com.example.wemarketandroid.viewmodels.buyer.ViewModelHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.HashMap;
 import java.util.List;
 
-public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, IUseToolbarOnlyTitle {
-    
+public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, IUseToolbarOnlyTitle, OnDialogResult {
+
+    private final String TAG = "ChooseFoodFragment";
     private MainActivity mContainingActivity;
     private FragmentBuyerChooseFoodBinding mViewBinding;
-    private MenuItem[] mHiddenMenuItem;
     private ChooseFoodViewModel mViewModel;
     private CartSharedViewModel mCartSharedViewModel;
     private Repo mRepo;
@@ -45,18 +45,16 @@ public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, I
         mViewBinding = FragmentBuyerChooseFoodBinding.inflate(inflater,container,false);
         View rootView = mViewBinding.getRoot();
         mContainingActivity = (MainActivity)getActivity();
-        Menu menu = mContainingActivity.getmToolbar().getMenu();
-        mHiddenMenuItem = new MenuItem[]{menu.getItem(0), menu.getItem(1)};
-        mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(ChooseFoodViewModel.class);
-        mCartSharedViewModel = new ViewModelProvider(requireActivity()).get(CartSharedViewModel.class);
         mRepo = Repo.getInstance();
         mNavController = mContainingActivity.getNavController();
+        mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(ChooseFoodViewModel.class);
+        mCartSharedViewModel = new ViewModelProvider(requireActivity()).get(CartSharedViewModel.class);
         // setups filters recycle view
         mViewBinding.recyclerBuyerQuickFilters.setAdapter(mViewModel.getChooseFoodFilterViewHolderAdapter());
         mViewBinding.recyclerBuyerQuickFilters.setLayoutManager(new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false));
-        RecyclerViewHelper.addItemDivider(getContext(), mViewBinding.recyclerBuyerQuickFilters,LinearLayoutManager.HORIZONTAL);
+        ViewModelHelper.addItemDivider(getContext(), mViewBinding.recyclerBuyerQuickFilters,LinearLayoutManager.HORIZONTAL);
         // TODO: implement filter foods on filter click
-        // setups market recycle view
+        // defines click listeners
         ChooseFoodViewModel.MarketClickListener marketClickListener = new ChooseFoodViewModel.MarketClickListener() {
                 @Override
                 public void onItemClick(Market market) {
@@ -66,34 +64,73 @@ public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, I
                     // TODO: handle geting market id from arguments (bundle) and binding market details in the destination
                 }
         };
-        mViewBinding.recyclerBuyerTodayFoods.setAdapter(mViewModel.getMarketItemViewHolderAdapter(getViewLifecycleOwner(),marketClickListener));
+        ChooseFoodViewModel.FoodClickListener foodClickListener = new ChooseFoodViewModel.FoodClickListener() {
+            @Override
+            public void onItemClick(Food food) {
+                // shows food dialog
+                ChooseFoodDialogFragment dialogFragment = ChooseFoodDialogFragment.newInstance(food.getId());
+                dialogFragment.setTargetFragment(ChooseFoodFragment.this,0);
+                dialogFragment.show(getParentFragmentManager(),TAG);
+            }
+        };
+        // setups market recycle view
+        mViewBinding.recyclerBuyerTodayFoods.setAdapter(mViewModel.getMarketItemViewHolderAdapter(getViewLifecycleOwner(),marketClickListener, foodClickListener));
         mViewBinding.recyclerBuyerTodayFoods.setLayoutManager(new LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false));
-        RecyclerViewHelper.addItemDivider(getContext(), mViewBinding.recyclerBuyerTodayFoods,LinearLayoutManager.VERTICAL);
-
+        ViewModelHelper.addItemDivider(getContext(), mViewBinding.recyclerBuyerTodayFoods,LinearLayoutManager.VERTICAL);
+        // observes market list
         Observer<List<Market>> marketListObserver = new Observer<List<Market>>() {
             @Override
             public void onChanged(List<Market> markets) {
-                mViewModel.getMarketItemViewHolderAdapter(getViewLifecycleOwner(),marketClickListener).submitList(markets);
+                mViewModel.getMarketItemViewHolderAdapter(getViewLifecycleOwner(),marketClickListener, foodClickListener).submitList(markets);
             }
         };
         mRepo.getMarketList().observe(getViewLifecycleOwner(),marketListObserver);
-
+        // observes cart content
+        mCartSharedViewModel.getCartItemCount().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                mViewBinding.includeBuyerBottomBar.buttonBuyerIncludeBottomBarItemCounter.setText(integer+(integer<1?" item":" items"));
+            }
+        });
+        mCartSharedViewModel.getCartTotalCost().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                mViewBinding.includeBuyerBottomBar.buttonBuyerIncludeBottomBarItemsCost.setText(String.format("%,d",integer));
+            }
+        });
+        // registers checkout button click handler
+        mViewBinding.includeBuyerBottomBar.buttonBuyerIncludeBottomBarCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: navigate to success page
+                mNavController.navigate(R.id.destination_buyer_success);
+            }
+        });
 
         return rootView;
+    }
+
+    @Override
+    public void handle(int foodId, int price){
+        mCartSharedViewModel.addToCart(foodId,price);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mContainingActivity.getmBottomNavBar().setVisibility(View.GONE);
-        for(MenuItem item : mHiddenMenuItem) item.setVisible(false);
+        mContainingActivity.getmToolbar().setVisibility(View.VISIBLE);
+        Menu menu = mContainingActivity.getmToolbar().getMenu();
+        for(int i = 0; i<menu.size();++i) {
+            menu.getItem(i).setVisible(true);
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mContainingActivity.getmBottomNavBar().setVisibility(View.VISIBLE);
-        for(MenuItem item : mHiddenMenuItem) item.setVisible(true);
+//        mContainingActivity.getmBottomNavBar().setVisibility(View.VISIBLE);
+//        for(MenuItem item : mHiddenMenuItem) item.setVisible(true);
     }
 
     // Template code

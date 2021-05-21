@@ -9,22 +9,25 @@
         android:id="@+id/image_dialog_food_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_max="@dimen/WeMarket.size.coverPhoto"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:scaleType="centerCrop"/>
+        app:layout_constraintHeight_max="@dimen/WeMarket.size.coverPhoto"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_salmon"/>
+
     <include
+        android:id="@+id/include_dialog_food_details"
+        layout="@layout/include_dialog_food_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/image_dialog_food_image"
-        app:layout_constraintBottom_toTopOf="@+id/image_dialog_food_image"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/WeMarket.size.dialogPhoto"
+        android:elevation="@dimen/WeMarket.space.small"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/WeMarket.size.coverPhoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/image_dialog_food_image"
+        app:layout_constraintTop_toTopOf="@+id/image_dialog_food_image"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.9"
-        layout="@layout/include_dialog_food_details"
-        />
+        app:layout_constraintWidth_percent="0.9" />
 
 
 

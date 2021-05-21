@@ -1,26 +1,22 @@
 package com.example.wemarketandroid.viewmodels.buyer;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.databinding.ItemBuyerHomeControlsBinding;
 import com.example.wemarketandroid.databinding.ItemBuyerPromoBinding;
 import com.example.wemarketandroid.models.buyer.Filter;
 import com.example.wemarketandroid.models.buyer.Food;
 import com.example.wemarketandroid.models.buyer.User;
 import com.example.wemarketandroid.repository.Repo;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -143,7 +139,7 @@ public class HomeViewModel extends ViewModel {
     }
     public PromoViewHolderAdapter getPromoViewHolderAdapter(){
         if(PROMOVIEWHOLDER_ADAPTER==null){
-            PROMOVIEWHOLDER_ADAPTER = new PromoViewHolderAdapter(RecyclerViewHelper.getModelDiffCallback(Food.class));
+            PROMOVIEWHOLDER_ADAPTER = new PromoViewHolderAdapter(ViewModelHelper.getModelDiffCallback(Food.class));
         }
         return PROMOVIEWHOLDER_ADAPTER;
     }

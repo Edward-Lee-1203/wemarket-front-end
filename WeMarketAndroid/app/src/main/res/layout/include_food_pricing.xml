@@ -33,5 +33,5 @@
         android:layout_height="wrap_content"
         style="@style/WeMarketStyles.Text.h3"
         android:textColor="@color/font_primary"
-        android:text="%s"/>
+        android:text="@string/default_food_unit"/>
 </LinearLayout>
