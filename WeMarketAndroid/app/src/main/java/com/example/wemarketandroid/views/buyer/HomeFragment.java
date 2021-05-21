@@ -40,13 +40,13 @@ public class HomeFragment extends Fragment {
         // setups filters recycler view
         mViewBinding.recyclerBuyerFoodFiltersHome.setAdapter(mViewModel.getFilterViewHolderAdapter());
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false);
-        RecyclerViewHelper.addItemDivider(mViewBinding.recyclerBuyerFoodFiltersHome,LinearLayoutManager.HORIZONTAL);
+        RecyclerViewHelper.addItemDivider(getContext(), mViewBinding.recyclerBuyerFoodFiltersHome,LinearLayoutManager.HORIZONTAL);
         mViewBinding.recyclerBuyerFoodFiltersHome.setLayoutManager(layoutManager);
         // TODO: (if have time): add on item click event to send user to choose food page AND sort the list propriately
 
         // setups food promo recycler view
         RecyclerView.LayoutManager promoLayoutManager = new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false);
-        RecyclerViewHelper.addItemDivider(mViewBinding.recyclerBuyerHomePromo,LinearLayoutManager.HORIZONTAL);
+        RecyclerViewHelper.addItemDivider(getContext(), mViewBinding.recyclerBuyerHomePromo,LinearLayoutManager.HORIZONTAL);
         mViewBinding.recyclerBuyerHomePromo.setLayoutManager(promoLayoutManager);
         mViewBinding.recyclerBuyerHomePromo.setAdapter(mViewModel.getPromoViewHolderAdapter());
         // TODO: (if have time): add on item click event to send user to choose food page AND show the add food dialog

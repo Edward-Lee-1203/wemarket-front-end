@@ -1,7 +1,9 @@
 package com.example.wemarketandroid.repository;
 
+import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.models.buyer.Filter;
@@ -25,22 +27,26 @@ public class Repo {
         List<Market> marketsStub = new LinkedList<Market>();
         marketsStub.add(new Market(1,"Big C","257 Hùng Vương, Vĩnh Trung, Thanh Khê, Đà Nẵng",8,20,16.06778, 108.22083,"", null));
         marketsStub.add(new Market(2,"Chợ Cồn","257 Hùng Vương, Vĩnh Trung, Thanh Khê, Đà Nẵng",8,20,16.06778, 108.22083,"", null));
-        mutableLiveDataMarketList.postValue(marketsStub);
         // initializes foods list
         List<Food> foodsStub = new LinkedList<>();
         Food food = null;
-        food = new Food(1,"Chicken thigh",""+R.drawable.icon_chicken_legs,18.5,0.2);
+        food = new Food(1,"Chicken thigh",""+R.drawable.icon_chicken_legs,18500,0.2);
         food.setMarket(marketsStub.get(0));
         foodsStub.add(food);
-        food = new Food(2,"Fish",""+R.drawable.icon_fish,18.5,0.2);
+        food = new Food(2,"Fish",""+R.drawable.icon_fish,18500,0.2);
         food.setMarket(marketsStub.get(0));
         foodsStub.add(food);
-        food = new Food(3,"Fish",""+R.drawable.icon_fish,18.5,0.2);
+        food = new Food(3,"Fish",""+R.drawable.icon_fish,18500,0.2);
         food.setMarket(marketsStub.get(1));
         foodsStub.add(food);
-        food = new Food(4,"Salmon",""+R.drawable.icon_salmon,18.5,0.2);
+        food = new Food(4,"Salmon",""+R.drawable.icon_salmon,18500,0.2);
         food.setMarket(marketsStub.get(1));
         foodsStub.add(food);
+        marketsStub.get(0).getFoodList().add(foodsStub.get(0));
+        marketsStub.get(0).getFoodList().add(foodsStub.get(1));
+        marketsStub.get(1).getFoodList().add(foodsStub.get(2));
+        marketsStub.get(1).getFoodList().add(foodsStub.get(3));
+        mutableLiveDataMarketList.postValue(marketsStub);
         MutableLiveData<List<Food>> mutableLiveDataFoodList = new MutableLiveData<>();
         mutableLiveDataFoodList.postValue(foodsStub);
         // initializes user data
@@ -63,6 +69,18 @@ public class Repo {
         return mMarketList;
     }
 
+    public LiveData<Market> getMarketById(int marketId){
+        return Transformations.map(mMarketList, new Function<List<Market>, Market>() {
+            @Override
+            public Market apply(List<Market> input) {
+                for(Market market : input)
+                    if(market.getId()==marketId)
+                        return market;
+                return null;
+            }
+        });
+    }
+
     public LiveData<List<Food>> getFoodList() {
         return mFoodList;
     }
@@ -71,10 +89,19 @@ public class Repo {
 
     public Filter[] getHomeFilters(){
         return new Filter[]{
-                new Filter(R.drawable.icon_heart,"Favorite"),
+                new Filter(R.drawable.icon_heart,"Favourite"),
                 new Filter(R.drawable.icon_pricetag,"Cheap"),
                 new Filter(R.drawable.icon_trending,"Trend"),
                 new Filter(R.drawable.icon_grid,"More")
+        };
+    }
+    public Filter[] getChooseFoodFilters(){
+        return new Filter[]{
+                new Filter(R.drawable.icon_settings,"Filters"),
+                new Filter(R.drawable.icon_nearby,"Nearby"),
+                new Filter(R.drawable.icon_star,"Above 4.5"),
+                new Filter(R.drawable.icon_pricetag,"Cheap"),
+                new Filter(R.drawable.icon_heart,"Favourite")
         };
     }
 }

@@ -2,9 +2,7 @@
     <style name="WeMarketStyles.AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar"
         >
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primaryLight</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
-        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
         <item name="colorSecondaryVariant">@color/secondaryLight</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowBackground">@color/lightGray</item>

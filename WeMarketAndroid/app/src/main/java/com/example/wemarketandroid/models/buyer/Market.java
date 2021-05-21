@@ -1,9 +1,10 @@
 package com.example.wemarketandroid.models.buyer;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Market {
+public class Market implements IDiffable{
     private int id;
     private String name;
     private String address;
@@ -25,6 +26,7 @@ public class Market {
         this.latitude = latitude;
         this.longitude = longitude;
         this.marketType = marketType;
+        if(foodList == null) foodList = new LinkedList<>();
         this.foodList = foodList;
     }
 

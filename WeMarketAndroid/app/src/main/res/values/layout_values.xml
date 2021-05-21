@@ -17,6 +17,6 @@
     <dimen name="WeMarket.size.homeControl.padding">18dp</dimen>
     <dimen name="WeMarket.size.editText">84dp</dimen>
     <dimen name="WeMarket.size.cardBorderRadius">@dimen/WeMarket.size.ssmall</dimen>
-    <dimen name="WeMarket.size.hr">2dp</dimen>
+    <dimen name="WeMarket.size.hr">1dp</dimen>
 
 </resources>

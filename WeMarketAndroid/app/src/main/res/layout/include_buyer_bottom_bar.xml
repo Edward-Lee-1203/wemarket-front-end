@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="%d Item(s)"
+            android:textColor="@color/white"
             android:textAllCaps="false" />
 
         <Button
@@ -29,6 +30,7 @@
             android:enabled="false"
             android:visibility="invisible"
             android:text="@string/buyer_checkout_button_text"
+            android:textColor="@color/white"
             android:textAllCaps="false"/>
 
         <Button
@@ -37,7 +39,8 @@
             android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:textAllCaps="false"
-            android:text="%d VNĐ"/>
+            android:text="%d VNĐ"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

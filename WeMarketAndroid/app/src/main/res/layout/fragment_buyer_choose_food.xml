@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.buyer.ChooseFoodFragment">
 
-<!--    TODO: fix this layout to match to prototype-->
+<!--    TODO: disable top bar's elevation shadow-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_buyer_quick_filters"
@@ -14,8 +14,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:padding="@dimen/WeMarket.space.small"
-        />
+        android:background="@color/white"
+        android:paddingLeft="@dimen/WeMarket.space.small"
+        android:paddingRight="@dimen/WeMarket.space.small"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_buyer_today_foods"
@@ -24,10 +25,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycler_buyer_quick_filters"
         app:layout_constraintBottom_toTopOf="@+id/include_buyer_bottom_bar"
-        android:padding="@dimen/WeMarket.space.small"
-        android:layout_marginTop="@dimen/WeMarket.space.medium"
-        />
+        android:padding="@dimen/WeMarket.space.small"/>
+
     <include
+        android:id="@+id/include_buyer_bottom_bar"
         layout="@layout/include_buyer_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

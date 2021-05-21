@@ -2,16 +2,16 @@ package com.example.wemarketandroid.models.buyer;
 
 import java.util.Objects;
 
-public class Food {
+public class Food implements IDiffable{
     private int id;
     private String name;
     private String imageUri;
-    private double price;
+    private int price;
     private double discount;
 //    private long count;     //TODO: notify server team for this field
     private Market market;
 
-    public Food(int id, String name, String imageUri, double price, double discount) {
+    public Food(int id, String name, String imageUri, int price, double discount) {
         this.id = id;
         this.name = name;
         this.imageUri = imageUri;
@@ -39,11 +39,11 @@ public class Food {
         this.imageUri = imageUri;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -69,7 +69,7 @@ public class Food {
         if (o == null || getClass() != o.getClass()) return false;
         Food food = (Food) o;
         return id == food.id &&
-                Double.compare(food.price, price) == 0 &&
+                Integer.compare(food.price, price) == 0 &&
                 Double.compare(food.discount, discount) == 0 &&
                 Objects.equals(name, food.name) &&
                 Objects.equals(imageUri, food.imageUri) &&

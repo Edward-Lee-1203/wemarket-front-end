@@ -2,7 +2,7 @@ package com.example.wemarketandroid.models.buyer;
 
 import java.util.Objects;
 
-public class OrderDetail {
+public class OrderDetail implements IDiffable{
     private int id;
     private int kg;
     Order order;

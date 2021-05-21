@@ -7,5 +7,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/WeMarket.size.hr"
-        android:background="@color/gray"/>
+        android:background="@color/white"/>
 </androidx.cardview.widget.CardView>

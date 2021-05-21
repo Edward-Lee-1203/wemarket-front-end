@@ -2,7 +2,7 @@ package com.example.wemarketandroid.models.buyer;
 
 import java.util.Objects;
 
-public class User {
+public class User implements IDiffable {
     private int id;
     private String name;
     private String phone;

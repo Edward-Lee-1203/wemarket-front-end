@@ -9,37 +9,34 @@
                 android:id="@+id/toolbar_buyer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/WeMarket.size.actionBar"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:background="@color/white"
                 android:elevation="4dp" />
 
         <fragment
-                android:id="@+id/fragment_container_buyer"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:defaultNavHost="true"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar_buyer"
-                app:navGraph="@navigation/nav_graph_buyer"
-                app:itemBackground="@color/white"
-        />
-
+            android:id="@+id/fragment_container_buyer"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_buyer"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_buyer"
+            app:navGraph="@navigation/nav_graph_buyer"
+            app:itemBackground="@color/white"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation_buyer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/WeMarket.size.actionBar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:menu="@menu/menu_bottom_navigation_buyer"
                 app:itemBackground="@color/white"
                 app:itemIconTint="@color/primary"
-                app:itemTextColor="@color/font_secondary"
-        />
+                app:itemTextColor="@color/font_secondary"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

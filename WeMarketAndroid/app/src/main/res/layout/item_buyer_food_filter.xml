@@ -4,14 +4,19 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/WeMarket.size.cardBorderRadius"
-    android:elevation="@dimen/WeMarket.space.small">
+    android:elevation="@dimen/WeMarket.space.medium"
+    android:layout_marginTop="@dimen/WeMarket.space.small"
+    android:layout_marginBottom="@dimen/WeMarket.space.small">
     <Button
+        android:id="@+id/button_buyer_food_filter"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/WeMarket.space.large"
+        android:layout_height="@dimen/WeMarket.size.large"
         android:background="@color/white"
         android:drawableLeft="@drawable/icon_settings"
         android:paddingLeft="@dimen/WeMarket.size.ssmall"
+        android:paddingRight="@dimen/WeMarket.size.ssmall"
         android:text="Filters"
         android:textAllCaps="false"
-        android:textColor="@color/font_primary" />
+        android:textColor="@color/font_primary"
+        style="@style/Widget.AppCompat.Button.Borderless"/>
 </androidx.cardview.widget.CardView>

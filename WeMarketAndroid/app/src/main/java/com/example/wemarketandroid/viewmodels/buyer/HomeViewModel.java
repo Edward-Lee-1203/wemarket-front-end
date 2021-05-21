@@ -80,17 +80,7 @@ public class HomeViewModel extends ViewModel {
         }
     }
 
-    private static final DiffUtil.ItemCallback<Food> DIFF_CALLBACK = new DiffUtil.ItemCallback<Food>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
-            return oldItem.getId()==newItem.getId();
-        }
 
-        @Override
-        public boolean areContentsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
-            return oldItem.equals(newItem);
-        }
-    };
 
     public class PromoViewHolderAdapter extends ListAdapter<Food,PromoViewHolder>{
 
@@ -128,9 +118,9 @@ public class HomeViewModel extends ViewModel {
 
         @Override
         public void onBindViewHolder(@NonNull FilterViewHolder holder, int position) {
-            Filter subdata = data[position];
-            Picasso.get().load(subdata.getResId()).into(holder.getItemBinding().imageItemBuyerHomeControls);
-            holder.getItemBinding().textItemBuyerHomeControls.setText(subdata.getLabel());
+            Filter filter = data[position];
+            Picasso.get().load(filter.getResId()).into(holder.getItemBinding().imageItemBuyerHomeControls);
+            holder.getItemBinding().textItemBuyerHomeControls.setText(filter.getLabel());
         }
 
         @Override
@@ -153,7 +143,7 @@ public class HomeViewModel extends ViewModel {
     }
     public PromoViewHolderAdapter getPromoViewHolderAdapter(){
         if(PROMOVIEWHOLDER_ADAPTER==null){
-            PROMOVIEWHOLDER_ADAPTER = new PromoViewHolderAdapter(DIFF_CALLBACK);
+            PROMOVIEWHOLDER_ADAPTER = new PromoViewHolderAdapter(RecyclerViewHelper.getModelDiffCallback(Food.class));
         }
         return PROMOVIEWHOLDER_ADAPTER;
     }

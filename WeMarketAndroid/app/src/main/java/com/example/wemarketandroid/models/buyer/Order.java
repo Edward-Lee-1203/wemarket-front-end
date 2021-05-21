@@ -3,9 +3,9 @@ package com.example.wemarketandroid.models.buyer;
 import java.util.List;
 import java.util.Objects;
 
-public class Order {
+public class Order implements IDiffable{
     private int id;
-    private int price;   // TODO: notify server team to set type to double
+    private int price;
     List<OrderDetail> orderDetailList;
 
     public Order(int id, int price) {

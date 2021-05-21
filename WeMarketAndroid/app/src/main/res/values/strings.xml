@@ -13,7 +13,7 @@
     <string name="buyer_home_greeting_subtitle">What do you want to eat?</string>
     <string name="buyer_market_cover_photo">Market cover photo here</string>
     <string name="buyer_dialog_food_name">%s</string>
-    <string name="buyer_dialog_food_unit">/%s</string>
+    <string name="buyer_dialog_food_unit">/kg</string>
     <string name="buyer_item_promo_available_count_default">- Left</string>
     <string name="buyer_dialog_message">Lời nhắn cho cửa hàng</string>
     <string name="buyer_dialog_add_to_cart_message">Thêm vào giỏ hàng</string>
@@ -35,5 +35,7 @@
     <string name="buyer_free_delivery">Free delivery</string>
     <string name="default_food_unit">kg</string>
     <string name="default_food_currency">VNĐ</string>
+    <string name="default_market_rating">5.0</string>
+    <string name="default_market_distance">1.0 km</string>
     <string name="buyer_checkout_button_text">Checkout</string>
 </resources>

@@ -7,16 +7,14 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_include_image_badge_bottom_food_image"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:maxWidth="@dimen/WeMarket.size.foodItem"
-        android:maxHeight="@dimen/WeMarket.size.foodItem"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         style="@style/WeMarketStyles.CardView">
         <ImageView
             android:id="@+id/image_include_image_badge_bottom_food_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/WeMarket.size.foodItem"
+            android:layout_height="@dimen/WeMarket.size.foodItem"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_fish"/>
     </androidx.cardview.widget.CardView>

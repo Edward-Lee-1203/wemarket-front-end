@@ -107,4 +107,6 @@ public class MainActivity extends AppCompatActivity {
     public Toolbar getmToolbar() {
         return mToolbar;
     }
+
+    public NavController getNavController(){ return mNavController; }
 }

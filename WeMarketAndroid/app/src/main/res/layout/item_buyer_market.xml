@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            style="@style/WeMarketStyles.Text.h3"
+            style="@style/WeMarketStyles.Text.h3.large"
             android:textColor="@color/font_primary"
             android:text="Market name here!"/>
         <TextView
@@ -23,49 +23,53 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/text_buyer_item_market_name"
             app:layout_constraintStart_toStartOf="parent"
-            style="@style/WeMarketStyles.Text.h4"
+            style="@style/WeMarketStyles.Text.h3"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent=".7"
             android:text="Market address here! Multi-line with constraint width supported!"/>
 
         <ImageView
+            android:id="@+id/image_buyer_market_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_star"
             app:layout_constraintEnd_toStartOf="@+id/text_buyer_item_market_rating"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_max="@dimen/WeMarket.size.small"
-            app:layout_constraintHeight_max="@dimen/WeMarket.size.small" />
+            app:layout_constraintWidth_max="@dimen/WeMarket.size.medium"
+            app:layout_constraintHeight_max="@dimen/WeMarket.size.medium" />
         <TextView
             android:id="@+id/text_buyer_item_market_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/image_buyer_market_rating"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/WeMarketStyles.Text.h4"
+            style="@style/WeMarketStyles.Text.h3"
             android:textColor="@color/font_primary"
-            android:text="%.2f"/>
+            android:text="@string/default_market_rating"/>
         <TextView
             android:id="@+id/text_buyer_item_market_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/text_buyer_item_market_rating"
+            app:layout_constraintTop_toBottomOf="@+id/text_buyer_item_market_rating"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/WeMarket.space.small"
-            style="@style/WeMarketStyles.Text.h4"
-            android:text="%d km"/>
+            style="@style/WeMarketStyles.Text.h3"
+            android:text="@string/default_market_distance"/>
         <include
+            android:id="@+id/include_horizontal_bar"
             layout="@layout/include_horizontal_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/text_buyer_item_market_address"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_buyer_item_market_food"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/view_buyer_item_market_hr"
+            app:layout_constraintTop_toBottomOf="@+id/include_horizontal_bar"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/WeMarket.space.small"/>
 
