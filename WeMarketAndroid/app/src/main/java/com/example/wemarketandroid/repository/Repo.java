@@ -18,10 +18,17 @@ import java.util.List;
 public class Repo {
     // these list will be fetched on creation of this repo to ensure data sharing
     // TODO: refactor these List<> to HashMap<>
-    private final LiveData<List<Market>> mMarketList;
-    private final LiveData<List<Food>> mFoodList;
-    private final LiveData<User> mUser;
+    private LiveData<List<Market>> mMarketList;
+    private LiveData<List<Food>> mFoodList;
+    private LiveData<User> mUser;
     private static Repo INSTANCE;
+
+    private LiveData<User> getSeedUser(){
+        // initializes user data
+        MutableLiveData<User> mutableLiveDataUser = new MutableLiveData<>();
+        mutableLiveDataUser.postValue(new User(1,"Mick",null,null,null,true,null));
+        return mutableLiveDataUser;
+    }
 
     private Repo() {
         MutableLiveData<List<Market>> mutableLiveDataMarketList = new MutableLiveData<>();
@@ -51,13 +58,11 @@ public class Repo {
         mutableLiveDataMarketList.postValue(marketsStub);
         MutableLiveData<List<Food>> mutableLiveDataFoodList = new MutableLiveData<>();
         mutableLiveDataFoodList.postValue(foodsStub);
-        // initializes user data
-        MutableLiveData<User> mutableLiveDataUser = new MutableLiveData<>();
-        mutableLiveDataUser.postValue(new User(1,"Nguyễn Nhật Tùng",null,null,null,true,null));
+
         // initializes live data objects
         mMarketList = mutableLiveDataMarketList;
         mFoodList = mutableLiveDataFoodList;
-        mUser = mutableLiveDataUser;
+        mUser = new MutableLiveData<>();
     }
 
     public static Repo getInstance(){
@@ -119,6 +124,12 @@ public class Repo {
     }
 
     public LiveData<User> getUser(){ return mUser; }
+
+    public LiveData<User> login(String username, String password){
+        // TODO: API login
+        mUser = getSeedUser();
+        return mUser;
+    }
 
     public Filter[] getHomeFilters(){
         return new Filter[]{
