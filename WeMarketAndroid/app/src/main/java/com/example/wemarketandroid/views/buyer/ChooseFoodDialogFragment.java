@@ -30,7 +30,6 @@ public class ChooseFoodDialogFragment extends DialogFragment {
     private DialogChooseFoodBinding mViewBinding;
     private Repo mRepo;
     private LiveData<Food> mFood;
-    private TextWatcher mQuantityTextWatcher, mCostTextWatcher;
     private static final String FOOD_ID_KEY = "foodId";
 
     public ChooseFoodDialogFragment(){}
@@ -55,47 +54,6 @@ public class ChooseFoodDialogFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         mRepo = Repo.getInstance();
         mFood = mRepo.getFoodById(getArguments().getInt(FOOD_ID_KEY));
-        // custom text watchers
-        mQuantityTextWatcher = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String string = editable.toString();
-                if(!string.isEmpty() && mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange.textInputEditTextBuyerDialogFoodAmount.hasFocus()) {
-                    String[] hundreds = string.split(",");
-                    string = "";
-                    for(int i = 0; i<hundreds.length; ++i) string+= hundreds[i];
-                    int quantity = Integer.parseInt(string);
-                    int cost = quantity * mFood.getValue().getPrice();
-                    mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange.textInputEditTextBuyerDialogCostAmount.setText(String.format("%,d", cost));
-                }
-            }
-        };
-        mCostTextWatcher = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String string = editable.toString();
-                if(!string.isEmpty() && mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange.textInputEditTextBuyerDialogCostAmount.hasFocus()) {
-                    String[] hundreds = string.split(",");
-                    string = "";
-                    for(int i = 0; i<hundreds.length; ++i) string+= hundreds[i];
-                    int cost = Integer.parseInt(string);
-                    int quantity = (int) Math.floor(cost / mFood.getValue().getPrice());
-                    mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange.textInputEditTextBuyerDialogFoodAmount.setText(String.format("%,d", quantity));
-                }
-            }
-        };
         // observes food item
         mFood.observe(getViewLifecycleOwner(), new Observer<Food>() {
             @Override
@@ -104,10 +62,7 @@ public class ChooseFoodDialogFragment extends DialogFragment {
                 mViewBinding.imageDialogFoodImage.setImageResource(Integer.parseInt(food.getImageUri()));
                 mViewBinding.includeDialogFoodDetails.textBuyerDialogFoodName.setText(food.getName());
                 ViewModelHelper.bindIncludeFoodPricing(mViewBinding.includeDialogFoodDetails.includeFoodPricing,food.getBasePrice(),food.getPrice());
-                mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange.textInputEditTextBuyerDialogFoodAmount.setText(1+"");
-                mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange.textInputEditTextBuyerDialogCostAmount.setText(String.format("%,d",food.getPrice()));
-                mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange.textInputEditTextBuyerDialogFoodAmount.addTextChangedListener(mQuantityTextWatcher);
-                mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange.textInputEditTextBuyerDialogCostAmount.addTextChangedListener(mCostTextWatcher);
+                ViewModelHelper.bindIncludeQuantityPriceExchange(mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange,1,food.getPrice(),food.getPrice());
             }
         });
         // defines click handler for add to cart button
@@ -116,9 +71,8 @@ public class ChooseFoodDialogFragment extends DialogFragment {
             public void onClick(View view) {
                 int quantity = Integer.parseInt(mViewBinding.includeDialogFoodDetails.includeBuyerQuantityPriceExchange.textInputEditTextBuyerDialogFoodAmount.getText().toString());
                 int cost = quantity*mFood.getValue().getPrice();
-//                Toast.makeText(getContext(),String.format("Buying %s for %d kg",mFood.getValue().getName(),quantity),Toast.LENGTH_SHORT).show();
                 OnDialogResult handler = (OnDialogResult)getTargetFragment();
-                handler.handle(mFood.getValue().getId(),cost);
+                handler.handle(mFood.getValue(),cost);
                 dismiss();
             }
         });

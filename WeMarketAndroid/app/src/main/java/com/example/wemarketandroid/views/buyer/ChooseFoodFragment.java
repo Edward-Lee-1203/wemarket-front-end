@@ -61,7 +61,6 @@ public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, I
                     Bundle bundle = new Bundle();
                     bundle.putInt("marketId",market.getId());
                     mNavController.navigate(R.id.action_chooseFoodFragment_to_marketDetailsFragment,bundle);
-                    // TODO: handle geting market id from arguments (bundle) and binding market details in the destination
                 }
         };
         ChooseFoodViewModel.FoodClickListener foodClickListener = new ChooseFoodViewModel.FoodClickListener() {
@@ -102,8 +101,11 @@ public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, I
         mViewBinding.includeBuyerBottomBar.buttonBuyerIncludeBottomBarCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: navigate to success page
-                mNavController.navigate(R.id.destination_buyer_success);
+                if(mCartSharedViewModel.getCartItemCount().getValue()>0) {
+                    mNavController.navigate(R.id.destination_buyer_success);
+                } else{
+                    Toast.makeText(getContext(),"Please add at least 1 food to cart first",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -111,8 +113,8 @@ public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, I
     }
 
     @Override
-    public void handle(int foodId, int price){
-        mCartSharedViewModel.addToCart(foodId,price);
+    public void handle(Food food, int price){
+        mCartSharedViewModel.addToCart(food,price);
     }
 
     @Override

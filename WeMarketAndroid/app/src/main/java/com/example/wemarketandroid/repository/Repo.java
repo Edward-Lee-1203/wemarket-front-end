@@ -11,15 +11,17 @@ import com.example.wemarketandroid.models.buyer.Food;
 import com.example.wemarketandroid.models.buyer.Market;
 import com.example.wemarketandroid.models.buyer.User;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Repo {
     // these list will be fetched on creation of this repo to ensure data sharing
+    // TODO: refactor these List<> to HashMap<>
     private final LiveData<List<Market>> mMarketList;
     private final LiveData<List<Food>> mFoodList;
     private final LiveData<User> mUser;
-    private static Repo instance;
+    private static Repo INSTANCE;
 
     private Repo() {
         MutableLiveData<List<Market>> mutableLiveDataMarketList = new MutableLiveData<>();
@@ -59,10 +61,10 @@ public class Repo {
     }
 
     public static Repo getInstance(){
-        if(instance==null){
-            instance = new Repo();
+        if(INSTANCE==null){
+            INSTANCE = new Repo();
         }
-        return instance;
+        return INSTANCE;
     }
 
     public LiveData<List<Market>> getMarketList() {
@@ -98,6 +100,24 @@ public class Repo {
         return foodLiveData;
     }
 
+    public LiveData<List<Food>> getFoodByIdList(List<Integer> idList){
+        return Transformations.map(mFoodList, new Function<List<Food>, List<Food>>() {
+            @Override
+            public List<Food> apply(List<Food> input) {
+                ArrayList<Food> foodArrayList = new ArrayList<>();
+                for(Integer id : idList){
+                    for(Food food : input){
+                        if(food.getId() == id){
+                            foodArrayList.add(food);
+                            break;
+                        }
+                    }
+                }
+                return foodArrayList;
+            }
+        });
+    }
+
     public LiveData<User> getUser(){ return mUser; }
 
     public Filter[] getHomeFilters(){
@@ -117,4 +137,5 @@ public class Repo {
                 new Filter(R.drawable.icon_heart,"Favourite")
         };
     }
+    // TODO: create method to create delivery order
 }

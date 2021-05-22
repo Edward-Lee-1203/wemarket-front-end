@@ -4,25 +4,34 @@ import java.util.List;
 import java.util.Objects;
 
 public class Order implements IDiffable{
-    private int id;
-    private int price;
-    List<OrderDetail> orderDetailList;
 
-    public Order(int id, int price) {
+    private int id;
+    private int totalPrice;
+    private List<OrderDetail> orderDetailList;
+
+    public Order(int id, int totalPrice) {
         this.id = id;
-        this.price = price;
+        this.totalPrice = totalPrice;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getPrice() {
-        return price;
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public List<OrderDetail> getOrderDetailList() {
         return orderDetailList;
+    }
+
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
     }
 
     @Override
@@ -31,12 +40,11 @@ public class Order implements IDiffable{
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return id == order.id &&
-                price == order.price &&
-                Objects.equals(orderDetailList, order.orderDetailList);
+                totalPrice == order.totalPrice;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, price, orderDetailList);
+        return Objects.hash(id, totalPrice);
     }
 }

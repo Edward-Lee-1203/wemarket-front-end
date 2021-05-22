@@ -10,59 +10,73 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.example.wemarketandroid.models.buyer.CartItem;
 import com.example.wemarketandroid.models.buyer.Food;
 import com.example.wemarketandroid.repository.Repo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
 public class CartSharedViewModel extends ViewModel {
 
-    private MutableLiveData<HashMap<Integer,Integer>> foods;
+    private MutableLiveData<HashMap<Integer, CartItem>> cartItems;
     private LiveData<Integer> cartTotalCost;
     private LiveData<Integer> cartItemCount;
+    private MutableLiveData<Boolean> isCheckoutConfirmed;
     private Repo mRepo;
 
-    private void notifyFoodsChanged(){ foods.postValue(foods.getValue()); }
+    private void notifyFoodsChanged(){ cartItems.postValue(cartItems.getValue()); }
 
     public CartSharedViewModel() {
-        foods = new MutableLiveData<>();
-        foods.postValue(new HashMap<>());
         mRepo = Repo.getInstance();
-        cartTotalCost = Transformations.map(foods, new Function<HashMap<Integer, Integer>, Integer>() {
+        initComponents();
+    }
+    private void initComponents(){
+        cartItems = new MutableLiveData<>();
+        cartItems.postValue(new HashMap<>());
+        cartTotalCost = Transformations.map(cartItems, new Function<HashMap<Integer, CartItem>, Integer>() {
             @Override
-            public Integer apply(HashMap<Integer, Integer> input) {
+            public Integer apply(HashMap<Integer, CartItem> input) {
                 int sum = 0;
-                for(Integer value : input.values()) sum+=value;
+                for(CartItem cartItem : input.values()) sum+=cartItem.getPrice();
                 return sum;
             }
         });
-        cartItemCount = Transformations.map(foods, new Function<HashMap<Integer, Integer>, Integer>() {
+        cartItemCount = Transformations.map(cartItems, new Function<HashMap<Integer, CartItem>, Integer>() {
             @Override
-            public Integer apply(HashMap<Integer, Integer> input) {
+            public Integer apply(HashMap<Integer, CartItem> input) {
                 return input.size();
             }
         });
+        isCheckoutConfirmed = new MutableLiveData<>();
+        isCheckoutConfirmed.postValue(null);
     }
 
-    public LiveData<HashMap<Integer, Integer>> getFoods(){ return foods; }
+    public void clearCart(){
+        initComponents();
+    }
+
+    public MutableLiveData<HashMap<Integer, CartItem>> getCartItems() {
+        return cartItems;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void addToCart(int foodId, int price){
-        if(foods.getValue().containsKey(foodId)){
-            foods.getValue().replace(foodId,price);
+    public void addToCart(Food food, int price){
+        if(cartItems.getValue().containsKey(food.getId())){
+            cartItems.getValue().replace(food.getId(), new CartItem(food,price));
         } else {
-            foods.getValue().put(foodId, price);
+            cartItems.getValue().put(food.getId(), new CartItem(food,price));
         }
         notifyFoodsChanged();
     }
 
     public void removeFromCart(int foodId){
-        if(foods.getValue().containsKey(foodId)) {
-            foods.getValue().remove(foodId);
+        if(cartItems.getValue().containsKey(foodId)) {
+            cartItems.getValue().remove(foodId);
             notifyFoodsChanged();
         }
     }
@@ -74,4 +88,7 @@ public class CartSharedViewModel extends ViewModel {
     public LiveData<Integer> getCartItemCount() {
         return cartItemCount;
     }
+
+    public LiveData<Boolean> getIsCheckoutConfirmed(){ return isCheckoutConfirmed; }
+    public void setIsCheckoutConfirmed(Boolean isCheckoutConfirmed){ this.isCheckoutConfirmed.postValue(isCheckoutConfirmed);}
 }

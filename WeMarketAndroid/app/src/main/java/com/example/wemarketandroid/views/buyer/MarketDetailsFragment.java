@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -97,8 +98,11 @@ public class MarketDetailsFragment extends Fragment implements IUseToolbarOnlyTi
         mViewBinding.includeBuyerBottomBar.buttonBuyerIncludeBottomBarCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: navigate to success page
-                mContainingActivity.getNavController().navigate(R.id.destination_buyer_success);
+                if(mCartSharedViewModel.getCartItemCount().getValue()>0){
+                    mContainingActivity.getNavController().navigate(R.id.destination_buyer_success);
+                } else {
+                    Toast.makeText(getContext(),"Please add at least 1 food to cart first",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -106,8 +110,8 @@ public class MarketDetailsFragment extends Fragment implements IUseToolbarOnlyTi
     }
 
     @Override
-    public void handle(int foodId, int price){
-        mCartSharedViewModel.addToCart(foodId,price);
+    public void handle(Food food, int price){
+        mCartSharedViewModel.addToCart(food,price);
     }
 
     @Override

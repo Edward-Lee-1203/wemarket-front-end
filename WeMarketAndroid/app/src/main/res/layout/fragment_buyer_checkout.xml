@@ -5,232 +5,241 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.buyer.CheckoutFragment">
-    <LinearLayout
+<!--    TODO: fix this linearlayout to stay on top but expands the rest of height-->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         card_view:layout_constraintTop_toTopOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintBottom_toTopOf="@+id/include_buyer_bottom_bar"
-        android:divider="@drawable/empty_wide_divider"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/WeMarket.space.small"
-        android:paddingTop="@dimen/WeMarket.space.small"
-        android:paddingRight="@dimen/WeMarket.space.small"
-        android:showDividers="middle">
-        <androidx.cardview.widget.CardView
-            style="@style/WeMarketStyles.CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/WeMarketStyles.padding.small"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/text_buyer_checkout_keep_social_distancing_text"
-                    style="@style/WeMarketStyles.Text.h2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buyer_checkout_keep_social_distancing_text"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    style="@style/WeMarketStyles.Text.h3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buyer_checkout_keep_social_distancing_description"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_keep_social_distancing_text"
-                    android:layout_marginTop="@dimen/WeMarket.space.small"/>
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_social_distancing"
-                    style="@style/WeMarketStyles.Switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:layout_constraintBottom_toBottomOf="parent"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent"
-                    card_view:track="@drawable/switch_track_custom" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+        card_view:layout_constraintBottom_toTopOf="@+id/include_buyer_bottom_bar">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/WeMarketStyles.CardView">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/WeMarketStyles.padding.small"
+            android:divider="@drawable/empty_wide_divider"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/WeMarket.space.small"
+            android:paddingTop="@dimen/WeMarket.space.small"
+            android:paddingRight="@dimen/WeMarket.space.small"
+            android:showDividers="middle">
+            <androidx.cardview.widget.CardView
+                style="@style/WeMarketStyles.CardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/text_buyer_checkout_deliver_to_title"
-                    style="@style/WeMarketStyles.Text.h2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buyer_checkout_deliver_to_title"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/text_buyer_checkout_deliver_to_address"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    card_view:layout_constraintWidth_default="percent"
-                    card_view:layout_constraintWidth_percent=".6"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_deliver_to_title"
-                    android:layout_marginTop="@dimen/WeMarket.space.small"
-                    android:text="Delivery address here!"
-                    style="@style/WeMarketStyles.Text.h3" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_your_location"
-                    card_view:layout_constraintBottom_toTopOf="@+id/textInputLayout_buyer_checkout_delivery_notes"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout_buyer_checkout_delivery_notes"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/WeMarketStyles.padding.small"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_deliver_to_address"
-                    android:layout_marginTop="@dimen/WeMarket.space.small"
-                    android:background="@color/lightGray"
-                    android:textColorHint="@color/font_secondary"
-                    card_view:startIconTint="@color/font_secondary"
-                    card_view:startIconDrawable="@drawable/icon_notes">
+                    android:layout_height="match_parent">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditText_buyer_checkout_delivery_notes"
+                    <TextView
+                        android:id="@+id/text_buyer_checkout_keep_social_distancing_text"
+                        style="@style/WeMarketStyles.Text.h2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/buyer_checkout_keep_social_distancing_text"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
                         style="@style/WeMarketStyles.Text.h3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/buyer_checkout_keep_social_distancing_description"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_keep_social_distancing_text"
+                        android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_social_distancing"
+                        style="@style/WeMarketStyles.Switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        card_view:track="@drawable/switch_track_custom" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/WeMarketStyles.CardView">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/WeMarketStyles.padding.small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_buyer_checkout_deliver_to_title"
+                        style="@style/WeMarketStyles.Text.h2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/buyer_checkout_deliver_to_title"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/text_buyer_checkout_deliver_to_address"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        card_view:layout_constraintWidth_default="percent"
+                        card_view:layout_constraintWidth_percent=".6"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_deliver_to_title"
+                        android:layout_marginTop="@dimen/WeMarket.space.small"
+                        android:text="Delivery address here!"
+                        style="@style/WeMarketStyles.Text.h3" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_your_location"
+                        card_view:layout_constraintBottom_toTopOf="@+id/textInputLayout_buyer_checkout_delivery_notes"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout_buyer_checkout_delivery_notes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/buyer_checkout_deliver_note_text"
-                        android:inputType="text"
-                        android:textColorHint="@color/gray" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginTop="@dimen/WeMarket.space.small"
+                        android:background="@color/lightGray"
+                        android:textColorHint="@color/font_secondary"
+                        card_view:boxStrokeColor="@color/primaryLight"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_deliver_to_address"
+                        card_view:startIconDrawable="@drawable/icon_notes"
+                        card_view:startIconTint="@color/font_secondary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputEditText_buyer_checkout_delivery_notes"
+                            style="@style/WeMarketStyles.Text.h3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/buyer_checkout_deliver_note_text"
+                            android:inputType="text"
+                            android:textColorHint="@color/gray" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            style="@style/WeMarketStyles.CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/WeMarketStyles.padding.small"
+            <androidx.cardview.widget.CardView
+                style="@style/WeMarketStyles.CardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/text_buyer_checkout_bucket"
-                    style="@style/WeMarketStyles.Text.h2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_buyer_checkout_bucket_title"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/button_buyer_checkout_add_items"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:background="@color/white"
-                    android:backgroundTint="@color/white"
-                    android:drawableLeft="@drawable/icon_add"
-                    android:drawablePadding="@dimen/WeMarket.space.medium"
-                    android:text="@string/buyer_checkout_bucket_add_items"
-                    android:textAllCaps="false"
-                    android:textColor="@color/primary"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_buyer_checkout_cart"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/WeMarketStyles.padding.small"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/button_buyer_checkout_add_items" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
-            style="@style/WeMarketStyles.CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/text_buyer_checkout_bucket"
+                        style="@style/WeMarketStyles.Text.h2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_buyer_checkout_bucket_title"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/WeMarketStyles.padding.small"
+                    <Button
+                        android:id="@+id/button_buyer_checkout_add_items"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:background="@color/white"
+                        android:backgroundTint="@color/white"
+                        android:drawableLeft="@drawable/icon_add"
+                        android:drawablePadding="@dimen/WeMarket.space.medium"
+                        android:text="@string/buyer_checkout_bucket_add_items"
+                        android:textAllCaps="false"
+                        android:textColor="@color/primary"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_buyer_checkout_cart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/button_buyer_checkout_add_items" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/WeMarketStyles.CardView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/WeMarket.space.small">
 
-                <TextView
-                    android:id="@+id/text_buyer_checkout_payment_title"
-                    style="@style/WeMarketStyles.Text.h2"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/WeMarketStyles.padding.small"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buyer_checkout_payment_title"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/text_buyer_checkout_payment_items_cost_label"
-                    style="@style/WeMarketStyles.Text.h3.primary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/WeMarket.space.medium"
-                    android:text="@string/buyer_checkout_payment_items_cost"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_payment_title" />
+                    <TextView
+                        android:id="@+id/text_buyer_checkout_payment_title"
+                        style="@style/WeMarketStyles.Text.h2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/buyer_checkout_payment_title"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/text_buyer_checkout_payment_items_cost"
-                    style="@style/WeMarketStyles.Text.h3.primary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/WeMarket.space.medium"
-                    android:text="%.3f VNĐ"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_payment_title" />
+                    <TextView
+                        android:id="@+id/text_buyer_checkout_payment_items_cost_label"
+                        style="@style/WeMarketStyles.Text.h3.primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/WeMarket.space.medium"
+                        android:text="@string/buyer_checkout_payment_items_cost"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_payment_title" />
 
-                <TextView
-                    android:id="@+id/text_buyer_checkout_payment_delivery_fee_label"
-                    style="@style/WeMarketStyles.Text.h3.primary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/WeMarket.space.small"
-                    android:text="@string/buyer_checkout_payment_delivery_fee"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_payment_items_cost_label" />
+                    <TextView
+                        android:id="@+id/text_buyer_checkout_payment_items_cost"
+                        style="@style/WeMarketStyles.Text.h3.primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/WeMarket.space.medium"
+                        android:text="%.3f VNĐ"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_payment_title" />
 
-                <TextView
-                    android:id="@+id/text_buyer_checkout_payment_delivery_fee"
-                    style="@style/WeMarketStyles.Text.h3.primary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/WeMarket.space.small"
-                    android:text="%.3f VNĐ"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_payment_items_cost" />
+                    <TextView
+                        android:id="@+id/text_buyer_checkout_payment_delivery_fee_label"
+                        style="@style/WeMarketStyles.Text.h3.primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/WeMarket.space.small"
+                        android:text="@string/buyer_checkout_payment_delivery_fee"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_payment_items_cost_label" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_buyer_checkout_payment_delivery_fee"
+                        style="@style/WeMarketStyles.Text.h3.primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/WeMarket.space.small"
+                        android:text="@string/default_delivery_fee"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/text_buyer_checkout_payment_items_cost" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
     <include
+        android:id="@+id/include_buyer_bottom_bar"
         layout="@layout/include_buyer_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

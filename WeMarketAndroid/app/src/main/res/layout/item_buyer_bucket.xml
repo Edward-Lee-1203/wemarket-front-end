@@ -24,6 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
+        android:id="@+id/include_buyer_quantity_price_exchange"
         layout="@layout/include_buyer_quantity_price_exchange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

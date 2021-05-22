@@ -1,5 +1,7 @@
 package com.example.wemarketandroid.viewmodels.buyer;
 
+import com.example.wemarketandroid.models.buyer.Food;
+
 public interface OnDialogResult {
-    void handle(int foodId, int price);
+    void handle(Food food, int price);
 }

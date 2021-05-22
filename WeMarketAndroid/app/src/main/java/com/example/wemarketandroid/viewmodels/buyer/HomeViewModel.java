@@ -66,9 +66,8 @@ public class HomeViewModel extends ViewModel {
             itemBinding.imageBuyerPromoPhoto.setImageResource(Integer.parseInt(food.getImageUri()));
 
             itemBinding.includeItemBuyerPromo.textBuyerPromoFoodName.setText(food.getName());
-            itemBinding.includeItemBuyerPromo.textBuyerPromoFoodPriceCurrent.setText(food.getPrice()+"");
+            ViewModelHelper.bindIncludeFoodPricing(itemBinding.includeItemBuyerPromo.includeFoodPricing,food.getBasePrice(),food.getPrice());
             itemBinding.includeItemBuyerPromo.textBuyerPromoMarketName.setText(food.getMarket().getName());
-            itemBinding.includeItemBuyerPromo.textBuyerPromoFoodPriceBefore.setText(""+(food.getPrice()-food.getDiscount()*food.getPrice()));
         }
 
         public ItemBuyerPromoBinding getItemBinding() {

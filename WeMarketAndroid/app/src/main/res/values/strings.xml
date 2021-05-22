@@ -14,7 +14,6 @@
     <string name="buyer_market_cover_photo">Market cover photo here</string>
     <string name="buyer_dialog_food_name">%s</string>
     <string name="buyer_dialog_food_unit">/kg</string>
-    <string name="buyer_item_promo_available_count_default">- Left</string>
     <string name="buyer_dialog_message">Lời nhắn cho cửa hàng</string>
     <string name="buyer_dialog_add_to_cart_message">Thêm vào giỏ hàng</string>
     <string name="buyer_success_h1_text">Your order is created!</string>
@@ -39,5 +38,6 @@
     <string name="default_market_distance">1.0 km</string>
     <string name="default_market_verified">Verified</string>
     <string name="default_food_left">5 Left</string>
+    <string name="default_delivery_fee">0 VND</string>
     <string name="buyer_checkout_button_text">Checkout</string>
 </resources>
