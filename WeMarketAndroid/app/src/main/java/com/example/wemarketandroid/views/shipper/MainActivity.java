@@ -1,12 +1,4 @@
-package com.example.wemarketandroid.views.buyer;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+package com.example.wemarketandroid.views.shipper;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -16,6 +8,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.wemarketandroid.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * mToolbar
          */
-        mToolbar = (Toolbar)findViewById(R.id.toolbar_buyer);
+        mToolbar = (Toolbar)findViewById(R.id.toolbar_shipper);
         mToolbar.inflateMenu(R.menu.menu_toolbar);
         mToolbar.setOnMenuItemClickListener(item->{
             switch (item.getItemId()) {
@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
         SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
         mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         mSearchView.setIconifiedByDefault(true);
-//        mSearchView.setQueryHint(getString(R.string.search_hint_buyer));
+//        mSearchView.setQueryHint(getString(R.string.search_hint_shipper));
         mSearchView.setSubmitButtonEnabled(true);
         /**
          * mBottomNavBar
          */
-        mBottomNavBar = (BottomNavigationView)findViewById(R.id.bottom_navigation_buyer);
+        mBottomNavBar = (BottomNavigationView)findViewById(R.id.bottom_navigation_shipper);
         mBottomNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -69,30 +69,31 @@ public class MainActivity extends AppCompatActivity {
         /**
          * mNavController
          */
-        mNavController = Navigation.findNavController(this,R.id.fragment_container_buyer);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.destination_buyer_home,R.id.destination_buyer_orders,R.id.destination_buyer_profile).build();
+        mNavController = Navigation.findNavController(this,R.id.fragment_container_shipper);
+        // add the navigation graph destinations then add them here
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.destination_shipper_home,R.id.destination_buyer_orders,R.id.destination_buyer_profile).build();
         NavigationUI.setupWithNavController(mToolbar,mNavController,appBarConfiguration);
     }
-    private void handleIntent(Intent intent){
-        if(intent.getAction().equals(Intent.ACTION_SEARCH)){
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            // TODO: handle food item query
-            Log.d("MainActivity","Query: "+query);
-        }
-    }
+//    private void handleIntent(Intent intent){
+//        if(intent.getAction().equals(Intent.ACTION_SEARCH)){
+//            String query = intent.getStringExtra(SearchManager.QUERY);
+//            // TODO: handle food item query
+//            Log.d("MainActivity","Query: "+query);
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer_main);
+        setContentView(R.layout.activity_shipper_main);
         initComponents();
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        handleIntent(intent);
-    }
+//    @Override
+//    protected void onNewIntent(Intent intent) {
+//        super.onNewIntent(intent);
+//        handleIntent(intent);
+//    }
 
     public BottomNavigationView getmBottomNavBar() {
         return mBottomNavBar;

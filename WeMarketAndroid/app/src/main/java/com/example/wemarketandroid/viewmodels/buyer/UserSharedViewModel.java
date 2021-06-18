@@ -3,7 +3,7 @@ package com.example.wemarketandroid.viewmodels.buyer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.wemarketandroid.models.buyer.User;
+import com.example.wemarketandroid.models.User;
 import com.example.wemarketandroid.repository.Repo;
 
 public class UserSharedViewModel extends ViewModel {

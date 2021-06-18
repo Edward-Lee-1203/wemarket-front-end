@@ -21,9 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wemarketandroid.databinding.ItemBuyerFoodFilterBinding;
 import com.example.wemarketandroid.databinding.ItemBuyerMarketBinding;
 import com.example.wemarketandroid.databinding.ItemBuyerMarketFoodBinding;
-import com.example.wemarketandroid.models.buyer.Filter;
-import com.example.wemarketandroid.models.buyer.Food;
-import com.example.wemarketandroid.models.buyer.Market;
+import com.example.wemarketandroid.models.Filter;
+import com.example.wemarketandroid.models.Food;
+import com.example.wemarketandroid.models.Market;
 import com.example.wemarketandroid.repository.Repo;
 
 import java.util.List;

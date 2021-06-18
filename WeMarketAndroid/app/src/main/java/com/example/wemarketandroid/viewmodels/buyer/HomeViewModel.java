@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wemarketandroid.databinding.ItemBuyerHomeControlsBinding;
 import com.example.wemarketandroid.databinding.ItemBuyerPromoBinding;
-import com.example.wemarketandroid.models.buyer.Filter;
-import com.example.wemarketandroid.models.buyer.Food;
-import com.example.wemarketandroid.models.buyer.User;
+import com.example.wemarketandroid.models.Filter;
+import com.example.wemarketandroid.models.Food;
+import com.example.wemarketandroid.models.User;
 import com.example.wemarketandroid.repository.Repo;
 import com.squareup.picasso.Picasso;
 

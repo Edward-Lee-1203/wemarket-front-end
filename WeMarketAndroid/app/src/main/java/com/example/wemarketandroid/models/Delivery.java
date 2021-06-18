@@ -1,4 +1,4 @@
-package com.example.wemarketandroid.models.buyer;
+package com.example.wemarketandroid.models;
 
 import java.util.Objects;
 
@@ -105,6 +105,30 @@ public class Delivery implements IDiffable{
 
     public void setDeliveryCol(String deliveryCol) {
         this.deliveryCol = deliveryCol;
+    }
+
+    public Shipper getShipper() {
+        return shipper;
+    }
+
+    public void setShipper(Shipper shipper) {
+        this.shipper = shipper;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @Override

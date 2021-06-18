@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wemarketandroid.databinding.ItemBuyerBucketBinding;
-import com.example.wemarketandroid.databinding.ItemBuyerBucketBinding;
-import com.example.wemarketandroid.models.buyer.CartItem;
-import com.example.wemarketandroid.models.buyer.Food;
+import com.example.wemarketandroid.models.CartItem;
 import com.example.wemarketandroid.repository.Repo;
 
 public class CheckoutViewModel extends ViewModel {

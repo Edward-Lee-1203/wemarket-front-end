@@ -13,7 +13,8 @@ import android.widget.Toast;
 
 import com.example.wemarketandroid.AuthActivity;
 import com.example.wemarketandroid.databinding.FragmentLoginBinding;
-import com.example.wemarketandroid.models.buyer.User;
+import com.example.wemarketandroid.models.Shipper;
+import com.example.wemarketandroid.models.User;
 import com.example.wemarketandroid.repository.Repo;
 
 public class LoginFragment extends Fragment {
@@ -34,18 +35,35 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 String username = mViewBinding.editTextLoginUsername.getText().toString().trim();
                 String password = mViewBinding.editTextLoginPassword.getText().toString().trim();
-                mRepo.login(username,password).observe(getViewLifecycleOwner(), new Observer<User>() {
-                    @Override
-                    public void onChanged(User user) {
-                        if(user!=null){
-                            Intent intent = new Intent(getContext(), com.example.wemarketandroid.views.buyer.MainActivity.class);
-                            startActivity(intent);
-                        } else{
-                            // TODO: implements TextInputLayout and display error message there
-                            Toast.makeText(getContext(),"Login failed. Please retry!",Toast.LENGTH_SHORT).show();
+                boolean isBuyer = mViewBinding.radioButtonBuyer.isChecked();
+                if(isBuyer){
+                    mRepo.loginBuyer(username,password).observe(getViewLifecycleOwner(), new Observer<User>() {
+                        @Override
+                        public void onChanged(User user) {
+                            if(user!=null){
+                                Intent intent = new Intent(getContext(), com.example.wemarketandroid.views.buyer.MainActivity.class);
+                                startActivity(intent);
+                            } else{
+                                // TODO: implements TextInputLayout and display error message there
+                                Toast.makeText(getContext(),"Login failed. Please retry!",Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                } else{
+
+                    mRepo.loginShipper(username,password).observe(getViewLifecycleOwner(), new Observer<Shipper>() {
+                        @Override
+                        public void onChanged(Shipper user) {
+                            if(user!=null){
+                                Intent intent = new Intent(getContext(), com.example.wemarketandroid.views.shipper.MainActivity.class);
+                                startActivity(intent);
+                            } else{
+                                // TODO: implements TextInputLayout and display error message there
+                                Toast.makeText(getContext(),"Login failed. Please retry!",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
             }
         });
 

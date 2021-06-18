@@ -3,11 +3,9 @@ package com.example.wemarketandroid.views.buyer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -17,8 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.databinding.FragmentBuyerCheckoutBinding;
-import com.example.wemarketandroid.databinding.FragmentBuyerChooseFoodBinding;
-import com.example.wemarketandroid.models.buyer.CartItem;
+import com.example.wemarketandroid.models.CartItem;
 import com.example.wemarketandroid.viewmodels.buyer.CartSharedViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.CheckoutViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.ViewModelHelper;
@@ -26,7 +23,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class CheckoutFragment extends Fragment implements IUseToolbarOnlyTitle, IHideBottomNavBar{
 

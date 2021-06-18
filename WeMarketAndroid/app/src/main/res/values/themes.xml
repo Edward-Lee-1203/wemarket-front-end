@@ -95,10 +95,7 @@
         <item name="elevation">@dimen/cardview_default_elevation</item>
     </style>
     <style name="WeMarketStyles.CardView.padding" parent="WeMarketStyles.CardView">
-        <item name="android:paddingTop">@dimen/WeMarket.space.small</item>
-        <item name="android:paddingBottom">@dimen/WeMarket.space.small</item>
-        <item name="android:paddingLeft">@dimen/WeMarket.space.small</item>
-        <item name="android:paddingRight">@dimen/WeMarket.space.small</item>
+        <item name="contentPadding">@dimen/WeMarket.space.small</item>
     </style>
     <style name="WeMarketStyles.CardView.yellow" parent="WeMarketStyles.CardView">
         <item name="cardBackgroundColor">@color/yellow</item>

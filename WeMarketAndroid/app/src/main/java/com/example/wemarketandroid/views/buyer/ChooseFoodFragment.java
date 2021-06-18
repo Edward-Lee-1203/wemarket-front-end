@@ -3,7 +3,6 @@ package com.example.wemarketandroid.views.buyer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -17,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.databinding.FragmentBuyerChooseFoodBinding;
-import com.example.wemarketandroid.models.buyer.Food;
-import com.example.wemarketandroid.models.buyer.Market;
+import com.example.wemarketandroid.models.Food;
+import com.example.wemarketandroid.models.Market;
 import com.example.wemarketandroid.repository.Repo;
 import com.example.wemarketandroid.viewmodels.buyer.CartSharedViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.ChooseFoodViewModel;
@@ -26,7 +25,6 @@ import com.example.wemarketandroid.viewmodels.buyer.OnDialogResult;
 import com.example.wemarketandroid.viewmodels.buyer.ViewModelHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, IUseToolbarOnlyTitle, OnDialogResult {

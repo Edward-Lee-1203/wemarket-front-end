@@ -26,6 +26,9 @@
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
         </activity>
+        <activity android:name=".views.shipper.MainActivity" android:launchMode="singleTop" android:theme="@style/WeMarketStyles.AppTheme">
+
+        </activity>
     </application>
 
 </manifest>

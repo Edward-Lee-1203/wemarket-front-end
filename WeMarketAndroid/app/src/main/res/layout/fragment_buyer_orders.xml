@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.buyer.CheckoutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_buyer_orders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/WeMarket.space.small"
+        android:paddingRight="@dimen/WeMarket.space.small"
+        android:layout_marginTop="@dimen/WeMarket.space.small"
+        android:layout_marginBottom="@dimen/WeMarket.space.small"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

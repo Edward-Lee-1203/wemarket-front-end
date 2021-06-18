@@ -15,10 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.databinding.IncludeBuyerBottomBarBinding;
 import com.example.wemarketandroid.databinding.IncludeBuyerQuantityPriceExchangeBinding;
-import com.example.wemarketandroid.databinding.IncludeDialogFoodDetailsBinding;
 import com.example.wemarketandroid.databinding.IncludeFoodPricingBinding;
-import com.example.wemarketandroid.models.buyer.Food;
-import com.example.wemarketandroid.models.buyer.IDiffable;
+import com.example.wemarketandroid.models.IDiffable;
 
 public class ViewModelHelper {
     public static void addItemDivider(Context context, RecyclerView recyclerView, int orientation){

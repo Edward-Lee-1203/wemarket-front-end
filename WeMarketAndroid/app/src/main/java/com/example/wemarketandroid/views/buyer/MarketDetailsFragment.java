@@ -2,13 +2,10 @@ package com.example.wemarketandroid.views.buyer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -17,11 +14,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.wemarketandroid.R;
-import com.example.wemarketandroid.databinding.FragmentBuyerChooseFoodBinding;
 import com.example.wemarketandroid.databinding.FragmentBuyerMarketDetailsBinding;
-import com.example.wemarketandroid.models.buyer.Food;
-import com.example.wemarketandroid.models.buyer.Market;
-import com.example.wemarketandroid.repository.Repo;
+import com.example.wemarketandroid.models.Food;
+import com.example.wemarketandroid.models.Market;
 import com.example.wemarketandroid.viewmodels.buyer.CartSharedViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.ChooseFoodViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.MarketDetailsViewModel;

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/WeMarketStyles.CardView.padding">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/text_buyer_order_item_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/WeMarketStyles.Text.h2"
+            android:textColor="@color/font_primary"
+            android:text="Delivery Id"/>
+
+        <TextView
+            android:id="@+id/text_buyer_order_item_order_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_buyer_order_item_order_id"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/WeMarketStyles.Text.h3"
+            android:layout_marginTop="@dimen/WeMarket.space.small"
+            android:textColor="@color/font_primary"
+            android:text="ID"/>
+
+        <TextView
+            android:id="@+id/text_buyer_order_item_order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/WeMarketStyles.Text.h3"
+            android:textColor="@color/primary"
+            android:text="Status"/>
+
+        <TextView
+            android:id="@+id/text_buyer_order_item_shipper_name"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".7"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_buyer_order_item_order_date"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/WeMarketStyles.Text.h3"
+            android:layout_marginTop="@dimen/WeMarket.space.small"
+            android:text="Shipper name"/>
+
+
+        <Button
+            android:id="@+id/button_buyer_order_item_see_shipper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/recycler_buyer_orders_order_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/WeMarketStyles.Button"
+            android:textColor="@color/primary"
+            android:text="See Shipper"
+            android:textSize="@dimen/WeMarket.size.small"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_buyer_orders_order_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_buyer_order_item_shipper_name"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
+        <include
+            android:id="@+id/include_horizontal_bar"
+            layout="@layout/include_horizontal_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/recycler_buyer_orders_order_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/WeMarket.space.small"
+            />
+
+        <TextView
+            android:id="@+id/text_buyer_order_item_delivery_fee_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/include_horizontal_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/WeMarketStyles.Text.h3"
+            android:layout_marginStart="@dimen/WeMarket.space.medium"
+            android:layout_marginTop="@dimen/WeMarket.space.small"
+            android:text="@string/buyer_checkout_payment_delivery_fee"/>
+
+        <TextView
+            android:id="@+id/text_buyer_order_item_delivery_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/include_horizontal_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/WeMarketStyles.Text.h3.primary"
+            android:layout_marginTop="@dimen/WeMarket.space.small"
+            android:layout_marginEnd="@dimen/WeMarket.space.small"
+            android:text="@string/default_delivery_fee"/>
+
+        <TextView
+            android:id="@+id/text_buyer_order_item_total_price_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_buyer_order_item_delivery_fee_label"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/WeMarketStyles.Text.h3.large"
+            android:textColor="@color/primary"
+            android:layout_marginStart="@dimen/WeMarket.space.medium"
+            android:layout_marginTop="@dimen/WeMarket.space.small"
+            android:text="Total cost"/>
+
+        <TextView
+            android:id="@+id/text_buyer_order_item_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_buyer_order_item_delivery_fee"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/WeMarketStyles.Text.h3.large"
+            android:textColor="@color/primary"
+            android:layout_marginTop="@dimen/WeMarket.space.small"
+            android:layout_marginEnd="@dimen/WeMarket.space.small"
+            android:text="%d"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

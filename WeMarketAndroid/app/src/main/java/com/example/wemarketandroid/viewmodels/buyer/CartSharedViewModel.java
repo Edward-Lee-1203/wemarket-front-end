@@ -6,20 +6,14 @@ import androidx.annotation.RequiresApi;
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
-import com.example.wemarketandroid.models.buyer.CartItem;
-import com.example.wemarketandroid.models.buyer.Food;
+import com.example.wemarketandroid.models.CartItem;
+import com.example.wemarketandroid.models.Food;
 import com.example.wemarketandroid.repository.Repo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Observable;
 
 public class CartSharedViewModel extends ViewModel {
 

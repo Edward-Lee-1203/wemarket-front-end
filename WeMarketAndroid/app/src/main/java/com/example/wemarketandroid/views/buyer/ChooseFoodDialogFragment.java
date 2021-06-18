@@ -2,8 +2,6 @@ package com.example.wemarketandroid.views.buyer;
 
 import android.graphics.Point;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +17,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.wemarketandroid.databinding.DialogChooseFoodBinding;
-import com.example.wemarketandroid.models.buyer.Food;
+import com.example.wemarketandroid.models.Food;
 import com.example.wemarketandroid.repository.Repo;
 import com.example.wemarketandroid.viewmodels.buyer.OnDialogResult;
 import com.example.wemarketandroid.viewmodels.buyer.ViewModelHelper;

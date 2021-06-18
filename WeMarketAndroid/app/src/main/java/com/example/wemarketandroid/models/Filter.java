@@ -1,4 +1,4 @@
-package com.example.wemarketandroid.models.buyer;
+package com.example.wemarketandroid.models;
 
 public class Filter {
     private int resId;

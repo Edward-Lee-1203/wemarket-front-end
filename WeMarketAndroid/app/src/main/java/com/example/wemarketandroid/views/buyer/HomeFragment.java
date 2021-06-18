@@ -11,14 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.databinding.FragmentBuyerHomeBinding;
-import com.example.wemarketandroid.models.buyer.Food;
-import com.example.wemarketandroid.models.buyer.User;
+import com.example.wemarketandroid.models.Food;
+import com.example.wemarketandroid.models.User;
 import com.example.wemarketandroid.viewmodels.buyer.HomeViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.ViewModelHelper;
 

@@ -41,14 +41,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_login_username" />
 
+    <RadioGroup
+        android:id="@+id/radioGroup_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/WeMarket.space.medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_login_password">
+
+        <RadioButton
+            android:id="@+id/radioButton_buyer"
+            style="@style/WeMarketStyles.Text.h3.large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary"
+            android:checked="true"
+            android:text="Buyer login" />
+
+        <RadioButton
+            android:id="@+id/radioButton_shipper"
+            style="@style/WeMarketStyles.Text.h3.large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary"
+            android:layout_marginStart="@dimen/WeMarket.space.medium"
+            android:text="Shipper login" />
+    </RadioGroup>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/editText_login_password"
         app:layout_constraintStart_toStartOf="@+id/editText_login_password"
-        app:layout_constraintTop_toBottomOf="@+id/editText_login_password"
-        android:layout_marginTop="@dimen/WeMarket.space.medium"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_login"
+        android:layout_marginTop="@dimen/WeMarket.space.small"
         style="@style/WeMarketStyles.CardView">
         <Button
             android:id="@+id/button_login_signin"
@@ -86,5 +116,7 @@
             android:textSize="@dimen/WeMarket.size.small"/>
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

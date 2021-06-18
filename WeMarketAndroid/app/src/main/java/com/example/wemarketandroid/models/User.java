@@ -1,4 +1,4 @@
-package com.example.wemarketandroid.models.buyer;
+package com.example.wemarketandroid.models;
 
 import java.util.Objects;
 

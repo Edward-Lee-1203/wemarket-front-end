@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/WeMarket.space.small"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_buyer_orders_foods_detail_food_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/WeMarket.space.small"
+        style="@style/WeMarketStyles.CardView">
+        <ImageView
+            android:id="@+id/image_buyer_orders_foods_detail_food_image"
+            android:layout_width="@dimen/WeMarket.size.foodItem"
+            android:layout_height="@dimen/WeMarket.size.foodItem"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_fish"/>
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/text_buyer_order_foods_detail_food_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card_buyer_orders_foods_detail_food_image"
+        android:layout_marginStart="@dimen/WeMarket.space.medium"
+        style="@style/WeMarketStyles.Text.h3.large"
+        android:textColor="@color/font_primary"
+        android:text="Food name"/>
+
+    <TextView
+        android:id="@+id/text_buyer_order_foods_detail_market_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_buyer_order_foods_detail_food_name"
+        app:layout_constraintStart_toEndOf="@id/card_buyer_orders_foods_detail_food_image"
+        android:layout_marginStart="@dimen/WeMarket.space.medium"
+        android:layout_marginTop="@dimen/WeMarket.space.small"
+        style="@style/WeMarketStyles.Text.h3"
+        android:text="Market name"/>
+
+    <TextView
+        android:id="@+id/text_buyer_order_foods_detail_food_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_buyer_order_foods_detail_market_name"
+        app:layout_constraintStart_toEndOf="@id/card_buyer_orders_foods_detail_food_image"
+        app:layout_constraintEnd_toStartOf="@id/text_buyer_order_foods_detail_food_price"
+        android:layout_marginStart="@dimen/WeMarket.space.small"
+        android:layout_marginTop="@dimen/WeMarket.space.small"
+        style="@style/WeMarketStyles.Text.h3.primary"
+        android:text="Food quantity"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_buyer_order_foods_detail_market_name"
+        app:layout_constraintStart_toEndOf="@id/text_buyer_order_foods_detail_food_quantity"
+        app:layout_constraintEnd_toStartOf="@id/text_buyer_order_foods_detail_food_price"
+        android:layout_marginTop="@dimen/WeMarket.space.small"
+        android:text="="
+        style="@style/WeMarketStyles.Text.h3.primary"/>
+
+    <TextView
+        android:id="@+id/text_buyer_order_foods_detail_food_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_buyer_order_foods_detail_market_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/WeMarket.space.small"
+        android:layout_marginTop="@dimen/WeMarket.space.small"
+        style="@style/WeMarketStyles.Text.h3.primary"
+        android:text="Food quantity"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wemarketandroid.databinding.ItemBuyerMarketFoodBinding;
-import com.example.wemarketandroid.models.buyer.Food;
+import com.example.wemarketandroid.models.Food;
 import com.example.wemarketandroid.repository.Repo;
 
 public class MarketDetailsViewModel extends ViewModel {
