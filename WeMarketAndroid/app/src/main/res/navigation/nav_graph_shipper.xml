@@ -11,5 +11,23 @@
         android:label="@string/buyer_title_home"
         tools:layout="@layout/fragment_shipper_home" >
     </fragment>
+    <fragment
+        android:id="@+id/destination_shipper_receieve_order"
+        android:name="com.example.wemarketandroid.views.shipper.ReceiveOrderFragment"
+        android:label="@string/shipper_title_receive_order"
+        tools:layout="@layout/fragment_shipper_receive_order" >
+    </fragment>
+    <fragment
+        android:id="@+id/destination_shipper_maps"
+        android:name="com.example.wemarketandroid.views.shipper.MapsFragment"
+        android:label="@string/shipper_title_maps"
+        tools:layout="@layout/fragment_shipper_maps" >
+    </fragment>
+    <fragment
+        android:id="@+id/destination_shipper_orders"
+        android:name="com.example.wemarketandroid.views.shipper.OrdersFragment"
+        android:label="@string/shipper_title_orders"
+        tools:layout="@layout/fragment_shipper_orders" >
+    </fragment>
     
 </navigation>

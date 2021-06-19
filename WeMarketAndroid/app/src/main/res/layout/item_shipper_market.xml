@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/WeMarketStyles.CardView">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/WeMarketStyles.padding.small">
+        <TextView
+            android:id="@+id/text_shipper_item_market_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/WeMarketStyles.Text.h3.large"
+            android:textColor="@color/font_primary"
+            android:text="Market name here!"/>
+        <ImageView
+            android:id="@+id/image_shipper_item_market_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/WeMarket.size.xmedium"
+            android:src="@drawable/icon_market"
+            app:layout_constraintTop_toBottomOf="@+id/text_shipper_item_market_name"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/text_shipper_item_market_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/text_shipper_item_market_name"
+            app:layout_constraintStart_toEndOf="@id/image_shipper_item_market_icon"
+            android:layout_marginStart="@dimen/WeMarket.space.small"
+            style="@style/WeMarketStyles.Text.h3"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".7"
+            android:text="Market address here! Multi-line with constraint width supported!"/>
+
+        <TextView
+            android:id="@+id/text_shipper_item_market_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_shipper_item_market_name"
+            app:layout_constraintBottom_toTopOf="@+id/include_horizontal_bar"
+            style="@style/WeMarketStyles.Text.h3"
+            android:text="@string/default_market_distance"/>
+        <include
+            android:id="@+id/include_horizontal_bar"
+            layout="@layout/include_horizontal_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/text_shipper_item_market_address"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_shipper_item_market_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/include_horizontal_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
