@@ -10,7 +10,10 @@
     <string name="search_label_buyer">Search food name</string>
     <string name="search_hint_buyer">Cá ba sa</string>
     <string name="buyer_home_greeting_title">Hello, %s</string>
-    <string name="buyer_home_greeting_subtitle">What do you want to eat?</string>
+    <string name="shipper_home_greeting_title">Hello, %s</string>
+    <string name="shipper_home_greeting_subtitle">Have a safe driving day</string>
+    <string name="shipper_zero_orders_message">You do not have any orders currently</string>
+    <string name="shipper_zero_orders_submessage">Let\'s wait for the latest order to arrive</string>
     <string name="buyer_market_cover_photo">Market cover photo here</string>
     <string name="buyer_dialog_food_name">%s</string>
     <string name="buyer_dialog_food_unit">/kg</string>
