@@ -10,12 +10,18 @@
         android:name="com.example.wemarketandroid.views.shipper.HomeFragment"
         android:label="@string/buyer_title_home"
         tools:layout="@layout/fragment_shipper_home" >
+        <action
+            android:id="@+id/action_destination_shipper_home_to_destination_shipper_receieve_order"
+            app:destination="@id/destination_shipper_receieve_order" />
     </fragment>
     <fragment
         android:id="@+id/destination_shipper_receieve_order"
         android:name="com.example.wemarketandroid.views.shipper.ReceiveOrderFragment"
         android:label="@string/shipper_title_receive_order"
         tools:layout="@layout/fragment_shipper_receive_order" >
+        <action
+            android:id="@+id/action_destination_shipper_receieve_order_to_destination_shipper_maps"
+            app:destination="@id/destination_shipper_maps" />
     </fragment>
     <fragment
         android:id="@+id/destination_shipper_maps"

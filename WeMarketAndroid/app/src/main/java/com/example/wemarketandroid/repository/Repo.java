@@ -32,7 +32,11 @@ public class Repo {
     private static Repo INSTANCE;
     // TODO: creates LiveData<List<Delivery>>
     private MutableLiveData<List<Delivery>> mDeliveryList;
+    // TODO: refactor to remove this list
     private LiveData<List<Shipper>> mShipperList;
+    // contains deliveries matching mShipper's id
+    // serverless demo: using MutableLiveData
+    private MutableLiveData<Delivery> mShipperDelivery;
 
     private LiveData<User> getSeedUser(){
         // initializes user data
@@ -124,6 +128,8 @@ public class Repo {
         mFoodList = mutableLiveDataFoodList;
         mUser = new MutableLiveData<>();
         mDeliveryList = new MutableLiveData<>();
+        // non-production code
+        mShipperDelivery = new MutableLiveData<>();
         mShipperList = getSeedShipperList();
     }
 
@@ -191,6 +197,8 @@ public class Repo {
 
     public LiveData<User> getUser(){ return mUser; }
 
+    public LiveData<Shipper> getmShipper(){return mShipper;}
+
     public LiveData<User> loginBuyer(String username, String password){
         // TODO: API login the buyer
         mUser = getSeedUser();
@@ -213,6 +221,10 @@ public class Repo {
         }
         deliveries.add(delivery);
         mDeliveryList.postValue(deliveries);
+    }
+
+    public MutableLiveData<Delivery> getmShipperDelivery() {
+        return mShipperDelivery;
     }
 
     public Filter[] getHomeFilters(){

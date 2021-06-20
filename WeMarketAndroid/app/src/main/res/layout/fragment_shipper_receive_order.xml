@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".views.shipper.ReceiveOrderFragment">
     <ScrollView
+        android:id="@+id/scroll_shipper_receive_order"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
         card_view:layout_constraintTop_toTopOf="parent"
+        card_view:layout_constraintBottom_toTopOf="@+id/card_button_shipper_receive_order"
         card_view:layout_constraintStart_toStartOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,17 +132,10 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                style="@style/WeMarketStyles.CardView"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_shipper_cart"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_shipper_cart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/WeMarketStyles.padding.small"/>
-            </androidx.cardview.widget.CardView>
+                android:layout_height="wrap_content"/>
 
             <androidx.cardview.widget.CardView
                 style="@style/WeMarketStyles.CardView"
@@ -208,6 +203,7 @@
     </ScrollView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_button_shipper_receive_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:layout_constraintBottom_toBottomOf="parent"

@@ -53,7 +53,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="Driver mode"
+                android:text="Drive mode"
                 style="@style/WeMarketStyles.Text.h3.large"
                 android:textColor="@color/white"/>
             <TextView
@@ -75,6 +75,7 @@
                 card_view:layout_constraintTop_toTopOf="parent"
                 card_view:layout_constraintEnd_toStartOf="@id/text_drive_mode_on"
                 card_view:track="@drawable/switch_track_custom"
+                android:checked="false"
                 android:layout_marginEnd="@dimen/WeMarket.space.small"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -103,21 +104,24 @@
         android:background="@color/white">
 
         <ImageView
+            android:id="@+id/image_shipper_home"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/WeMarket.size.dialogPhoto"
+            android:layout_height="@dimen/WeMarket.size.coverPhoto"
             android:scaleType="fitCenter"
             android:src="@drawable/delivery_image" />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@style/WeMarketStyles.Text.h2"
-            android:text="@string/shipper_zero_orders_message"/>
-        <TextView
+            android:id="@+id/text_shipper_home_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            style="@style/WeMarketStyles.Text.h3"
+            style="@style/WeMarketStyles.Text.h2.center"
+            android:text="@string/shipper_zero_orders_message"/>
+        <TextView
+            android:id="@+id/text_shipper_home_submessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/WeMarketStyles.Text.h3.center"
             android:text="@string/shipper_zero_orders_submessage"/>
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -126,6 +130,7 @@
             style="@style/WeMarketStyles.CardView"
             android:backgroundTint="@color/primary">
             <Button
+                android:id="@+id/button_shipper_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Let's start"
