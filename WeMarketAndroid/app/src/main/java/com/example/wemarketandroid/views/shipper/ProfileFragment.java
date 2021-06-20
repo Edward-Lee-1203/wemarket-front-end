@@ -9,18 +9,18 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.wemarketandroid.databinding.FragmentShipperHomeBinding;
-import com.example.wemarketandroid.databinding.FragmentShipperOrdersBinding;
+import com.example.wemarketandroid.databinding.FragmentShipperProfileBinding;
 
-public class OrdersFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     private MainActivity mContainingActivity;
-    private FragmentShipperOrdersBinding mViewBinding;
+    private FragmentShipperProfileBinding mViewBinding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mViewBinding = FragmentShipperOrdersBinding.inflate(inflater,container,false);
+        mViewBinding = FragmentShipperProfileBinding.inflate(inflater,container,false);
         View rootView = mViewBinding.getRoot();
         mContainingActivity = (MainActivity) getActivity();
 //        mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication()).create(HomeViewModel.class);

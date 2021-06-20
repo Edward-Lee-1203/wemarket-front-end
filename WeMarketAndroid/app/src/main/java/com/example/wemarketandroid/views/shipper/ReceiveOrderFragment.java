@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.databinding.FragmentShipperReceiveOrderBinding;
 import com.example.wemarketandroid.models.Delivery;
 import com.example.wemarketandroid.models.Market;
@@ -81,6 +82,7 @@ public class ReceiveOrderFragment extends Fragment {
 
                 // TODO: call API
 //                mContainingActivity.getNavController().navigate(R.id.destination_shipper_maps);
+                mContainingActivity.getNavController().navigate(R.id.destination_shipper_orders);
             }
         });
         return rootView;

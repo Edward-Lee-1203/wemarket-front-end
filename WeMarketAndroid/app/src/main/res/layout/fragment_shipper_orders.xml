@@ -17,7 +17,7 @@
         android:paddingRight="@dimen/WeMarket.space.small"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_shipper_today_foods"
+        android:id="@+id/recycler_shipper_deliveries"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"

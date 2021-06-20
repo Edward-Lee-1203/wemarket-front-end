@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
          */
         mNavController = Navigation.findNavController(this,R.id.fragment_container_shipper);
         // add the navigation graph destinations then add them here
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.destination_shipper_home,R.id.destination_buyer_orders,R.id.destination_buyer_profile).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.destination_shipper_home,R.id.destination_shipper_orders,R.id.destination_shipper_profile).build();
         NavigationUI.setupWithNavController(mToolbar,mNavController,appBarConfiguration);
     }
 //    private void handleIntent(Intent intent){

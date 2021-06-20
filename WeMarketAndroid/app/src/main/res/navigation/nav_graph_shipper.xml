@@ -35,5 +35,11 @@
         android:label="@string/shipper_title_orders"
         tools:layout="@layout/fragment_shipper_orders" >
     </fragment>
-    
+
+    <fragment
+        android:id="@+id/destination_shipper_profile"
+        android:name="com.example.wemarketandroid.views.shipper.ProfileFragment"
+        android:label="@string/shipper_title_profile"
+        tools:layout="@layout/fragment_shipper_profile" >
+    </fragment>
 </navigation>

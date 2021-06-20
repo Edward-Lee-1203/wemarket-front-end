@@ -7,9 +7,10 @@
     <string name="buyer_title_market_details">@string/app_name</string>
     <string name="buyer_title_checkout">Checkout</string>
     <string name="buyer_title_success">Success</string>
-    <string name="shipper_title_orders">Confirm Order</string>
+    <string name="shipper_title_orders">Confirm Orders</string>
     <string name="shipper_title_receive_order">Order Status</string>
     <string name="shipper_title_maps">Map</string>
+    <string name="shipper_title_profile">Profile</string>
     <string name="shipper_receive_order_button_text">Receive order</string>
     <string name="search_label_buyer">Search food name</string>
     <string name="search_hint_buyer">Cá ba sa</string>
