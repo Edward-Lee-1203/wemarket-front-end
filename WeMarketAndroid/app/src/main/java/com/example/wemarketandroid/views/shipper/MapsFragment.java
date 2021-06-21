@@ -95,8 +95,14 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("MapsFragment","Location update count = "+locationUpdateCount);
                 Marker shipperLocation = mViewModel.getShipperMarkerLiveData().getValue();
                 for(Location location : locationResult.getLocations()){
-                    // shows updated location on map
-                    shipperLocation.setPosition(new LatLng(location.getLatitude(), location.getLongitude()));
+                    LatLng pos = new LatLng(location.getLatitude(), location.getLongitude());
+                    if(shipperLocation==null){
+                        initializeShipperMarker(pos);
+                        shipperLocation = mViewModel.getShipperMarkerLiveData().getValue();
+                    } else {
+                        // shows updated location on map
+                        shipperLocation.setPosition(pos);
+                    }
                 }
                 mViewModel.getShipperMarkerLiveData().postValue(shipperLocation);
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(shipperLocation.getPosition(),STREET_ZOOM_LEVEL));
