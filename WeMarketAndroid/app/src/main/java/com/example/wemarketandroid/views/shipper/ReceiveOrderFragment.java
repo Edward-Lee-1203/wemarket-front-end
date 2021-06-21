@@ -81,8 +81,8 @@ public class ReceiveOrderFragment extends Fragment {
             public void onClick(View view) {
 
                 // TODO: call API
-//                mContainingActivity.getNavController().navigate(R.id.destination_shipper_maps);
-                mContainingActivity.getNavController().navigate(R.id.destination_shipper_orders);
+                mContainingActivity.getNavController().navigate(R.id.destination_shipper_maps);
+//                mContainingActivity.getNavController().navigate(R.id.destination_shipper_orders);
             }
         });
         return rootView;

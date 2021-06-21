@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".views.shipper.HomeFragment"
     android:layout_marginStart="@dimen/WeMarket.space.small"
-    android:layout_marginEnd="@dimen/WeMarket.space.medium"
-    >
+    android:layout_marginEnd="@dimen/WeMarket.space.medium">
 
     <TextView
         android:id="@+id/text_shipper_title"
@@ -29,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_shipper_title"
         android:layout_marginTop="@dimen/WeMarket.space.small"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_shipper_drive_mode"
         android:layout_width="match_parent"
@@ -113,9 +113,10 @@
             android:id="@+id/text_shipper_home_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             style="@style/WeMarketStyles.Text.h2.center"
-            android:text="@string/shipper_zero_orders_message"/>
+            android:text="@string/shipper_zero_orders_message"
+            android:layout_marginStart="@dimen/WeMarket.space.large"
+            android:layout_marginEnd="@dimen/WeMarket.space.large"/>
         <TextView
             android:id="@+id/text_shipper_home_submessage"
             android:layout_width="wrap_content"

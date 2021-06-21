@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
         View rootView = mViewBinding.getRoot();
         mContainingActivity = (MainActivity) getActivity();
         mViewModel = new ViewModelProvider(requireActivity()).get(DeliverySharedViewModel.class);   // initializes shared view model
+        mViewBinding.textShipperTitle.setText("Hello, "+mViewModel.getmRepo().getmShipper().getValue().getName());
         mActivateDriveModeHandler = new View.OnClickListener() {
             @Override
             public void onClick(View view) {

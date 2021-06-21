@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavBar;
     private NavController mNavController;
     private SearchView mSearchView;
+    private ActivityResultLauncher<String> requestPermissionLauncher;
 
     private void initComponents(){
         /**
