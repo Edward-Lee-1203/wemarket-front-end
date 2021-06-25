@@ -1,28 +1,54 @@
 package com.example.wemarketandroid.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 public class Food implements IDiffable{
-    private int id;
-    private String name;
-    private String imageUri;
-    private int basePrice;
-    private int price;
-    private double discount;
-//    private long count;     //TODO: notify server team for this field
-    private Market market;
 
-    public Food(int id, String name, String imageUri, int basePrice, double discount) {
+    @SerializedName("id")
+    @Expose
+    private Long id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("price")
+    @Expose
+    private Integer price;
+    @SerializedName("discount")
+    @Expose
+    private Integer discount;
+    @SerializedName("urlImg")
+    @Expose
+    private String urlImg;
+    @SerializedName("market")
+    @Expose
+    private Market market;
+    @SerializedName("product_type")
+    @Expose
+    private String productType;
+
+    public Food(Long id, String name, Integer price, Integer discount, String urlImg, Market market, String productType) {
+        super();
         this.id = id;
         this.name = name;
-        this.imageUri = imageUri;
-        this.basePrice = basePrice;
-        price = basePrice - (int)(basePrice*discount);
+        this.price = price;
         this.discount = discount;
+        this.urlImg = urlImg;
+        this.market = market;
+        this.productType = productType;
+    }
+    public Food(){}
+
+    public Long getId() {
+        return id;
     }
 
-    public int getId() {
-        return id;
+    public double getDiscountPrice(){return price-price*discount/100;}
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -33,32 +59,28 @@ public class Food implements IDiffable{
         this.name = name;
     }
 
-    public String getImageUri() {
-        return imageUri;
-    }
-
-    public void setImageUri(String imageUri) {
-        this.imageUri = imageUri;
-    }
-
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public int getBasePrice() {
-        return basePrice;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
-    public void setBasePrice(int basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    public double getDiscount() {
+    public Integer getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(Integer discount) {
         this.discount = discount;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
     }
 
     public Market getMarket() {
@@ -69,21 +91,30 @@ public class Food implements IDiffable{
         this.market = market;
     }
 
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Food food = (Food) o;
-        return id == food.id &&
-                Integer.compare(food.basePrice, basePrice) == 0 &&
-                Double.compare(food.discount, discount) == 0 &&
+        return Objects.equals(id, food.id) &&
                 Objects.equals(name, food.name) &&
-                Objects.equals(imageUri, food.imageUri) &&
-                Objects.equals(market, food.market);
+                Objects.equals(price, food.price) &&
+                Objects.equals(discount, food.discount) &&
+                Objects.equals(urlImg, food.urlImg) &&
+                Objects.equals(market, food.market) &&
+                Objects.equals(productType, food.productType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, imageUri, price, discount, market);
+        return Objects.hash(id, name, price, discount, urlImg, market, productType);
     }
 }

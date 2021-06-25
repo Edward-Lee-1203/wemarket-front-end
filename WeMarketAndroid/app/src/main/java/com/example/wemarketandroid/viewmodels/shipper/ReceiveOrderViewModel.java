@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.AsyncDifferConfig;
@@ -25,10 +26,12 @@ import com.example.wemarketandroid.models.Delivery;
 import com.example.wemarketandroid.models.Food;
 import com.example.wemarketandroid.models.Market;
 import com.example.wemarketandroid.models.MarketOrderDetail;
+import com.example.wemarketandroid.models.Order;
 import com.example.wemarketandroid.models.OrderDetail;
 import com.example.wemarketandroid.repository.Repo;
 import com.example.wemarketandroid.viewmodels.buyer.OrdersViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.ViewModelHelper;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,6 +41,7 @@ public class ReceiveOrderViewModel extends AndroidViewModel {
     private static OrderDetailsAdapter ORDER_DETAILS_ADAPTER;
     private static MarketOrderDetailAdapter MARKET_ODER_DETAIL_ADAPTER;
 
+
     private class OrderDetailsViewHolder extends RecyclerView.ViewHolder {
         ItemShipperMarketFoodBinding binding;
         public OrderDetailsViewHolder(@NonNull View itemView, ItemShipperMarketFoodBinding binding) {
@@ -46,11 +50,12 @@ public class ReceiveOrderViewModel extends AndroidViewModel {
         }
         public void bindTo(OrderDetail orderDetail){
             Food food = orderDetail.getFood();
-            binding.imageShipperOrdersFoodsDetailFoodImage.setImageResource(Integer.parseInt(food.getImageUri()));
+//            binding.imageShipperOrdersFoodsDetailFoodImage.setImageResource(Integer.parseInt(food.getImageUri()));
+            Picasso.get().load(food.getUrlImg()).into(binding.imageShipperOrdersFoodsDetailFoodImage);
             binding.textShipperOrderFoodsDetailFoodName.setText(food.getName());
             binding.textShipperOrderFoodsDetailMarketName.setText("From: "+food.getMarket().getName());
-            binding.textShipperOrderFoodsDetailFoodQuantity.setText(String.format("%,d kg",orderDetail.getKg()));
-            binding.textShipperOrderFoodsDetailFoodPrice.setText(String.format("%,d VND",orderDetail.getKg()*food.getPrice()));
+            binding.textShipperOrderFoodsDetailFoodQuantity.setText(String.format("%,.1f kg",orderDetail.getKilogram()));
+            binding.textShipperOrderFoodsDetailFoodPrice.setText(String.format("%,d VND",(int)Math.ceil(orderDetail.getKilogram()*food.getDiscountPrice())));
         }
     }
 
@@ -87,7 +92,7 @@ public class ReceiveOrderViewModel extends AndroidViewModel {
             Market market = marketOrderDetail.getMarket();
             binding.textShipperItemMarketName.setText(market.getName());
             binding.textShipperItemMarketAddress.setText(market.getAddress());
-            binding.textShipperItemMarketDistance.setText(market.getDistance()+"km");
+            binding.textShipperItemMarketDistance.setText("1 km");
             // binding recycle view
             LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
             layoutManager.setInitialPrefetchItemCount(prefetchCount);
@@ -139,10 +144,11 @@ public class ReceiveOrderViewModel extends AndroidViewModel {
         return MARKET_ODER_DETAIL_ADAPTER;
     }
 
-
-
     public Repo getmRepo() {
         return mRepo;
     }
 
+    public LiveData<List<OrderDetail>> getOrderDetailsByOrderId(long id){
+        return mRepo.getOrderDetailsByOrderId(id);
+    }
 }

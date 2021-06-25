@@ -17,11 +17,14 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.databinding.FragmentShipperMapsBinding;
 import com.example.wemarketandroid.models.Delivery;
+import com.example.wemarketandroid.models.DeliveryStatus;
 import com.example.wemarketandroid.models.Market;
 import com.example.wemarketandroid.models.OrderDetail;
 import com.example.wemarketandroid.viewmodels.shipper.DeliverySharedViewModel;
@@ -78,8 +81,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_shipper_maps);
         mapFragment.getMapAsync(this);
         // create list of markers from delivery order
-        Delivery delivery = mSharedViewModel.getmDeliveryMutableLiveData().getValue();
-        initializeDeliveryMarkers(delivery);
+        Delivery delivery = mSharedViewModel.getmCurrentDeliveryMutableLiveData().getValue();
         // setup location api
         locationProviderClient = LocationServices.getFusedLocationProviderClient(mContainingActivity);
         // initialize location update callback
@@ -112,7 +114,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         mViewBinding.buttonShipperMapsConfirmOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: call API to confirm order
+                mSharedViewModel.completeDelivery(getContext());
                 mContainingActivity.getNavController().navigate(R.id.destination_shipper_orders);
             }
         });
@@ -121,13 +123,25 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void initializeDeliveryMarkers(Delivery delivery){
-        ArrayList<Marker> markers = new ArrayList<>();
-        for(OrderDetail orderDetail : delivery.getOrder().getOrderDetailList()){
-            Market market = orderDetail.getFood().getMarket();
-            // TODO: create marker
-        }
-        // TODO: create delivery location marker
-        mViewModel.getOrderMarkersLiveData().postValue(markers);
+        LiveData<List<OrderDetail>> orderDetailList = mSharedViewModel.getmRepo().getOrderDetailsByOrderId(delivery.getOrder().getId());
+        orderDetailList.observe(getViewLifecycleOwner(), new Observer<List<OrderDetail>>() {
+            @Override
+            public void onChanged(List<OrderDetail> orderDetails) {
+                ArrayList<Marker> markers = new ArrayList<>();
+                for(OrderDetail orderDetail : orderDetails){
+                    Market market = orderDetail.getFood().getMarket();
+                    markers.add(googleMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(market.getLatitude(),market.getLongitude()))
+                            .title(market.getName())));
+                }
+                LatLng destination = new LatLng(delivery.getLatitude(),delivery.getLongitude());
+                markers.add(googleMap.addMarker(new MarkerOptions()
+                                                    .position(destination)
+                                                    .title("Delivery destination")
+                                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_buyer_destination))));
+                mViewModel.getOrderMarkersLiveData().postValue(markers);    // posts those markers
+            }
+        });
     }
 
     private void initializeShipperMarker(LatLng shipperLocation){
@@ -140,6 +154,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
         displayLatestLocation();
+        initializeDeliveryMarkers(mSharedViewModel.getmCurrentDeliveryMutableLiveData().getValue());
 
     }
 
@@ -161,7 +176,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
 //                    mViewModel.getShipperMarkerLiveData().postValue(googleMap.addMarker(new MarkerOptions().position(pos).title("You")));
                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos,STREET_ZOOM_LEVEL));
-                    // TODO: render the marketList of markers
                     registerLocationUpdate();
                 }
             }

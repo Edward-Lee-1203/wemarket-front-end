@@ -1,6 +1,6 @@
 package com.example.wemarketandroid.models;
 
 public interface IDiffable {
-    int getId();
+    Long getId();
     boolean equals(Object o);
 }

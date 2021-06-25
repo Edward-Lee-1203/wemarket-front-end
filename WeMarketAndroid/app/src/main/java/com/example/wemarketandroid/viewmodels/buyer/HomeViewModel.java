@@ -1,16 +1,20 @@
 package com.example.wemarketandroid.viewmodels.buyer;
 
+import android.app.Application;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wemarketandroid.R;
 import com.example.wemarketandroid.databinding.ItemBuyerHomeControlsBinding;
 import com.example.wemarketandroid.databinding.ItemBuyerPromoBinding;
 import com.example.wemarketandroid.models.Filter;
@@ -22,12 +26,13 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 
-public class HomeViewModel extends ViewModel {
+public class HomeViewModel extends AndroidViewModel {
     private Repo mRepo;
     private static FilterViewHolderAdapter FILTERVIEWHOLDER_ADAPTER;
     private static PromoViewHolderAdapter PROMOVIEWHOLDER_ADAPTER;
     private LiveData<User> mUserLiveData;
     private LiveData<List<Food>> mFoodLiveData;
+    private Context mContext;
 
     
     private class FilterViewHolder extends RecyclerView.ViewHolder{
@@ -51,22 +56,12 @@ public class HomeViewModel extends ViewModel {
         }
         public void bindTo(Food food){
             // production code
-//            Picasso.get().load(food.getImageUri()).placeholder(R.drawable.icon_chicken_legs).into(itemBinding.imageBuyerPromoPhoto, new Callback() {
-//                @Override
-//                public void onSuccess() {
-//                    Log.d("PicassoLoad","success");
-//                }
-//
-//                @Override
-//                public void onError(Exception e) {
-//                    Log.d("PicassoLoad",e.toString());
-//                }
-//            });
+            Picasso.get().load(food.getUrlImg()).into(itemBinding.imageBuyerPromoPhoto);
             // debug code
-            itemBinding.imageBuyerPromoPhoto.setImageResource(Integer.parseInt(food.getImageUri()));
+//            itemBinding.imageBuyerPromoPhoto.setImageResource(Integer.parseInt(food.getImageUri()));
 
             itemBinding.includeItemBuyerPromo.textBuyerPromoFoodName.setText(food.getName());
-            ViewModelHelper.bindIncludeFoodPricing(itemBinding.includeItemBuyerPromo.includeFoodPricing,food.getBasePrice(),food.getPrice());
+            ViewModelHelper.bindIncludeFoodPricing(itemBinding.includeItemBuyerPromo.includeFoodPricing,food.getPrice(),food.getPrice()-((int)food.getPrice()*food.getDiscount()/100));
             itemBinding.includeItemBuyerPromo.textBuyerPromoMarketName.setText(food.getMarket().getName());
         }
 
@@ -125,10 +120,12 @@ public class HomeViewModel extends ViewModel {
     }
 
 
-    public HomeViewModel() {
+    public HomeViewModel(Application application) {
+        super(application);
         mRepo = Repo.getInstance();
+        mContext = application.getApplicationContext();
         mUserLiveData = mRepo.getUser();
-        mFoodLiveData = mRepo.getFoodList();
+        mFoodLiveData = mRepo.getFoodList(mContext);
     }
     public FilterViewHolderAdapter getFilterViewHolderAdapter(){
         if(FILTERVIEWHOLDER_ADAPTER==null){

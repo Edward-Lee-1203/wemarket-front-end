@@ -1,58 +1,53 @@
 package com.example.wemarketandroid.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 public class OrderDetail implements IDiffable{
-    
-    private int id;
-    private int foodId;
-    private int orderId;
-    private int kg;
-    private Order order;
-    private Food food;
 
-    public OrderDetail(int id, int foodId, int orderId, int kg) {
-        this.id = id;
-        this.foodId = foodId;
-        this.orderId = orderId;
-        this.kg = kg;
+    @SerializedName("id")
+    @Expose
+    private Long id;
+    @SerializedName("product")
+    @Expose
+    private Food food;
+    @SerializedName("orders")
+    @Expose
+    private Order order;
+    @SerializedName("kilogram")
+    @Expose
+    private Double kilogram;
+
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public OrderDetail() {
     }
 
-    @Override
-    public int getId() {
+    /**
+     *
+     * @param food
+     * @param order
+     * @param id
+     * @param kilogram
+     */
+    public OrderDetail(Long id, Food food, Order order, Double kilogram) {
+        super();
+        this.id = id;
+        this.food = food;
+        this.order = order;
+        this.kilogram = kilogram;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public int getFoodId() {
-        return foodId;
-    }
-
-    public void setFoodId(int foodId) {
-        this.foodId = foodId;
-    }
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public int getKg() {
-        return kg;
-    }
-
-    public void setKg(int kg) {
-        this.kg = kg;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Food getFood() {
@@ -63,19 +58,35 @@ public class OrderDetail implements IDiffable{
         this.food = food;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Double getKilogram() {
+        return kilogram;
+    }
+
+    public void setKilogram(Double kilogram) {
+        this.kilogram = kilogram;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderDetail that = (OrderDetail) o;
-        return id == that.id &&
-                foodId == that.foodId &&
-                orderId == that.orderId &&
-                kg == that.kg;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(food, that.food) &&
+                Objects.equals(order, that.order) &&
+                Objects.equals(kilogram, that.kilogram);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, foodId, orderId, kg);
+        return Objects.hash(id, food, order, kilogram);
     }
 }

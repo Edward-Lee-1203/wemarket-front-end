@@ -38,6 +38,8 @@ public class HomeFragment extends Fragment {
         View rootView = mViewBinding.getRoot();
         mContainingActivity = (MainActivity) getActivity();
         mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication()).create(HomeViewModel.class);
+        // binds user's name
+        mViewBinding.textBuyerTitle.setText("Hello, "+mViewModel.getmUserLiveData().getValue().getName());
         // setups filters recycler view
         mViewBinding.recyclerBuyerFoodFiltersHome.setAdapter(mViewModel.getFilterViewHolderAdapter());
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false);

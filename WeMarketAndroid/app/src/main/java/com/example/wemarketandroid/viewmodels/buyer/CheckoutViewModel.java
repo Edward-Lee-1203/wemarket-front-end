@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wemarketandroid.databinding.ItemBuyerBucketBinding;
 import com.example.wemarketandroid.models.CartItem;
 import com.example.wemarketandroid.repository.Repo;
+import com.squareup.picasso.Picasso;
 
 public class CheckoutViewModel extends ViewModel {
     private Repo mRepo;
@@ -43,11 +44,12 @@ public class CheckoutViewModel extends ViewModel {
         public void bindTo(CartItem cartItem){
             mCartItem = cartItem;
             // debug code
-            binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage.setImageResource(Integer.parseInt(cartItem.getFood().getImageUri()));
+//            binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage.setImageResource(Integer.parseInt(cartItem.getFood().getUrlImg()));
+            Picasso.get().load(cartItem.getFood().getUrlImg()).into(binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage);
 
             binding.textBuyerItemMarketFoodName.setText(cartItem.getFood().getName());
             binding.textItemBuyerBucketPrice.setText(String.format("%,d",cartItem.getFood().getPrice()));
-            ViewModelHelper.bindIncludeQuantityPriceExchange(binding.includeBuyerQuantityPriceExchange, cartItem.getQuantity(), cartItem.getPrice(), cartItem.getFood().getPrice());
+            ViewModelHelper.bindIncludeQuantityPriceExchange(binding.includeBuyerQuantityPriceExchange, cartItem.getQuantity(), cartItem.getPrice(), cartItem.getDiscountPrice());
         }
 
 

@@ -1,12 +1,18 @@
 package com.example.wemarketandroid.views.buyer;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.SavedStateHandle;
@@ -19,6 +25,11 @@ import com.example.wemarketandroid.models.CartItem;
 import com.example.wemarketandroid.viewmodels.buyer.CartSharedViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.CheckoutViewModel;
 import com.example.wemarketandroid.viewmodels.buyer.ViewModelHelper;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -31,6 +42,8 @@ public class CheckoutFragment extends Fragment implements IUseToolbarOnlyTitle, 
     private CartSharedViewModel mCartSharedViewModel;
     private CheckoutViewModel mViewModel;
     private SavedStateHandle mSavedStateHandle;
+    private FusedLocationProviderClient locationProviderClient;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     public static final String IS_CHECKOUT_CONFIRMED = "isCheckoutConfirmed";
     @Override
@@ -42,6 +55,7 @@ public class CheckoutFragment extends Fragment implements IUseToolbarOnlyTitle, 
         mCartSharedViewModel = new ViewModelProvider(requireActivity()).get(CartSharedViewModel.class);
         mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(CheckoutViewModel.class);
         mCartSharedViewModel.setIsCheckoutConfirmed(false);     // sets confirm state
+        locationProviderClient = LocationServices.getFusedLocationProviderClient(mContainingActivity);
         // registers custom back button called handler
         // TODO: fix needs many tries
 //        mContainingActivity.getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
@@ -59,6 +73,7 @@ public class CheckoutFragment extends Fragment implements IUseToolbarOnlyTitle, 
                 // navigates to choose food page
                 mContainingActivity.getNavController().navigate(R.id.destination_buyer_choose_food);
                 mCartSharedViewModel.setIsCheckoutConfirmed(null);
+
             }
         });
         // defines remove button click handler
@@ -97,12 +112,51 @@ public class CheckoutFragment extends Fragment implements IUseToolbarOnlyTitle, 
             public void onClick(View view) {
                 // confirms order
                 mCartSharedViewModel.setIsCheckoutConfirmed(true);  // sets cart order confirmed
+                String address = mViewBinding.textInputEditTextBuyerCheckoutDeliveryNotes.getText().toString();
+                //TODO: assert address not blank!
+                mCartSharedViewModel.getmAddressLiveData().postValue(address);
+                getLatestLocation();    // request GPS permission and saves current location
                 mContainingActivity.getNavController().popBackStack();  // returns to previous fragment
 
             }
         });
 
         return rootView;
+    }
+
+    private void getLatestLocation(){
+        // checks if any location permission is granted
+        if(ActivityCompat.checkSelfPermission(mContainingActivity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(mContainingActivity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestLocationPermission();
+            return;
+        }
+        // gets and shows current location on map
+        locationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if(location==null){
+                    Toast.makeText(mContainingActivity,"Last location is null",Toast.LENGTH_SHORT).show();
+                } else{
+                    mCartSharedViewModel.getmLocationLiveData().postValue(location);    // saves current GPS location
+                }
+            }
+        });
+    }
+
+    private void requestLocationPermission(){
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+    }
+
+
+    /**
+     * Actively asks permission then show locations on map
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode != LOCATION_PERMISSION_REQUEST_CODE) return;
+        // try displaying locations on map again
+        getLatestLocation();
     }
 
     @Override

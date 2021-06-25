@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class MarketOrderDetail implements IDiffable{
-    private int id;
-    private int marketId;
+    private Long id;
+    private Long marketId;
     private Market market;
     private List<OrderDetail> marketOrderDetails;
 
-    public MarketOrderDetail(int id, int marketId, Market market, List<OrderDetail> marketOrderDetails) {
+    public MarketOrderDetail(Long id, Long marketId, Market market, List<OrderDetail> marketOrderDetails) {
         this.id = id;
         this.marketId = marketId;
         this.market = market;
@@ -17,15 +17,15 @@ public class MarketOrderDetail implements IDiffable{
     }
 
     @Override
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void setMarketId(int marketId) {
+    public void setMarketId(Long marketId) {
         this.marketId = marketId;
     }
 
@@ -37,7 +37,7 @@ public class MarketOrderDetail implements IDiffable{
         this.marketOrderDetails = marketOrderDetails;
     }
 
-    public int getMarketId() {
+    public Long getMarketId() {
         return marketId;
     }
 

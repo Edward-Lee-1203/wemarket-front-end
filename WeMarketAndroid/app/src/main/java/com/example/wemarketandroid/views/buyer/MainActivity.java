@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(mToolbar,mNavController,appBarConfiguration);
     }
     private void handleIntent(Intent intent){
-        if(intent.getAction().equals(Intent.ACTION_SEARCH)){
+        if(intent.getAction()!=null && intent.getAction().equals(Intent.ACTION_SEARCH)){
             String query = intent.getStringExtra(SearchManager.QUERY);
             // TODO: handle food item query
             Log.d("MainActivity","Query: "+query);

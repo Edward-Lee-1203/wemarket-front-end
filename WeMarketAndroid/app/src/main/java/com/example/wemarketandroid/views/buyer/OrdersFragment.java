@@ -39,12 +39,14 @@ public class OrdersFragment extends Fragment {
         // debugging
 //        mViewModel.getRepo().seedDeliveryList(getViewLifecycleOwner());
         // observes delivery list of this user
-        mViewModel.getRepo().getDeliveryList().observe(getViewLifecycleOwner(), new Observer<List<Delivery>>() {
+        mViewModel.getUserDeliveryList().observe(getViewLifecycleOwner(), new Observer<List<Delivery>>() {
             @Override
             public void onChanged(List<Delivery> deliveries) {
                 mViewModel.getOrderAdapter(getViewLifecycleOwner()).submitList(deliveries);
             }
         });
+        // binds UI
+
         return root;
     }
 

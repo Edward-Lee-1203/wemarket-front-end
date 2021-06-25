@@ -52,7 +52,7 @@ public class ViewModelHelper {
         viewBinding.buttonBuyerIncludeBottomBarCheckout.setEnabled(false);
     }
     
-    public static void bindIncludeQuantityPriceExchange(IncludeBuyerQuantityPriceExchangeBinding viewBinding, int initialFoodAmount, int initialCostAmount, int price){
+    public static void bindIncludeQuantityPriceExchange(IncludeBuyerQuantityPriceExchangeBinding viewBinding, double initialFoodAmount, int initialCostAmount, int price){
         // creates TextWatchers
         TextWatcher foodAmountTextWatcher = new TextWatcher() {
             @Override
@@ -68,8 +68,8 @@ public class ViewModelHelper {
                     String[] hundreds = string.split(",");
                     string = "";
                     for(int i = 0; i<hundreds.length; ++i) string+= hundreds[i];
-                    int quantity = Integer.parseInt(string);
-                    int cost = quantity * price;
+                    double quantity = Double.parseDouble(string);
+                    int cost = (int)(quantity * price);
                     viewBinding.textInputEditTextBuyerDialogCostAmount.setText(String.format("%,d", cost));
                 }
             }
@@ -89,15 +89,15 @@ public class ViewModelHelper {
                     string = "";
                     for(int i = 0; i<hundreds.length; ++i) string+= hundreds[i];
                     int cost = Integer.parseInt(string);
-                    int quantity = (int) Math.floor(cost / price);
+                    double quantity = Math.floor(cost / price);
                     viewBinding.textInputEditTextBuyerDialogFoodAmount.setText(String.format("%,d", quantity));
                 }
             }
         };
         // binding
-        viewBinding.textInputEditTextBuyerDialogFoodAmount.setText(String.format("%,d",initialFoodAmount));
+        viewBinding.textInputEditTextBuyerDialogFoodAmount.setText(String.format("%,.1f",initialFoodAmount));
         viewBinding.textInputEditTextBuyerDialogFoodAmount.addTextChangedListener(foodAmountTextWatcher);
-        viewBinding.textInputEditTextBuyerDialogCostAmount.setText(String.format("%,d",initialCostAmount));
+        viewBinding.textInputEditTextBuyerDialogCostAmount.setText(String.format("%,d",price));
         viewBinding.textInputEditTextBuyerDialogCostAmount.addTextChangedListener(costAmountTextWatcher);
 
     }

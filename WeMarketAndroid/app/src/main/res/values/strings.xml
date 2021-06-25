@@ -53,5 +53,6 @@
     <string name="default_food_left">5 Left</string>
     <string name="default_delivery_fee">Free delivery</string>
     <string name="buyer_checkout_button_text">Checkout</string>
+    <string name="shipper_choose_delivery_dialog_title">Choose Delivery</string>
     <string name="google_maps_key">AIzaSyCQ1eSkmg9CHe06IqtFJaG5CkPhtL8sy7s</string>
 </resources>

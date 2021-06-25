@@ -34,7 +34,7 @@ public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, I
     private FragmentBuyerChooseFoodBinding mViewBinding;
     private ChooseFoodViewModel mViewModel;
     private CartSharedViewModel mCartSharedViewModel;
-    private Repo mRepo;
+//    private Repo mRepo;
     private NavController mNavController;
 
     @Override
@@ -43,7 +43,7 @@ public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, I
         mViewBinding = FragmentBuyerChooseFoodBinding.inflate(inflater,container,false);
         View rootView = mViewBinding.getRoot();
         mContainingActivity = (MainActivity)getActivity();
-        mRepo = Repo.getInstance();
+//        mRepo = Repo.getInstance();
         mNavController = mContainingActivity.getNavController();
         mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(ChooseFoodViewModel.class);
         mCartSharedViewModel = new ViewModelProvider(requireActivity()).get(CartSharedViewModel.class);
@@ -57,7 +57,7 @@ public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, I
                 @Override
                 public void onItemClick(Market market) {
                     Bundle bundle = new Bundle();
-                    bundle.putInt("marketId",market.getId());
+                    bundle.putLong("marketId",market.getId());
                     mNavController.navigate(R.id.action_chooseFoodFragment_to_marketDetailsFragment,bundle);
                 }
         };
@@ -81,7 +81,8 @@ public class ChooseFoodFragment extends Fragment implements IHideBottomNavBar, I
                 mViewModel.getMarketItemViewHolderAdapter(getViewLifecycleOwner(),marketClickListener, foodClickListener).submitList(markets);
             }
         };
-        mRepo.getMarketList().observe(getViewLifecycleOwner(),marketListObserver);
+//        mRepo.getMarketList().observe(getViewLifecycleOwner(),marketListObserver);
+        mViewModel.getMarketListLiveData().observe(getViewLifecycleOwner(),marketListObserver);
         // observes cart content
         mCartSharedViewModel.getCartItemCount().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override

@@ -1,67 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.RegisterFragment"
-    android:background="@color/lightGray"
-    android:orientation="vertical"
-    android:padding="@dimen/WeMarket.space.large"
-    android:divider="@drawable/empty_wide_divider_medium"
-    android:showDividers="middle">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/WeMarket.space.small"
-        android:src="@drawable/logowemarket"
-        android:layout_gravity="center"/>
-
-    <EditText
-        android:id="@+id/editText_register_username"
+    tools:context=".views.RegisterFragment">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/WeMarketStyles.EditTextLogin"
-        android:hint="Username"
-        android:inputType="textPersonName" />
+        android:layout_height="match_parent"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:padding="@dimen/WeMarket.space.large"
+        android:divider="@drawable/empty_wide_divider_medium"
+        android:showDividers="middle">
 
-    <EditText
-        android:id="@+id/editText_register_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/WeMarketStyles.EditTextLogin"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/editText_register_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/WeMarketStyles.EditTextLogin"
-        android:hint="Phone number"
-        android:inputType="numberDecimal" />
-
-    <EditText
-        android:id="@+id/editText_register_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/WeMarketStyles.EditTextLogin"
-        android:hint="Password"
-        android:inputType="textPassword" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/WeMarketStyles.CardView"
-        android:layout_gravity="center">
-        <Button
-            android:id="@+id/button_register_signup"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/primary"
-            android:text="Sign up"
-            style="@style/WeMarketStyles.Button.hasPadding"/>
-    </androidx.cardview.widget.CardView>
+            android:layout_marginTop="@dimen/WeMarket.space.small"
+            android:src="@drawable/logowemarket"
+            android:layout_gravity="center"/>
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/editText_register_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/WeMarketStyles.EditTextLogin"
+            android:hint="Username"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editText_register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/WeMarketStyles.EditTextLogin"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/editText_register_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/WeMarketStyles.EditTextLogin"
+            android:hint="Phone number"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/editText_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/WeMarketStyles.EditTextLogin"
+            android:hint="Password"
+            android:inputType="textPassword" />
+        <RadioGroup
+        android:id="@+id/radioGroup_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+            <RadioButton
+                android:id="@+id/radioButton_register_buyer"
+                style="@style/WeMarketStyles.Text.h3.large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/primary"
+                android:checked="true"
+                android:text="Buyer login" />
+
+            <RadioButton
+                android:id="@+id/radioButton_register_shipper"
+                style="@style/WeMarketStyles.Text.h3.large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/primary"
+                android:layout_marginStart="@dimen/WeMarket.space.medium"
+                android:text="Shipper login" />
+        </RadioGroup>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/WeMarketStyles.CardView"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/button_register_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primary"
+                android:text="Sign up"
+                style="@style/WeMarketStyles.Button.hasPadding"/>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

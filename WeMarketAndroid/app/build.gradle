@@ -62,6 +62,12 @@ dependencies {
     // location sdk
     implementation 'com.google.android.gms:play-services-location:18.0.0'
 
+    // retrofit
+    implementation  'com.squareup.retrofit2:retrofit:2.6.0'
+
+    // gson converter
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 

@@ -24,6 +24,8 @@ import com.example.wemarketandroid.viewmodels.buyer.OnDialogResult;
 import com.example.wemarketandroid.viewmodels.buyer.ViewModelHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 public class MarketDetailsFragment extends Fragment implements IUseToolbarOnlyTitle, IHideBottomNavBar, OnDialogResult {
 
     private final String TAG = "MarketDetailsFragment";
@@ -41,7 +43,8 @@ public class MarketDetailsFragment extends Fragment implements IUseToolbarOnlyTi
         mContainingActivity = (MainActivity)getActivity();
         mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication()).create(MarketDetailsViewModel.class);
         mCartSharedViewModel = new ViewModelProvider(requireActivity()).get(CartSharedViewModel.class);
-        mMarket = mViewModel.getRepo().getMarketById(getArguments().getInt("marketId"));
+        long marketId = getArguments().getLong("marketId");
+        mMarket = mViewModel.getMarketById(marketId);
         // registers floating back button click handler
         mViewBinding.fabBuyerBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +76,12 @@ public class MarketDetailsFragment extends Fragment implements IUseToolbarOnlyTi
                 mViewBinding.includeMarketDetails.textIncludeBuyerMarketDetailsAddress.setText(market.getAddress());
                 mViewBinding.includeMarketDetails.textIncludeBuyerMarketDetailsOpenTime.setText(String.format("%d %s - %d %s",market.getOpenTime(),market.getOpenTime()<=12?"am":"pm",market.getCloseTime(),market.getCloseTime()<=12?"am":"pm"));
                 // submit food list to adapter
-                mViewModel.getFoodItemViewHolderAdapter(foodClickListener).submitList(market.getFoodList());
+                mViewModel.getFoodsByMarketId(market.getId()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
+                    @Override
+                    public void onChanged(List<Food> foods) {
+                        mViewModel.getFoodItemViewHolderAdapter(foodClickListener).submitList(foods);
+                    }
+                });
             }
         });
         // observes cart content
@@ -139,6 +147,4 @@ public class MarketDetailsFragment extends Fragment implements IUseToolbarOnlyTi
     public void useToolbarOnlyTitle(Toolbar toolbar) {
 
     }
-//    TODO: dynamically create the linear layout for the bottom bar
-//    TODO: checkout listener
 }

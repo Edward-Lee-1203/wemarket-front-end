@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -42,9 +44,9 @@ public class ReceiveOrderFragment extends Fragment {
         mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication()).create(ReceiveOrderViewModel.class);
         mSharedViewModel = new ViewModelProvider(mContainingActivity).get(DeliverySharedViewModel.class);   // gets shared view model
         // gets delivery object
-        Delivery delivery = mSharedViewModel.getmDeliveryMutableLiveData().getValue();
+        Delivery delivery = mSharedViewModel.getmCurrentDeliveryMutableLiveData().getValue();
         // binding delivery object to view
-        mViewBinding.switchSocialDistancing.setChecked(delivery.isKeepSocial());
+        mViewBinding.switchSocialDistancing.setChecked(delivery.getKeepSocial()!=null&&delivery.getKeepSocial());
         mViewBinding.textShipperDeliverToAddress.setText(delivery.getAddress());
         mViewBinding.textShipperPaymentItemsCost.setText(String.format("%,d",delivery.getOrder().getTotalPrice()));
         // TODO: fix database schema to get delivery fee
@@ -55,27 +57,35 @@ public class ReceiveOrderFragment extends Fragment {
         mViewBinding.recyclerShipperCart.setAdapter(adapter);
         mViewBinding.recyclerShipperCart.setLayoutManager(layoutManager);
         // grouping orderDetails by market
-        HashMap<Integer, List<OrderDetail>> hashMap = new HashMap<>();
-        List<Market> markets = new ArrayList<>();
-        for(OrderDetail orderDetail : delivery.getOrder().getOrderDetailList()){
-            Market market = orderDetail.getFood().getMarket();
-            if(hashMap.containsKey(market.getId())){
-                hashMap.get(market.getId()).add(orderDetail);
-            } else{
-                ArrayList<OrderDetail> orderDetails = new ArrayList<>();
-                orderDetails.add(orderDetail);
-                hashMap.put(market.getId(), orderDetails);
-                markets.add(market);
+        mViewModel.getmRepo().getOrderDetails(getContext());
+        LiveData<List<OrderDetail>> orderDetailsByOrderId = mViewModel.getOrderDetailsByOrderId(delivery.getOrder().getId());
+        orderDetailsByOrderId.observe(getViewLifecycleOwner(), new Observer<List<OrderDetail>>() {
+            @Override
+            public void onChanged(List<OrderDetail> orderDetails) {
+                HashMap<Long, List<OrderDetail>> hashMap = new HashMap<>();
+                List<Market> markets = new ArrayList<>();
+                for(OrderDetail orderDetail : orderDetails){
+                    Market market = orderDetail.getFood().getMarket();
+                    if(hashMap.containsKey(market.getId())){
+                        hashMap.get(market.getId()).add(orderDetail);
+                    } else{
+                        ArrayList<OrderDetail> marketOrderDetails = new ArrayList<>();
+                        marketOrderDetails.add(orderDetail);
+                        hashMap.put(market.getId(), marketOrderDetails);
+                        markets.add(market);
+                    }
+                }
+                // flattening hashmap to list of MarketOrderDetails
+                ArrayList<MarketOrderDetail> marketOrderDetails = new ArrayList<>();
+                for(int i = 0; i<markets.size(); ++i){
+                    Market market = markets.get(i);
+                    MarketOrderDetail marketOrderDetail = new MarketOrderDetail((long)i,market.getId(),market,hashMap.get(market.getId()));
+                    marketOrderDetails.add(marketOrderDetail);
+                }
+                adapter.submitList(marketOrderDetails);     // submits that list to adapter
             }
-        }
-        // flattening hashmap to list of MarketOrderDetails
-        ArrayList<MarketOrderDetail> marketOrderDetails = new ArrayList<>();
-        for(int i = 0; i<markets.size(); ++i){
-            Market market = markets.get(i);
-            MarketOrderDetail marketOrderDetail = new MarketOrderDetail(i,market.getId(),market,hashMap.get(market.getId()));
-            marketOrderDetails.add(marketOrderDetail);
-        }
-        adapter.submitList(marketOrderDetails);     // submits that list to adapter
+        });
+
         mViewBinding.buttonShipperReceiveOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

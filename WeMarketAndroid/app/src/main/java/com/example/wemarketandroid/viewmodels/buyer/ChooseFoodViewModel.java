@@ -34,11 +34,13 @@ public class ChooseFoodViewModel extends AndroidViewModel {
     private static MarketItemViewHolderAdapter MARKET_ITEM_VIEW_HOLDER_ADAPTER;
     private Context mContext;
     private Repo mRepo;
+    private LiveData<List<Market>> mMarketListLiveData;
 
     public ChooseFoodViewModel(@NonNull Application application) {
         super(application);
         mContext = application.getApplicationContext();
         mRepo = Repo.getInstance();
+        mMarketListLiveData = mRepo.getMarketList(mContext);
     }
 
     private class ChooseFoodFilterViewHolder extends RecyclerView.ViewHolder{
@@ -113,10 +115,10 @@ public class ChooseFoodViewModel extends AndroidViewModel {
         public void bindTo(Food food){
             mFood = food;
             // debug code
-            binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage.setImageResource(Integer.parseInt(food.getImageUri()));
-
+//            binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage.setImageResource(Integer.parseInt(food.getImageUri()));
+//            Picasso
             binding.textBuyerItemMarketFoodName.setText(food.getName());
-            ViewModelHelper.bindIncludeFoodPricing(binding.includeMarketFoodFoodPricing, food.getBasePrice(), food.getPrice());
+            ViewModelHelper.bindIncludeFoodPricing(binding.includeMarketFoodFoodPricing, food.getPrice(), ((int)food.getPrice()-food.getPrice()*food.getDiscount()/100));
         }
 
 
@@ -185,7 +187,12 @@ public class ChooseFoodViewModel extends AndroidViewModel {
                 public void onChanged(Market market) {
                     binding.textBuyerItemMarketName.setText(market.getName());
                     binding.textBuyerItemMarketAddress.setText(market.getAddress());
-                    adapter.submitList(market.getFoodList());
+                    mRepo.getFoodsByMarketId(market.getId()).observe(mLifecycleOwner, new Observer<List<Food>>() {
+                        @Override
+                        public void onChanged(List<Food> foods) {
+                            adapter.submitList(foods);
+                        }
+                    });
                 }
             });
         }
@@ -217,7 +224,7 @@ public class ChooseFoodViewModel extends AndroidViewModel {
         @Override
         public void onBindViewHolder(@NonNull MarketItemViewHolder holder, int position) {
             Market market = getItem(position);
-            LiveData<Market> marketLiveData = Transformations.map(mRepo.getMarketList(), new Function<List<Market>, Market>() {
+            LiveData<Market> marketLiveData = Transformations.map(mMarketListLiveData, new Function<List<Market>, Market>() {
                 @Override
                 public Market apply(List<Market> input) {
                     int indx = input.indexOf(market);
@@ -241,5 +248,7 @@ public class ChooseFoodViewModel extends AndroidViewModel {
         }
         return MARKET_ITEM_VIEW_HOLDER_ADAPTER;
     }
+
+    public LiveData<List<Market>> getMarketListLiveData(){return mMarketListLiveData;}
 
 }

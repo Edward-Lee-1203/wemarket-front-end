@@ -38,24 +38,26 @@ public class SuccessFragment extends Fragment {
     private Delivery mDelivery;
 
     private void submitDelivery(){
-        ArrayList<OrderDetail> orderDetailArrayList = new ArrayList<>();
-        Order order = new Order((int)(Math.random()*1000),0);
-        for(CartItem cartItem : mCartSharedViewModel.getCartItems().getValue().values()){
-            OrderDetail orderDetail = new OrderDetail((int)(Math.random()*1000),cartItem.getId(),order.getId(),cartItem.getQuantity());
-            orderDetail.setFood(cartItem.getFood());
-            orderDetailArrayList.add(orderDetail);
-            order.setTotalPrice(order.getTotalPrice()+cartItem.getPrice());
-        }
-        order.setOrderDetailList(orderDetailArrayList);
-        Shipper shipper = mRepo.getShipperList().getValue().get(0);
-        User currentUser = mRepo.getUser().getValue();
-        String dateString = dateFormat.format(new Date());
-        Delivery delivery = new Delivery((int)(Math.random()*1000), shipper.getId(), currentUser.getId(),order.getId(),null,0,dateString,false,false,null);
-        delivery.setOrder(order);
-        delivery.setShipper(shipper);
-        delivery.setUser(currentUser);
-        mDelivery = delivery;
-        mRepo.insertDelivery(delivery);
+//        Order order = new Order(0l,mCartSharedViewModel.getCartTotalCost().getValue());
+//        ArrayList<OrderDetail> orderDetailArrayList = new ArrayList<>();
+//        Order order = new Order((int)(Math.random()*1000),0);
+//        for(CartItem cartItem : mCartSharedViewModel.getCartItems().getValue().values()){
+//            OrderDetail orderDetail = new OrderDetail((int)(Math.random()*1000),cartItem.getId(),order.getId(),cartItem.getQuantity());
+//            orderDetail.setFood(cartItem.getFood());
+//            orderDetailArrayList.add(orderDetail);
+//            order.setTotalPrice(order.getTotalPrice()+cartItem.getPrice());
+//        }
+//        order.setOrderDetailList(orderDetailArrayList);
+//        Shipper shipper = mRepo.getShipperList().getValue().get(0);
+//        User currentUser = mRepo.getUser().getValue();
+//        String dateString = dateFormat.format(new Date());
+//        Delivery delivery = new Delivery((int)(Math.random()*1000), shipper.getId(), currentUser.getId(),order.getId(),null,0,dateString,false,false,null);
+//        delivery.setOrder(order);
+//        delivery.setShipper(shipper);
+//        delivery.setUser(currentUser);
+//        mDelivery = delivery;
+//        mRepo.insertDelivery(delivery);
+        mCartSharedViewModel.makeDelivery(mContainingActivity.getApplicationContext());
     }
 
 
@@ -86,7 +88,7 @@ public class SuccessFragment extends Fragment {
                     mCartSharedViewModel.clearCart();   // clears cart content
                 } else{
                     submitDelivery();
-                    mCartSharedViewModel.clearCart();   // clears cart content
+//                    mCartSharedViewModel.clearCart();   // clears cart content
                 }
             }
         });
@@ -94,23 +96,24 @@ public class SuccessFragment extends Fragment {
         mViewBinding.buttonBuyerSuccessCheckOrderStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // setups navigation options
                 NavController navController = mContainingActivity.getNavController();
                 int startDestination = navController.getGraph().getStartDestination();
                 NavOptions navOptions = new NavOptions.Builder().setPopUpTo(startDestination, true).build();
                 // auto complete the delivery
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try{
-                            Thread.sleep((int)(Math.random()*5000));
-                            mDelivery.setConfirmed(true);
-                            mRepo.refreshDeliveryList();
-                        } catch(Exception err) {
-                            Log.d("SuccessFragment", err.toString());
-                        }
-                    }
-                }).start();
-                // TODO: sends user straight to orders page at home fragment
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try{
+//                            Thread.sleep((int)(Math.random()*5000));
+//                            mDelivery.setConfirmed(true);
+//                            mRepo.refreshDeliveryList();
+//                        } catch(Exception err) {
+//                            Log.d("SuccessFragment", err.toString());
+//                        }
+//                    }
+//                }).start();
+                // sends user to orders page
                 navController.navigate(R.id.destination_buyer_orders, null, navOptions);
             }
         });

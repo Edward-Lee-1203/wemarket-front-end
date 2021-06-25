@@ -4,20 +4,24 @@ import java.util.Objects;
 
 public class CartItem implements IDiffable {
 
-    private int foodId;
+    private Long foodId;
     private Food food;
-    private int quantity;
+    private double quantity;
     private int price;
 
     public CartItem(Food food, int price) {
         this.food = food;
         this.foodId = food.getId();
         this.price = price;
-        this.quantity = price/food.getPrice();
+        this.quantity = price/getDiscountPrice();
+    }
+
+    public int getDiscountPrice(){
+        return food.getPrice()-(int)(food.getPrice()*food.getDiscount()/100);
     }
 
     @Override
-    public int getId() {
+    public Long getId() {
         return foodId;
     }
 
@@ -29,11 +33,11 @@ public class CartItem implements IDiffable {
         this.food = food;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 

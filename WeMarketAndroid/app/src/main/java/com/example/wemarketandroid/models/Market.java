@@ -1,37 +1,62 @@
 package com.example.wemarketandroid.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Market implements IDiffable{
-    private int id;
+public class Market implements IDiffable {
+    @SerializedName("id")
+    @Expose
+    private Long id;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("address")
+    @Expose
     private String address;
-//    private double rating;
-    private int openTime;
-    private int closeTime;
-//    private boolean isVerified;
-    private double latitude;
-    private double longitude;
+    @SerializedName("open_time")
+    @Expose
+    private Integer openTime;
+    @SerializedName("longitude")
+    @Expose
+    private Double longitude;
+    @SerializedName("latitude")
+    @Expose
+    private Double latitude;
+    @SerializedName("itemsLeft")
+    @Expose
+    private Object itemsLeft;
+    @SerializedName("close_time")
+    @Expose
+    private Integer closeTime;
+    @SerializedName("market_type")
+    @Expose
     private String marketType;
-    private List<Food> foodList;
 
-    public Market(int id, String name, String address, int openTime, int closeTime, double latitude, double longitude, String marketType, List<Food> foodList) {
+    public Market(Long id, String name, String address, Integer openTime, Double longitude, Double latitude, Object itemsLeft, Integer closeTime, String marketType) {
+        super();
         this.id = id;
         this.name = name;
         this.address = address;
         this.openTime = openTime;
-        this.closeTime = closeTime;
-        this.latitude = latitude;
         this.longitude = longitude;
+        this.latitude = latitude;
+        this.itemsLeft = itemsLeft;
+        this.closeTime = closeTime;
         this.marketType = marketType;
-        if(foodList == null) foodList = new LinkedList<>();
-        this.foodList = foodList;
+    }
+    public Market(){}
+
+    public Long getId() {
+        return id;
     }
 
-    public int getId() {
-        return id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -50,40 +75,44 @@ public class Market implements IDiffable{
         this.address = address;
     }
 
-    public int getOpenTime() {
+    public Integer getOpenTime() {
         return openTime;
     }
 
-    public void setOpenTime(int openTime) {
+    public void setOpenTime(Integer openTime) {
         this.openTime = openTime;
     }
 
-    public int getCloseTime() {
-        return closeTime;
-    }
-
-    public void setCloseTime(int closeTime) {
-        this.closeTime = closeTime;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
-    public List<Food> getFoodList() {
-        return foodList;
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Object getItemsLeft() {
+        return itemsLeft;
+    }
+
+    public void setItemsLeft(Object itemsLeft) {
+        this.itemsLeft = itemsLeft;
+    }
+
+    public Integer getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(Integer closeTime) {
+        this.closeTime = closeTime;
     }
 
     public String getMarketType() {
@@ -94,29 +123,24 @@ public class Market implements IDiffable{
         this.marketType = marketType;
     }
 
-    //    TODO: update this method to get real distance
-    public double getDistance(){
-        return 1;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Market market = (Market) o;
-        return id == market.id &&
-                openTime == market.openTime &&
-                closeTime == market.closeTime &&
-                Double.compare(market.latitude, latitude) == 0 &&
-                Double.compare(market.longitude, longitude) == 0 &&
+        return Objects.equals(id, market.id) &&
                 Objects.equals(name, market.name) &&
                 Objects.equals(address, market.address) &&
-                Objects.equals(marketType, market.marketType) &&
-                Objects.equals(foodList, market.foodList);
+                Objects.equals(openTime, market.openTime) &&
+                Objects.equals(longitude, market.longitude) &&
+                Objects.equals(latitude, market.latitude) &&
+                Objects.equals(itemsLeft, market.itemsLeft) &&
+                Objects.equals(closeTime, market.closeTime) &&
+                Objects.equals(marketType, market.marketType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, address, openTime, closeTime, latitude, longitude, marketType, foodList);
+        return Objects.hash(id, name, address, openTime, longitude, latitude, itemsLeft, closeTime, marketType);
     }
 }

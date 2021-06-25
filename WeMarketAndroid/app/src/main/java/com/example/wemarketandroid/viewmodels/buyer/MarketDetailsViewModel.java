@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
@@ -12,12 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wemarketandroid.databinding.ItemBuyerMarketFoodBinding;
 import com.example.wemarketandroid.models.Food;
+import com.example.wemarketandroid.models.Market;
 import com.example.wemarketandroid.repository.Repo;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class MarketDetailsViewModel extends ViewModel {
 
     private Repo mRepo;
     private FoodItemViewHolderAdapter FOOD_ITEM_VIEW_HOLDER_ADAPTER;
+    private LiveData<Market> marketLiveData;
 
     private class FoodItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -36,8 +42,9 @@ public class MarketDetailsViewModel extends ViewModel {
         public void bindTo(Food food){
             mFood = food;
             // debug code
-            binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage.setImageResource(Integer.parseInt(food.getImageUri()));
-            ViewModelHelper.bindIncludeFoodPricing(binding.includeMarketFoodFoodPricing,food.getBasePrice(),food.getPrice());
+            Picasso.get().load(food.getUrlImg()).into(binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage);
+//            binding.includeImageBadgeBottom.imageIncludeImageBadgeBottomFoodImage.setImageResource(Integer.parseInt(food.getImageUri()));
+            ViewModelHelper.bindIncludeFoodPricing(binding.includeMarketFoodFoodPricing,food.getPrice(),(int)(food.getPrice()-food.getPrice()*food.getDiscount()/100));
             binding.textBuyerItemMarketFoodName.setText(food.getName());
         }
 
@@ -74,6 +81,7 @@ public class MarketDetailsViewModel extends ViewModel {
         }
     }
     public MarketDetailsViewModel(){
+
         mRepo = Repo.getInstance();
     }
 
@@ -84,6 +92,20 @@ public class MarketDetailsViewModel extends ViewModel {
         return FOOD_ITEM_VIEW_HOLDER_ADAPTER;
     }
     public Repo getRepo(){ return mRepo; }
+
+    public LiveData<Market> getMarketById(long id){
+        marketLiveData = mRepo.getMarketById(id);
+        return marketLiveData;
+    }
+
+    /**
+     *
+     * @param marketId
+     * @return
+     */
+    public LiveData<List<Food>> getFoodsByMarketId(long marketId){
+        return mRepo.getFoodsByMarketId(marketId);
+    }
 
 
 }
